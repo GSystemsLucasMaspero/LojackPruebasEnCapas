@@ -1,0 +1,9 @@
+C:\Users\lmaspero\Desktop\ABM\Servicios\bin\Debug\Servicios.dll
+C:\Users\lmaspero\Desktop\ABM\Servicios\bin\Debug\Servicios.pdb
+C:\Users\lmaspero\Desktop\ABM\Servicios\obj\Debug\Servicios.csprojResolveAssemblyReference.cache
+C:\Users\lmaspero\Desktop\ABM\Servicios\obj\Debug\Servicios.dll
+C:\Users\lmaspero\Desktop\ABM\Servicios\obj\Debug\Servicios.pdb
+C:\Users\lmaspero\Desktop\ABM\Servicios\bin\Debug\Datos.dll
+C:\Users\lmaspero\Desktop\ABM\Servicios\bin\Debug\EntityFramework.dll
+C:\Users\lmaspero\Desktop\ABM\Servicios\bin\Debug\Datos.pdb
+C:\Users\lmaspero\Desktop\ABM\Servicios\bin\Debug\EntityFramework.xml

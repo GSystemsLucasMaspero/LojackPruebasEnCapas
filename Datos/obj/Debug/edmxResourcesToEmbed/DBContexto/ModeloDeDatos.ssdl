@@ -1,0 +1,318 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Lojack_PruebaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Cliente">
+    <Key>
+      <PropertyRef Name="idCliente" />
+    </Key>
+    <Property Name="idCliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="70" Nullable="false" />
+    <Property Name="direccion" Type="varchar" MaxLength="50" />
+    <Property Name="telefono" Type="varchar" MaxLength="50" />
+    <Property Name="localidad" Type="char" MaxLength="4" />
+    <Property Name="partido" Type="char" MaxLength="4" />
+    <Property Name="provincia" Type="char" MaxLength="1" />
+    <Property Name="cuit" Type="varchar" MaxLength="13" />
+    <Property Name="email" Type="varchar" MaxLength="50" />
+    <Property Name="fax" Type="varchar" MaxLength="50" />
+    <Property Name="inhabilitado" Type="bit" Nullable="false" />
+    <Property Name="fechaAlta" Type="datetime" Nullable="false" />
+    <Property Name="usuarioAlta" Type="int" Nullable="false" />
+    <Property Name="fechaModificacion" Type="datetime" Nullable="false" />
+    <Property Name="usuarioModificacion" Type="int" Nullable="false" />
+    <Property Name="fechaBaja" Type="datetime" />
+    <Property Name="usuarioBaja" Type="int" />
+    <Property Name="idPais" Type="int" Nullable="false" />
+    <Property Name="idCuenta" Type="int" />
+    <Property Name="vistaInternoDesvios" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Cuenta">
+    <Key>
+      <PropertyRef Name="idCuenta" />
+    </Key>
+    <Property Name="idCuenta" Type="int" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="idClienteControlador" Type="int" Nullable="false" />
+    <Property Name="mapGuideEnabled" Type="bit" />
+    <Property Name="googleMapsEnabled" Type="bit" />
+    <Property Name="mapsEnabled" Type="int" Nullable="false" />
+    <Property Name="fechaBaja" Type="date" />
+  </EntityType>
+  <EntityType Name="Entidad">
+    <Key>
+      <PropertyRef Name="idEntidad" />
+    </Key>
+    <Property Name="idEntidad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="estado" Type="int" Nullable="false" />
+    <Property Name="idNivelServicio" Type="int" Nullable="false" />
+    <Property Name="plantillaSuceso" Type="varchar" MaxLength="50" />
+    <Property Name="cadenciaReporte" Type="int" Nullable="false" />
+    <Property Name="fechaAlta" Type="datetime" Nullable="false" />
+    <Property Name="usuarioAlta" Type="int" Nullable="false" />
+    <Property Name="fechaModificacion" Type="datetime" Nullable="false" />
+    <Property Name="usuarioModificacion" Type="int" Nullable="false" />
+    <Property Name="fechaBaja" Type="datetime" />
+    <Property Name="usuarioBaja" Type="int" />
+    <Property Name="comentario" Type="varchar" MaxLength="40" />
+    <Property Name="telefono" Type="varchar" MaxLength="255" />
+    <Property Name="idProcedimiento" Type="int" />
+    <Property Name="idCuenta" Type="int" />
+  </EntityType>
+  <EntityType Name="Equipo">
+    <Key>
+      <PropertyRef Name="idEquipo" />
+    </Key>
+    <Property Name="idEquipo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="identificador" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="nroSerie" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="primario" Type="bit" Nullable="false" />
+    <Property Name="idEquipoTipo" Type="int" Nullable="false" />
+    <Property Name="cadencia" Type="int" Nullable="false" />
+    <Property Name="fechaAlta" Type="datetime" Nullable="false" />
+    <Property Name="usuarioAlta" Type="int" Nullable="false" />
+    <Property Name="versionFirmware" Type="varchar" MaxLength="50" />
+    <Property Name="versionProgramacion" Type="varchar" MaxLength="50" />
+    <Property Name="fechaModificacion" Type="datetime" Nullable="false" />
+    <Property Name="usuarioModificacion" Type="int" Nullable="false" />
+    <Property Name="fechaBaja" Type="datetime" />
+    <Property Name="usuarioBaja" Type="int" />
+    <Property Name="estadoSd" Type="varchar" MaxLength="50" />
+    <Property Name="idCuenta" Type="int" />
+    <Property Name="portable" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EquipoTipo">
+    <Key>
+      <PropertyRef Name="idEquipoTipo" />
+    </Key>
+    <Property Name="idEquipoTipo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="cantSensores" Type="int" Nullable="false" />
+    <Property Name="fechaAlta" Type="datetime" Nullable="false" />
+    <Property Name="usuarioAlta" Type="int" Nullable="false" />
+    <Property Name="fechaBaja" Type="datetime" />
+    <Property Name="usuarioBaja" Type="int" />
+  </EntityType>
+  <EntityType Name="NivelServicio">
+    <Key>
+      <PropertyRef Name="idNivelServicio" />
+    </Key>
+    <Property Name="idNivelServicio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="fechaAlta" Type="datetime" Nullable="false" />
+    <Property Name="usuarioAlta" Type="int" Nullable="false" />
+    <Property Name="fechaBaja" Type="datetime" />
+    <Property Name="usuarioBaja" Type="int" />
+  </EntityType>
+  <EntityType Name="Sector">
+    <Key>
+      <PropertyRef Name="idSector" />
+    </Key>
+    <Property Name="idSector" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="fechaAlta" Type="datetime" Nullable="false" />
+    <Property Name="usuarioAlta" Type="int" Nullable="false" />
+    <Property Name="fechaBaja" Type="datetime" />
+    <Property Name="usuarioBaja" Type="int" />
+    <Property Name="idCuenta" Type="int" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="idUsuario" />
+    </Key>
+    <Property Name="idUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idCliente" Type="int" Nullable="false" />
+    <Property Name="userLogin" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="apellido" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="idSector" Type="int" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="lastExpiredPassword" Type="datetime" />
+    <Property Name="operador" Type="bit" Nullable="false" />
+    <Property Name="operadorSeguridad" Type="bit" />
+    <Property Name="supervisor" Type="bit" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="50" />
+    <Property Name="fechaAlta" Type="datetime" Nullable="false" />
+    <Property Name="usuarioAlta" Type="int" Nullable="false" />
+    <Property Name="fechaModificacion" Type="datetime" Nullable="false" />
+    <Property Name="usuarioModificacion" Type="int" Nullable="false" />
+    <Property Name="fechaBaja" Type="datetime" />
+    <Property Name="usuarioBaja" Type="int" />
+    <Property Name="nivelAuditoria" Type="int" Nullable="false" />
+    <Property Name="perfilWindows" Type="int" Nullable="false" />
+    <Property Name="perfilWeb" Type="int" Nullable="false" />
+    <Property Name="multipais" Type="bit" Nullable="false" />
+    <Property Name="demo" Type="bit" Nullable="false" />
+    <Property Name="diasDemo" Type="int" Nullable="false" />
+    <Property Name="idCuenta" Type="int" />
+  </EntityType>
+  <Association Name="Entidad_FK01">
+    <End Role="NivelServicio" Type="Self.NivelServicio" Multiplicity="1" />
+    <End Role="Entidad" Type="Self.Entidad" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NivelServicio">
+        <PropertyRef Name="idNivelServicio" />
+      </Principal>
+      <Dependent Role="Entidad">
+        <PropertyRef Name="idNivelServicio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Equipo_FK01">
+    <End Role="EquipoTipo" Type="Self.EquipoTipo" Multiplicity="1" />
+    <End Role="Equipo" Type="Self.Equipo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EquipoTipo">
+        <PropertyRef Name="idEquipoTipo" />
+      </Principal>
+      <Dependent Role="Equipo">
+        <PropertyRef Name="idEquipoTipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cliente_Cuenta">
+    <End Role="Cuenta" Type="Self.Cuenta" Multiplicity="0..1" />
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cuenta">
+        <PropertyRef Name="idCuenta" />
+      </Principal>
+      <Dependent Role="Cliente">
+        <PropertyRef Name="idCuenta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cuenta_Cliente">
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+    <End Role="Cuenta" Type="Self.Cuenta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="idCliente" />
+      </Principal>
+      <Dependent Role="Cuenta">
+        <PropertyRef Name="idClienteControlador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Entidad_Cuenta">
+    <End Role="Cuenta" Type="Self.Cuenta" Multiplicity="0..1" />
+    <End Role="Entidad" Type="Self.Entidad" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cuenta">
+        <PropertyRef Name="idCuenta" />
+      </Principal>
+      <Dependent Role="Entidad">
+        <PropertyRef Name="idCuenta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Equipo_Cuenta">
+    <End Role="Cuenta" Type="Self.Cuenta" Multiplicity="0..1" />
+    <End Role="Equipo" Type="Self.Equipo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cuenta">
+        <PropertyRef Name="idCuenta" />
+      </Principal>
+      <Dependent Role="Equipo">
+        <PropertyRef Name="idCuenta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sector_Cuenta">
+    <End Role="Cuenta" Type="Self.Cuenta" Multiplicity="0..1" />
+    <End Role="Sector" Type="Self.Sector" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cuenta">
+        <PropertyRef Name="idCuenta" />
+      </Principal>
+      <Dependent Role="Sector">
+        <PropertyRef Name="idCuenta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Usuario_Cuenta">
+    <End Role="Cuenta" Type="Self.Cuenta" Multiplicity="0..1" />
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cuenta">
+        <PropertyRef Name="idCuenta" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="idCuenta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Usuario_FK01">
+    <End Role="Sector" Type="Self.Sector" Multiplicity="1" />
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sector">
+        <PropertyRef Name="idSector" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="idSector" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Usuario_FK02">
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="idCliente" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="idCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Lojack_PruebaModelStoreContainer">
+    <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cuenta" EntityType="Self.Cuenta" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Entidad" EntityType="Self.Entidad" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Equipo" EntityType="Self.Equipo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EquipoTipo" EntityType="Self.EquipoTipo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NivelServicio" EntityType="Self.NivelServicio" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sector" EntityType="Self.Sector" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="Entidad_FK01" Association="Self.Entidad_FK01">
+      <End Role="NivelServicio" EntitySet="NivelServicio" />
+      <End Role="Entidad" EntitySet="Entidad" />
+    </AssociationSet>
+    <AssociationSet Name="Equipo_FK01" Association="Self.Equipo_FK01">
+      <End Role="EquipoTipo" EntitySet="EquipoTipo" />
+      <End Role="Equipo" EntitySet="Equipo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cliente_Cuenta" Association="Self.FK_Cliente_Cuenta">
+      <End Role="Cuenta" EntitySet="Cuenta" />
+      <End Role="Cliente" EntitySet="Cliente" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cuenta_Cliente" Association="Self.FK_Cuenta_Cliente">
+      <End Role="Cliente" EntitySet="Cliente" />
+      <End Role="Cuenta" EntitySet="Cuenta" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Entidad_Cuenta" Association="Self.FK_Entidad_Cuenta">
+      <End Role="Cuenta" EntitySet="Cuenta" />
+      <End Role="Entidad" EntitySet="Entidad" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Equipo_Cuenta" Association="Self.FK_Equipo_Cuenta">
+      <End Role="Cuenta" EntitySet="Cuenta" />
+      <End Role="Equipo" EntitySet="Equipo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sector_Cuenta" Association="Self.FK_Sector_Cuenta">
+      <End Role="Cuenta" EntitySet="Cuenta" />
+      <End Role="Sector" EntitySet="Sector" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Usuario_Cuenta" Association="Self.FK_Usuario_Cuenta">
+      <End Role="Cuenta" EntitySet="Cuenta" />
+      <End Role="Usuario" EntitySet="Usuario" />
+    </AssociationSet>
+    <AssociationSet Name="Usuario_FK01" Association="Self.Usuario_FK01">
+      <End Role="Sector" EntitySet="Sector" />
+      <End Role="Usuario" EntitySet="Usuario" />
+    </AssociationSet>
+    <AssociationSet Name="Usuario_FK02" Association="Self.Usuario_FK02">
+      <End Role="Cliente" EntitySet="Cliente" />
+      <End Role="Usuario" EntitySet="Usuario" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

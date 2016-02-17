@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Lojack_PruebaModelStoreContainer" CdmEntityContainer="Lojack_Prueba">
+    <EntitySetMapping Name="Clientes">
+      <EntityTypeMapping TypeName="Lojack_PruebaModel.Cliente">
+        <MappingFragment StoreEntitySet="Cliente">
+          <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="direccion" ColumnName="direccion" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="localidad" ColumnName="localidad" />
+          <ScalarProperty Name="partido" ColumnName="partido" />
+          <ScalarProperty Name="provincia" ColumnName="provincia" />
+          <ScalarProperty Name="cuit" ColumnName="cuit" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="fax" ColumnName="fax" />
+          <ScalarProperty Name="inhabilitado" ColumnName="inhabilitado" />
+          <ScalarProperty Name="fechaAlta" ColumnName="fechaAlta" />
+          <ScalarProperty Name="usuarioAlta" ColumnName="usuarioAlta" />
+          <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+          <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+          <ScalarProperty Name="fechaBaja" ColumnName="fechaBaja" />
+          <ScalarProperty Name="usuarioBaja" ColumnName="usuarioBaja" />
+          <ScalarProperty Name="idPais" ColumnName="idPais" />
+          <ScalarProperty Name="idCuenta" ColumnName="idCuenta" />
+          <ScalarProperty Name="vistaInternoDesvios" ColumnName="vistaInternoDesvios" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cuentas">
+      <EntityTypeMapping TypeName="Lojack_PruebaModel.Cuenta">
+        <MappingFragment StoreEntitySet="Cuenta">
+          <ScalarProperty Name="idCuenta" ColumnName="idCuenta" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="idClienteControlador" ColumnName="idClienteControlador" />
+          <ScalarProperty Name="mapGuideEnabled" ColumnName="mapGuideEnabled" />
+          <ScalarProperty Name="googleMapsEnabled" ColumnName="googleMapsEnabled" />
+          <ScalarProperty Name="mapsEnabled" ColumnName="mapsEnabled" />
+          <ScalarProperty Name="fechaBaja" ColumnName="fechaBaja" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Entidads">
+      <EntityTypeMapping TypeName="Lojack_PruebaModel.Entidad">
+        <MappingFragment StoreEntitySet="Entidad">
+          <ScalarProperty Name="idEntidad" ColumnName="idEntidad" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="idNivelServicio" ColumnName="idNivelServicio" />
+          <ScalarProperty Name="plantillaSuceso" ColumnName="plantillaSuceso" />
+          <ScalarProperty Name="cadenciaReporte" ColumnName="cadenciaReporte" />
+          <ScalarProperty Name="fechaAlta" ColumnName="fechaAlta" />
+          <ScalarProperty Name="usuarioAlta" ColumnName="usuarioAlta" />
+          <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+          <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+          <ScalarProperty Name="fechaBaja" ColumnName="fechaBaja" />
+          <ScalarProperty Name="usuarioBaja" ColumnName="usuarioBaja" />
+          <ScalarProperty Name="comentario" ColumnName="comentario" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="idProcedimiento" ColumnName="idProcedimiento" />
+          <ScalarProperty Name="idCuenta" ColumnName="idCuenta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Equipoes">
+      <EntityTypeMapping TypeName="Lojack_PruebaModel.Equipo">
+        <MappingFragment StoreEntitySet="Equipo">
+          <ScalarProperty Name="idEquipo" ColumnName="idEquipo" />
+          <ScalarProperty Name="identificador" ColumnName="identificador" />
+          <ScalarProperty Name="nroSerie" ColumnName="nroSerie" />
+          <ScalarProperty Name="primario" ColumnName="primario" />
+          <ScalarProperty Name="idEquipoTipo" ColumnName="idEquipoTipo" />
+          <ScalarProperty Name="cadencia" ColumnName="cadencia" />
+          <ScalarProperty Name="fechaAlta" ColumnName="fechaAlta" />
+          <ScalarProperty Name="usuarioAlta" ColumnName="usuarioAlta" />
+          <ScalarProperty Name="versionFirmware" ColumnName="versionFirmware" />
+          <ScalarProperty Name="versionProgramacion" ColumnName="versionProgramacion" />
+          <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+          <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+          <ScalarProperty Name="fechaBaja" ColumnName="fechaBaja" />
+          <ScalarProperty Name="usuarioBaja" ColumnName="usuarioBaja" />
+          <ScalarProperty Name="estadoSd" ColumnName="estadoSd" />
+          <ScalarProperty Name="idCuenta" ColumnName="idCuenta" />
+          <ScalarProperty Name="portable" ColumnName="portable" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EquipoTipoes">
+      <EntityTypeMapping TypeName="Lojack_PruebaModel.EquipoTipo">
+        <MappingFragment StoreEntitySet="EquipoTipo">
+          <ScalarProperty Name="idEquipoTipo" ColumnName="idEquipoTipo" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="cantSensores" ColumnName="cantSensores" />
+          <ScalarProperty Name="fechaAlta" ColumnName="fechaAlta" />
+          <ScalarProperty Name="usuarioAlta" ColumnName="usuarioAlta" />
+          <ScalarProperty Name="fechaBaja" ColumnName="fechaBaja" />
+          <ScalarProperty Name="usuarioBaja" ColumnName="usuarioBaja" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NivelServicios">
+      <EntityTypeMapping TypeName="Lojack_PruebaModel.NivelServicio">
+        <MappingFragment StoreEntitySet="NivelServicio">
+          <ScalarProperty Name="idNivelServicio" ColumnName="idNivelServicio" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="fechaAlta" ColumnName="fechaAlta" />
+          <ScalarProperty Name="usuarioAlta" ColumnName="usuarioAlta" />
+          <ScalarProperty Name="fechaBaja" ColumnName="fechaBaja" />
+          <ScalarProperty Name="usuarioBaja" ColumnName="usuarioBaja" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sectors">
+      <EntityTypeMapping TypeName="Lojack_PruebaModel.Sector">
+        <MappingFragment StoreEntitySet="Sector">
+          <ScalarProperty Name="idSector" ColumnName="idSector" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="fechaAlta" ColumnName="fechaAlta" />
+          <ScalarProperty Name="usuarioAlta" ColumnName="usuarioAlta" />
+          <ScalarProperty Name="fechaBaja" ColumnName="fechaBaja" />
+          <ScalarProperty Name="usuarioBaja" ColumnName="usuarioBaja" />
+          <ScalarProperty Name="idCuenta" ColumnName="idCuenta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuarios">
+      <EntityTypeMapping TypeName="Lojack_PruebaModel.Usuario">
+        <MappingFragment StoreEntitySet="Usuario">
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+          <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+          <ScalarProperty Name="userLogin" ColumnName="userLogin" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="apellido" ColumnName="apellido" />
+          <ScalarProperty Name="idSector" ColumnName="idSector" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="lastExpiredPassword" ColumnName="lastExpiredPassword" />
+          <ScalarProperty Name="operador" ColumnName="operador" />
+          <ScalarProperty Name="operadorSeguridad" ColumnName="operadorSeguridad" />
+          <ScalarProperty Name="supervisor" ColumnName="supervisor" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="fechaAlta" ColumnName="fechaAlta" />
+          <ScalarProperty Name="usuarioAlta" ColumnName="usuarioAlta" />
+          <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+          <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+          <ScalarProperty Name="fechaBaja" ColumnName="fechaBaja" />
+          <ScalarProperty Name="usuarioBaja" ColumnName="usuarioBaja" />
+          <ScalarProperty Name="nivelAuditoria" ColumnName="nivelAuditoria" />
+          <ScalarProperty Name="perfilWindows" ColumnName="perfilWindows" />
+          <ScalarProperty Name="perfilWeb" ColumnName="perfilWeb" />
+          <ScalarProperty Name="multipais" ColumnName="multipais" />
+          <ScalarProperty Name="demo" ColumnName="demo" />
+          <ScalarProperty Name="diasDemo" ColumnName="diasDemo" />
+          <ScalarProperty Name="idCuenta" ColumnName="idCuenta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

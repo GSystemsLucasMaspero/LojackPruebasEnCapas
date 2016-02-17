@@ -1,0 +1,338 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Cliente">
+    <Key>
+      <PropertyRef Name="idCliente" />
+    </Key>
+    <Property Name="idCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="localidad" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+    <Property Name="partido" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+    <Property Name="provincia" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="cuit" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fax" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="inhabilitado" Type="Boolean" Nullable="false" />
+    <Property Name="fechaAlta" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="usuarioAlta" Type="Int32" Nullable="false" />
+    <Property Name="fechaModificacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="usuarioModificacion" Type="Int32" Nullable="false" />
+    <Property Name="fechaBaja" Type="DateTime" Precision="3" />
+    <Property Name="usuarioBaja" Type="Int32" />
+    <Property Name="idPais" Type="Int32" Nullable="false" />
+    <Property Name="idCuenta" Type="Int32" />
+    <Property Name="vistaInternoDesvios" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Cuenta" Relationship="Self.FK_Cliente_Cuenta" FromRole="Cliente" ToRole="Cuenta" />
+    <NavigationProperty Name="Cuentas" Relationship="Self.FK_Cuenta_Cliente" FromRole="Cliente" ToRole="Cuenta" />
+    <NavigationProperty Name="Usuarios" Relationship="Self.Usuario_FK02" FromRole="Cliente" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="Cuenta">
+    <Key>
+      <PropertyRef Name="idCuenta" />
+    </Key>
+    <Property Name="idCuenta" Type="Int32" Nullable="false" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="idClienteControlador" Type="Int32" Nullable="false" />
+    <Property Name="mapGuideEnabled" Type="Boolean" />
+    <Property Name="googleMapsEnabled" Type="Boolean" />
+    <Property Name="mapsEnabled" Type="Int32" Nullable="false" />
+    <Property Name="fechaBaja" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Clientes" Relationship="Self.FK_Cliente_Cuenta" FromRole="Cuenta" ToRole="Cliente" />
+    <NavigationProperty Name="Cliente" Relationship="Self.FK_Cuenta_Cliente" FromRole="Cuenta" ToRole="Cliente" />
+    <NavigationProperty Name="Entidads" Relationship="Self.FK_Entidad_Cuenta" FromRole="Cuenta" ToRole="Entidad" />
+    <NavigationProperty Name="Equipoes" Relationship="Self.FK_Equipo_Cuenta" FromRole="Cuenta" ToRole="Equipo" />
+    <NavigationProperty Name="Sectors" Relationship="Self.FK_Sector_Cuenta" FromRole="Cuenta" ToRole="Sector" />
+    <NavigationProperty Name="Usuarios" Relationship="Self.FK_Usuario_Cuenta" FromRole="Cuenta" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="Entidad">
+    <Key>
+      <PropertyRef Name="idEntidad" />
+    </Key>
+    <Property Name="idEntidad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="estado" Type="Int32" Nullable="false" />
+    <Property Name="idNivelServicio" Type="Int32" Nullable="false" />
+    <Property Name="plantillaSuceso" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cadenciaReporte" Type="Int32" Nullable="false" />
+    <Property Name="fechaAlta" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="usuarioAlta" Type="Int32" Nullable="false" />
+    <Property Name="fechaModificacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="usuarioModificacion" Type="Int32" Nullable="false" />
+    <Property Name="fechaBaja" Type="DateTime" Precision="3" />
+    <Property Name="usuarioBaja" Type="Int32" />
+    <Property Name="comentario" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="telefono" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="idProcedimiento" Type="Int32" />
+    <Property Name="idCuenta" Type="Int32" />
+    <NavigationProperty Name="Cuenta" Relationship="Self.FK_Entidad_Cuenta" FromRole="Entidad" ToRole="Cuenta" />
+    <NavigationProperty Name="NivelServicio" Relationship="Self.Entidad_FK01" FromRole="Entidad" ToRole="NivelServicio" />
+  </EntityType>
+  <EntityType Name="Equipo">
+    <Key>
+      <PropertyRef Name="idEquipo" />
+    </Key>
+    <Property Name="idEquipo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="identificador" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nroSerie" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="primario" Type="Boolean" Nullable="false" />
+    <Property Name="idEquipoTipo" Type="Int32" Nullable="false" />
+    <Property Name="cadencia" Type="Int32" Nullable="false" />
+    <Property Name="fechaAlta" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="usuarioAlta" Type="Int32" Nullable="false" />
+    <Property Name="versionFirmware" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="versionProgramacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fechaModificacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="usuarioModificacion" Type="Int32" Nullable="false" />
+    <Property Name="fechaBaja" Type="DateTime" Precision="3" />
+    <Property Name="usuarioBaja" Type="Int32" />
+    <Property Name="estadoSd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="idCuenta" Type="Int32" />
+    <Property Name="portable" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Cuenta" Relationship="Self.FK_Equipo_Cuenta" FromRole="Equipo" ToRole="Cuenta" />
+    <NavigationProperty Name="EquipoTipo" Relationship="Self.Equipo_FK01" FromRole="Equipo" ToRole="EquipoTipo" />
+  </EntityType>
+  <EntityType Name="EquipoTipo">
+    <Key>
+      <PropertyRef Name="idEquipoTipo" />
+    </Key>
+    <Property Name="idEquipoTipo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cantSensores" Type="Int32" Nullable="false" />
+    <Property Name="fechaAlta" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="usuarioAlta" Type="Int32" Nullable="false" />
+    <Property Name="fechaBaja" Type="DateTime" Precision="3" />
+    <Property Name="usuarioBaja" Type="Int32" />
+    <NavigationProperty Name="Equipoes" Relationship="Self.Equipo_FK01" FromRole="EquipoTipo" ToRole="Equipo" />
+  </EntityType>
+  <EntityType Name="NivelServicio">
+    <Key>
+      <PropertyRef Name="idNivelServicio" />
+    </Key>
+    <Property Name="idNivelServicio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descripcion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fechaAlta" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="usuarioAlta" Type="Int32" Nullable="false" />
+    <Property Name="fechaBaja" Type="DateTime" Precision="3" />
+    <Property Name="usuarioBaja" Type="Int32" />
+    <NavigationProperty Name="Entidads" Relationship="Self.Entidad_FK01" FromRole="NivelServicio" ToRole="Entidad" />
+  </EntityType>
+  <EntityType Name="Sector">
+    <Key>
+      <PropertyRef Name="idSector" />
+    </Key>
+    <Property Name="idSector" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fechaAlta" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="usuarioAlta" Type="Int32" Nullable="false" />
+    <Property Name="fechaBaja" Type="DateTime" Precision="3" />
+    <Property Name="usuarioBaja" Type="Int32" />
+    <Property Name="idCuenta" Type="Int32" />
+    <NavigationProperty Name="Cuenta" Relationship="Self.FK_Sector_Cuenta" FromRole="Sector" ToRole="Cuenta" />
+    <NavigationProperty Name="Usuarios" Relationship="Self.Usuario_FK01" FromRole="Sector" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="idUsuario" />
+    </Key>
+    <Property Name="idUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idCliente" Type="Int32" Nullable="false" />
+    <Property Name="userLogin" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="apellido" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="idSector" Type="Int32" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="lastExpiredPassword" Type="DateTime" Precision="3" />
+    <Property Name="operador" Type="Boolean" Nullable="false" />
+    <Property Name="operadorSeguridad" Type="Boolean" />
+    <Property Name="supervisor" Type="Boolean" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fechaAlta" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="usuarioAlta" Type="Int32" Nullable="false" />
+    <Property Name="fechaModificacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="usuarioModificacion" Type="Int32" Nullable="false" />
+    <Property Name="fechaBaja" Type="DateTime" Precision="3" />
+    <Property Name="usuarioBaja" Type="Int32" />
+    <Property Name="nivelAuditoria" Type="Int32" Nullable="false" />
+    <Property Name="perfilWindows" Type="Int32" Nullable="false" />
+    <Property Name="perfilWeb" Type="Int32" Nullable="false" />
+    <Property Name="multipais" Type="Boolean" Nullable="false" />
+    <Property Name="demo" Type="Boolean" Nullable="false" />
+    <Property Name="diasDemo" Type="Int32" Nullable="false" />
+    <Property Name="idCuenta" Type="Int32" />
+    <NavigationProperty Name="Cliente" Relationship="Self.Usuario_FK02" FromRole="Usuario" ToRole="Cliente" />
+    <NavigationProperty Name="Cuenta" Relationship="Self.FK_Usuario_Cuenta" FromRole="Usuario" ToRole="Cuenta" />
+    <NavigationProperty Name="Sector" Relationship="Self.Usuario_FK01" FromRole="Usuario" ToRole="Sector" />
+  </EntityType>
+  <Association Name="FK_Cliente_Cuenta">
+    <End Role="Cuenta" Type="Self.Cuenta" Multiplicity="0..1" />
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cuenta">
+        <PropertyRef Name="idCuenta" />
+      </Principal>
+      <Dependent Role="Cliente">
+        <PropertyRef Name="idCuenta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cuenta_Cliente">
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+    <End Role="Cuenta" Type="Self.Cuenta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="idCliente" />
+      </Principal>
+      <Dependent Role="Cuenta">
+        <PropertyRef Name="idClienteControlador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Usuario_FK02">
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="idCliente" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="idCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Entidad_Cuenta">
+    <End Role="Cuenta" Type="Self.Cuenta" Multiplicity="0..1" />
+    <End Role="Entidad" Type="Self.Entidad" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cuenta">
+        <PropertyRef Name="idCuenta" />
+      </Principal>
+      <Dependent Role="Entidad">
+        <PropertyRef Name="idCuenta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Equipo_Cuenta">
+    <End Role="Cuenta" Type="Self.Cuenta" Multiplicity="0..1" />
+    <End Role="Equipo" Type="Self.Equipo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cuenta">
+        <PropertyRef Name="idCuenta" />
+      </Principal>
+      <Dependent Role="Equipo">
+        <PropertyRef Name="idCuenta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sector_Cuenta">
+    <End Role="Cuenta" Type="Self.Cuenta" Multiplicity="0..1" />
+    <End Role="Sector" Type="Self.Sector" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cuenta">
+        <PropertyRef Name="idCuenta" />
+      </Principal>
+      <Dependent Role="Sector">
+        <PropertyRef Name="idCuenta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Usuario_Cuenta">
+    <End Role="Cuenta" Type="Self.Cuenta" Multiplicity="0..1" />
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cuenta">
+        <PropertyRef Name="idCuenta" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="idCuenta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Entidad_FK01">
+    <End Role="NivelServicio" Type="Self.NivelServicio" Multiplicity="1" />
+    <End Role="Entidad" Type="Self.Entidad" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NivelServicio">
+        <PropertyRef Name="idNivelServicio" />
+      </Principal>
+      <Dependent Role="Entidad">
+        <PropertyRef Name="idNivelServicio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Equipo_FK01">
+    <End Role="EquipoTipo" Type="Self.EquipoTipo" Multiplicity="1" />
+    <End Role="Equipo" Type="Self.Equipo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EquipoTipo">
+        <PropertyRef Name="idEquipoTipo" />
+      </Principal>
+      <Dependent Role="Equipo">
+        <PropertyRef Name="idEquipoTipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Usuario_FK01">
+    <End Role="Sector" Type="Self.Sector" Multiplicity="1" />
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sector">
+        <PropertyRef Name="idSector" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="idSector" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DBContexto" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Clientes" EntityType="Self.Cliente" />
+    <EntitySet Name="Cuentas" EntityType="Self.Cuenta" />
+    <EntitySet Name="Entidads" EntityType="Self.Entidad" />
+    <EntitySet Name="Equipoes" EntityType="Self.Equipo" />
+    <EntitySet Name="EquipoTipoes" EntityType="Self.EquipoTipo" />
+    <EntitySet Name="NivelServicios" EntityType="Self.NivelServicio" />
+    <EntitySet Name="Sectors" EntityType="Self.Sector" />
+    <EntitySet Name="Usuarios" EntityType="Self.Usuario" />
+    <AssociationSet Name="FK_Cliente_Cuenta" Association="Self.FK_Cliente_Cuenta">
+      <End Role="Cuenta" EntitySet="Cuentas" />
+      <End Role="Cliente" EntitySet="Clientes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cuenta_Cliente" Association="Self.FK_Cuenta_Cliente">
+      <End Role="Cliente" EntitySet="Clientes" />
+      <End Role="Cuenta" EntitySet="Cuentas" />
+    </AssociationSet>
+    <AssociationSet Name="Usuario_FK02" Association="Self.Usuario_FK02">
+      <End Role="Cliente" EntitySet="Clientes" />
+      <End Role="Usuario" EntitySet="Usuarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Entidad_Cuenta" Association="Self.FK_Entidad_Cuenta">
+      <End Role="Cuenta" EntitySet="Cuentas" />
+      <End Role="Entidad" EntitySet="Entidads" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Equipo_Cuenta" Association="Self.FK_Equipo_Cuenta">
+      <End Role="Cuenta" EntitySet="Cuentas" />
+      <End Role="Equipo" EntitySet="Equipoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sector_Cuenta" Association="Self.FK_Sector_Cuenta">
+      <End Role="Cuenta" EntitySet="Cuentas" />
+      <End Role="Sector" EntitySet="Sectors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Usuario_Cuenta" Association="Self.FK_Usuario_Cuenta">
+      <End Role="Cuenta" EntitySet="Cuentas" />
+      <End Role="Usuario" EntitySet="Usuarios" />
+    </AssociationSet>
+    <AssociationSet Name="Entidad_FK01" Association="Self.Entidad_FK01">
+      <End Role="NivelServicio" EntitySet="NivelServicios" />
+      <End Role="Entidad" EntitySet="Entidads" />
+    </AssociationSet>
+    <AssociationSet Name="Equipo_FK01" Association="Self.Equipo_FK01">
+      <End Role="EquipoTipo" EntitySet="EquipoTipoes" />
+      <End Role="Equipo" EntitySet="Equipoes" />
+    </AssociationSet>
+    <AssociationSet Name="Usuario_FK01" Association="Self.Usuario_FK01">
+      <End Role="Sector" EntitySet="Sectors" />
+      <End Role="Usuario" EntitySet="Usuarios" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
