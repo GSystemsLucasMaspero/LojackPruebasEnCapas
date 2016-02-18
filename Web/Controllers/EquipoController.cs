@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Web.ViewModels;
+using Web.Models;
 using Servicios.Servicios;
 using AutoMapper;
 

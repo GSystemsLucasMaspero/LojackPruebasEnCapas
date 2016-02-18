@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace Web.ViewModels
+namespace Web.Models
 {
     public class EquipoFormViewModel
     {

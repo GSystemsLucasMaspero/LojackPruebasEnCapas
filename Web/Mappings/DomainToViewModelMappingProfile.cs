@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Web.ViewModels;
+using Web.Models;
 
 namespace Web.Mappings
 {
