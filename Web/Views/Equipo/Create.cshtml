@@ -16,7 +16,7 @@
                 <div class="editor-label">@Html.Label("Identificador")</div>
                 <div class="form-group">
                     @Html.TextBoxFor(model => model.identificador, new { style = "width: 497px;" })
-                    @Html.ValidationMessageFor(model => model.identificador)
+                    <font color="red"><b>&nbsp;@Html.ValidationMessageFor(model => model.identificador)</b></font>
                 </div>
 
                 <p></p>
@@ -24,7 +24,7 @@
                 <div class="editor-label">@Html.Label("Número de serie")</div>
                 <div class="editor-field">
                     @Html.TextBoxFor(model => model.nroSerie, new { style = "width: 497px;" })
-                    @Html.ValidationMessageFor(model => model.nroSerie)
+                    <font color="red"><b>&nbsp;@Html.ValidationMessageFor(model => model.nroSerie)</b></font>
                 </div>
 
                 <p></p>
@@ -32,7 +32,7 @@
                 <div class="editor-label">@Html.Label("Versión de Firmware")</div>
                 <div class="editor-field">
                     @Html.TextBoxFor(model => model.versionFirmware, new { style = "width: 497px;" })
-                    @Html.ValidationMessageFor(model => model.versionFirmware)
+                    <font color="red"><b>&nbsp;@Html.ValidationMessageFor(model => model.versionFirmware)</b></font>
                 </div>
 
                 <p></p>
@@ -40,7 +40,7 @@
                 <div class="editor-label">@Html.Label("Versión de Programación")</div>
                 <div class="editor-field">
                     @Html.TextBoxFor(model => model.versionProgramacion, new { style = "width: 497px;" })
-                    @Html.ValidationMessageFor(model => model.versionProgramacion)
+                    <font color="red"><b>&nbsp;@Html.ValidationMessageFor(model => model.versionProgramacion)</b></font>
                 </div>
 
                 <p></p>
@@ -48,7 +48,7 @@
                 <div class="editor-label">@Html.Label("Estado SD")</div>
                 <div class="editor-field">
                     @Html.TextBoxFor(model => model.estadoSd, new { style = "width: 497px;" })
-                    @Html.ValidationMessageFor(model => model.estadoSd)
+                    <font color="red"><b>&nbsp;@Html.ValidationMessageFor(model => model.estadoSd)</b></font>
                 </div>
 
                 <p></p>
@@ -57,11 +57,11 @@
                     <table>
                         <tr>
                             <td>@Html.Label("Portable") &nbsp; &nbsp;</td>
-                            <td>@Html.EditorFor(model => model.portable)@Html.ValidationMessageFor(model => model.portable) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </td>
+                            <td>@Html.EditorFor(model => model.portable) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </td>
                             <td>@Html.Label("Primario") &nbsp; &nbsp;</td>
-                            <td>@Html.EditorFor(model => model.primario)@Html.ValidationMessageFor(model => model.primario) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</td>
+                            <td>@Html.EditorFor(model => model.primario) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</td>
                             <td>@Html.Label("Cadencia") &nbsp</td>
-                            <td>@Html.EditorFor(model => model.cadencia)@Html.ValidationMessageFor(model => model.cadencia)</td>
+                            <td>@Html.EditorFor(model => model.cadencia)<font color="red"><b>&nbsp;@Html.ValidationMessageFor(model => model.cadencia)</b></font></td>
                         </tr>
                     </table>
                 </div>

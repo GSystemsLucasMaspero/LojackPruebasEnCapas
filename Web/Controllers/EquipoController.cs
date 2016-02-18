@@ -33,13 +33,12 @@ namespace Web.Controllers
         [HttpPost]
         public ActionResult Create(EquipoFormViewModel equipoModel)
         {
-            Equipo equipo = Mapper.Map<EquipoFormViewModel,Equipo>(equipoModel);
             if (ModelState.IsValid)
             {
-                servicio.CrearEquipo(equipo);
+                servicio.CrearEquipo(Mapper.Map<EquipoFormViewModel,Equipo>(equipoModel));
                 return RedirectToAction("Index");
             }
-            return View(equipo);
+            return View();
         }
 
         public ActionResult Details(int id = 0)
