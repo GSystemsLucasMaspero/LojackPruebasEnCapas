@@ -1,19 +1,17 @@
-﻿@model Web.ViewModels.EquipoFormViewModel
+﻿@model Web.ViewModels.EquipoViewModel
 
 @{
     ViewBag.Title = "Equipos";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@using (Html.BeginForm())
-{
- <div class="panel panel-primary">
+<div class="panel panel-primary">
     <div class="panel-heading"><font size="5">Equipos</font></div>
     <div class="panel-body">
-        <div class="panel panel-success">
-            <div class="panel-heading"><font size="4">Nuevo Equipo</font></div>
+        <div class="panel panel-warning">
+            <div class="panel-heading"><font size="4">Editar</font></div>
             <div class="panel-body">
-                <div class="editor-label">@Html.Label("Identificador")</div>
+                <div class="editor-label">@Html.Label(" Identificador")</div>
                 <div class="form-group">
                     @Html.TextBoxFor(model => model.identificador, new { style = "width: 497px;" })
                     @Html.ValidationMessageFor(model => model.identificador)
@@ -71,12 +69,11 @@
                     <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
                     Volver a la lista
                 </a>
-                <button type="submit" class="btn btn-success">
-                    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-                    Crear
+                <button type="submit" class="btn btn-warning">
+                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                    Editar
                 </button>
             </div>
         </div>
     </div>
-</div>   
-}
+</div>

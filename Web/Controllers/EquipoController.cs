@@ -6,7 +6,6 @@ using System.Web;
 using System.Web.Mvc;
 using Web.ViewModels;
 using Servicios.Servicios;
-using Web.Models;
 using AutoMapper;
 
 namespace Web.Controllers
@@ -32,12 +31,57 @@ namespace Web.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(Equipo equipo)
+        public ActionResult Create(EquipoFormViewModel equipoModel)
         {
+            Equipo equipo = Mapper.Map<EquipoFormViewModel,Equipo>(equipoModel);
             if (ModelState.IsValid)
             {
                 servicio.CrearEquipo(equipo);
+                return RedirectToAction("Index");
+            }
+            return View(equipo);
+        }
+
+        public ActionResult Details(int id = 0)
+        {
+            EquipoViewModel viewModel;
+            Equipo equipo;
+
+            equipo = servicio.ObtenerEquipoPorID(id);
+
+            viewModel = Mapper.Map<Equipo,EquipoViewModel>(equipo);
+            return View(viewModel);
+        }
+
+        public ActionResult Delete(int id = 0)
+        {
+            EquipoViewModel viewModel;
+            Equipo equipo;
+
+            equipo = servicio.ObtenerEquipoPorID(id);
+
+            viewModel = Mapper.Map<Equipo, EquipoViewModel>(equipo);
+            return View(viewModel);
+        }
+
+        public ActionResult Edit(int id = 0)
+        {
+            EquipoViewModel viewModel;
+            Equipo equipo;
+
+            equipo = servicio.ObtenerEquipoPorID(id);
+
+            viewModel = Mapper.Map<Equipo, EquipoViewModel>(equipo);
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Equipo equipo)
+        {
+            if (ModelState.IsValid)
+            {
+                servicio.Modificar(equipo);
                 return RedirectToAction("Index");
             }
             return View(equipo);

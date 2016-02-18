@@ -1,0 +1,126 @@
+﻿@model Web.ViewModels.EquipoViewModel
+
+@{
+    ViewBag.Title = "Equipos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-primary">
+    <div class="panel-heading"><font size="5">Equipos</font></div>
+    <div class="panel-body">
+        <div class="panel panel-info">
+            <div class="panel-heading"><font size="4">Detalles</font></div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover table-condensed">
+                        <tr>
+                            <th>@Html.DisplayName("ID")</th>
+                            <th>@Html.DisplayFor(model => model.idEquipo)</th>   
+                        </tr>
+                        <tr>
+                            <th>@Html.DisplayName(" Identificador")</th>
+                            <th>@Html.DisplayFor(model => model.identificador)</th>
+                        </tr>
+                        <tr>
+                            <th>@Html.DisplayName("Número de Serie")</th>
+                            <th>@Html.DisplayFor(model => model.nroSerie)</th>
+                        </tr>
+                        <tr>
+                            <th>@Html.DisplayName(" Primario")</th>
+                            <th>@Html.DisplayFor(model => model.primario)</th>
+                        </tr>
+                        <tr>
+                            <th>@Html.DisplayName("Tipo de Equipo")</th>
+                            <th>@Html.DisplayFor(model => model.EquipoTipo.descripcion)</th>
+                        </tr>
+                        <tr>
+                            <th>@Html.DisplayName(" Cadencia")</th>
+                            <th>@Html.DisplayFor(model => model.cadencia)</th>
+                        </tr>
+                        <tr>
+                            <th>@Html.DisplayName("Alta")</th>
+                            <th>Usuario @Html.DisplayFor(model => model.usuarioAlta) el @Html.DisplayFor(model => model.fechaAlta)</th>
+                        </tr>
+                        <tr>
+                            <th>@Html.DisplayName("Versión de Firmware")</th>
+                            <th>@if (Model.versionFirmware != null) {
+                                    @Html.DisplayFor(model => model.versionFirmware)
+                                } else {
+                                    @Html.DisplayName("-")
+                                }
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>@Html.DisplayName("Versión de Programación")</th>
+                            <th>
+                                @if (Model.versionProgramacion != null)
+                                {
+                                    @Html.DisplayFor(model => model.versionProgramacion)
+                                }
+                                else
+                                {
+                                    @Html.DisplayName("-")
+                                }
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>@Html.DisplayName("Modificación")</th>
+                            <th>Usuario @Html.DisplayFor(model => model.usuarioModificacion) el @Html.DisplayFor(model => model.fechaModificacion)</th>
+                        </tr>
+                        <tr>
+                            <th>@Html.DisplayName("Baja")</th>
+                            <th>
+                                @if (Model.usuarioBaja != null)
+                                {
+                                    @Html.DisplayName("Usuario ")
+                                    @Html.DisplayFor(model => model.usuarioBaja)
+                                    @Html.DisplayName(" el ")
+                                    @Html.DisplayFor(model => model.fechaBaja)
+                                }
+                                else
+                                {
+                                    @Html.DisplayName("-")
+                                }
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>@Html.DisplayName("Estado SD")</th>
+                            <th>
+                                @if (Model.estadoSd != null)
+                                {
+                                    @Html.DisplayFor(model => model.estadoSd)
+                                }
+                                else
+                                {
+                                    @Html.DisplayName("-")
+                                }
+                        </th>
+                        </tr>
+                        <tr>
+                            <th>@Html.DisplayName("Cuenta")</th>
+                            <th>
+                                @if (Model.Cuenta != null)
+                                {
+                                    @Html.DisplayFor(model => model.Cuenta.nombre)
+                                }
+                                else
+                                {
+                                    @Html.DisplayName("-")
+                                }
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>@Html.DisplayName(" Portable")</th>
+                            <th>@Html.DisplayFor(model => model.portable)</th>
+                        </tr>
+                    </table>
+            </div>
+            <div class="panel-footer">
+                <a href="@Url.Action("./")" class="btn btn-default">
+                    <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+                    Volver a la lista
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

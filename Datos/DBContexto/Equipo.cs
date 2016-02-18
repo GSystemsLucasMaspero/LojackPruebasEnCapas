@@ -18,7 +18,7 @@ namespace Datos.DBContexto
         public string identificador { get; set; }
         public string nroSerie { get; set; }
         public bool primario { get; set; }
-        public int idEquipoTipo { get; set; }
+        public int? idEquipoTipo { get; set; }
         public int cadencia { get; set; }
         public System.DateTime fechaAlta { get; set; }
         public int usuarioAlta { get; set; }
