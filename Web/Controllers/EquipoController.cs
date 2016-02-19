@@ -15,12 +15,21 @@ namespace Web.Controllers
     {
         private ServicioEquipo servicio = new ServicioEquipo();
 
-        public ActionResult Index(int page = 1)
+        public ActionResult Index(string search, int page = 1)
         {
             // Falta solucionar el tema de la carga 
             // (Tarda Mucho porque siempre que se llama a este metodo, mapea todos los equipos)
             var pageSize = 20;
             IEnumerable<Equipo> equipos = servicio.ObtenerTodos();
+
+            if (search != null)
+                page = 1;
+
+            if (!String.IsNullOrEmpty(search))
+            {
+                equipos = equipos.Where(s => s.identificador.Contains(search));
+            }
+
             IEnumerable<EquipoViewModel> viewModelEquipos = Mapper.Map<IEnumerable<Equipo>, IEnumerable<EquipoViewModel>>(equipos);
             IPagedList<EquipoViewModel> model = viewModelEquipos.ToPagedList(page,pageSize);
 
