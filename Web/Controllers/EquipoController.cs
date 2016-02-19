@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using Web.Models;
 using Servicios.Servicios;
 using AutoMapper;
+using PagedList;
 
 namespace Web.Controllers
 {
@@ -14,15 +15,16 @@ namespace Web.Controllers
     {
         private ServicioEquipo servicio = new ServicioEquipo();
 
-        public ActionResult Index()
+        public ActionResult Index(int page = 1)
         {
-            IEnumerable<EquipoViewModel> viewModelEquipos;
-            IEnumerable<Equipo> equipos;
+            // Falta solucionar el tema de la carga 
+            // (Tarda Mucho porque siempre que se llama a este metodo, mapea todos los equipos)
+            var pageSize = 20;
+            IEnumerable<Equipo> equipos = servicio.ObtenerTodos();
+            IEnumerable<EquipoViewModel> viewModelEquipos = Mapper.Map<IEnumerable<Equipo>, IEnumerable<EquipoViewModel>>(equipos);
+            IPagedList<EquipoViewModel> model = viewModelEquipos.ToPagedList(page,pageSize);
 
-            equipos = servicio.ObtenerTodos();
-
-            viewModelEquipos = Mapper.Map<IEnumerable<Equipo>, IEnumerable<EquipoViewModel>>(equipos);
-            return View(viewModelEquipos);
+            return View(model); 
         }
 
         public ActionResult Create()
