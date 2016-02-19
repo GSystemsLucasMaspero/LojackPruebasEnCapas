@@ -27,17 +27,22 @@ namespace Web.Controllers
 
         public ActionResult Create()
         {
+            ViewBag.idCuenta = new SelectList(servicio.ObtenerCuentas(), "idCuenta", "nombre");
+            ViewBag.idEquipoTipo = new SelectList(servicio.ObtenerTiposDeEquipo(), "idEquipoTipo", "descripcion");
             return View();
         }
 
         [HttpPost]
         public ActionResult Create(EquipoFormViewModel equipoModel)
         {
+            Equipo equipo = Mapper.Map<EquipoFormViewModel, Equipo>(equipoModel);
             if (ModelState.IsValid)
             {
-                servicio.CrearEquipo(Mapper.Map<EquipoFormViewModel,Equipo>(equipoModel));
+                servicio.CrearEquipo(equipo);
                 return RedirectToAction("Index");
             }
+            ViewBag.idCuenta = new SelectList(servicio.ObtenerCuentas(), "idCuenta", "nombre", equipo.idCuenta);
+            ViewBag.idEquipoTipo = new SelectList(servicio.ObtenerTiposDeEquipo(), "idEquipoTipo", "descripcion", equipo.idEquipoTipo);
             return View();
         }
 
@@ -63,27 +68,40 @@ namespace Web.Controllers
             return View(viewModel);
         }
 
+        [HttpPost]
+        public ActionResult Delete(EquipoViewModel equipoModel, int id = 0)
+        {
+            servicio.EliminarPorID(id);
+            return View();
+        }
+
         public ActionResult Edit(int id = 0)
         {
-            EquipoViewModel viewModel;
+            EquipoFormViewModel viewModel;
             Equipo equipo;
 
             equipo = servicio.ObtenerEquipoPorID(id);
 
-            viewModel = Mapper.Map<Equipo, EquipoViewModel>(equipo);
+            viewModel = Mapper.Map<Equipo, EquipoFormViewModel>(equipo);
+
+            ViewBag.idCuenta = new SelectList(servicio.ObtenerCuentas(), "idCuenta", "nombre");
+            ViewBag.idEquipoTipo = new SelectList(servicio.ObtenerTiposDeEquipo(), "idEquipoTipo", "descripcion");
+
             return View(viewModel);
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(Equipo equipo)
+        public ActionResult Edit(EquipoFormViewModel equipoModel, int id = 0)
         {
+            Equipo equipo = Mapper.Map<EquipoFormViewModel, Equipo>(equipoModel);
             if (ModelState.IsValid)
             {
-                servicio.Modificar(equipo);
+                servicio.Modificar(equipo,id);
                 return RedirectToAction("Index");
             }
-            return View(equipo);
+            ViewBag.idCuenta = new SelectList(servicio.ObtenerCuentas(), "idCuenta", "nombre", equipo.idCuenta);
+            ViewBag.idEquipoTipo = new SelectList(servicio.ObtenerTiposDeEquipo(), "idEquipoTipo", "descripcion", equipo.idEquipoTipo);
+            return View();
         }
 
 	}

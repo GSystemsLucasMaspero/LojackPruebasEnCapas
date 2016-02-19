@@ -23,10 +23,10 @@ namespace Datos.Modelos
             DB.SaveChanges();
         }
 
-        public virtual void Modificar(T entidad)
+        public virtual void Modificar(T entidad, int id)
         {
-            DB.Set<T>().Attach(entidad);
-            DB.Entry(entidad).State = EntityState.Modified;
+            //DB.Set<T>().Attach(entidad);
+            //DB.Entry(entidad).State = EntityState.Modified;
             DB.SaveChanges();
         }
 

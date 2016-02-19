@@ -18,6 +18,7 @@ namespace Web.Mappings
         protected override void Configure()
         {
             Mapper.CreateMap<Equipo, EquipoViewModel>();
+            Mapper.CreateMap<Equipo, EquipoFormViewModel>();
         }
     }
 }

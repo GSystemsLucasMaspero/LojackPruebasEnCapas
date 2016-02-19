@@ -22,9 +22,9 @@ namespace Servicios.Servicios
             return repositorio.ObtenerPorID(id);
         }
 
-        public void Modificar(Equipo equipo)
+        public void Modificar(Equipo equipo, int id)
         {
-            repositorio.Modificar(equipo);
+            repositorio.Modificar(equipo,id);
         }
 
         public IEnumerable<Equipo> ObtenerTodos()

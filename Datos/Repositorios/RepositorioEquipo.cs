@@ -18,14 +18,27 @@ namespace Datos.Repositorios
             entidad.usuarioAlta = 20;
             entidad.fechaModificacion = DateTime.Now;
             entidad.usuarioModificacion = 20;
-            base.Modificar(entidad);
+            base.Agregar(entidad);
         }
 
-        public override void Modificar(Equipo entidad)
+        public override void Modificar(Equipo entidad, int id)
         {
-            entidad.fechaModificacion = DateTime.Now;
-            entidad.usuarioModificacion = 20;
-            base.Modificar(entidad);
+            Equipo equipoToUpdate = this.ObtenerPorID(id);
+
+            equipoToUpdate.identificador = entidad.identificador;
+            equipoToUpdate.nroSerie = entidad.nroSerie;
+            equipoToUpdate.primario = entidad.primario;
+            equipoToUpdate.idEquipoTipo = entidad.idEquipoTipo;
+            equipoToUpdate.cadencia = entidad.cadencia;
+            equipoToUpdate.versionFirmware = entidad.versionFirmware;
+            equipoToUpdate.versionProgramacion = entidad.versionProgramacion;
+            equipoToUpdate.estadoSd = entidad.estadoSd;
+            equipoToUpdate.idCuenta = entidad.idCuenta;
+            equipoToUpdate.portable = entidad.portable;
+            equipoToUpdate.fechaModificacion = DateTime.Now;
+            equipoToUpdate.usuarioModificacion = 20;
+
+            base.Modificar(entidad,id);
         }
 
         public void Eliminar(Equipo entidad)
@@ -34,6 +47,8 @@ namespace Datos.Repositorios
             entidad.usuarioBaja = 20;
             entidad.fechaModificacion = DateTime.Now;
             entidad.usuarioModificacion = 20;
+
+            base.Modificar(entidad, entidad.idEquipo);
         }
 
         public IEnumerable<Equipo> ObtenerTodos()
