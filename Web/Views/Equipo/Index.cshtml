@@ -8,6 +8,16 @@
 <div class="panel panel-primary">
     <div class="panel-heading"><font size="5">Equipos</font></div>
     <div class="panel-body">
+        @{
+            var message = TempData["AlertMessage"] ?? null;
+            if (message != null)
+            {
+                <div class="alert alert-success fade in">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Éxito!</strong> @message
+                </div>
+            }
+        }
         <div class="table">
             <table class="table">
                 <tr>

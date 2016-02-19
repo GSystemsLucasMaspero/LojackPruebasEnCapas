@@ -39,6 +39,7 @@ namespace Web.Controllers
             if (ModelState.IsValid)
             {
                 servicio.CrearEquipo(equipo);
+                TempData["AlertMessage"] = "Equipo \"" + equipo.identificador + "\" creado correctamente.";
                 return RedirectToAction("Index");
             }
             ViewBag.idCuenta = new SelectList(servicio.ObtenerCuentas(), "idCuenta", "nombre", equipo.idCuenta);
@@ -53,7 +54,7 @@ namespace Web.Controllers
 
             equipo = servicio.ObtenerEquipoPorID(id);
 
-            viewModel = Mapper.Map<Equipo,EquipoViewModel>(equipo);
+            viewModel = Mapper.Map<Equipo, EquipoViewModel>(equipo);
             return View(viewModel);
         }
 
@@ -72,7 +73,8 @@ namespace Web.Controllers
         public ActionResult Delete(EquipoViewModel equipoModel, int id = 0)
         {
             servicio.EliminarPorID(id);
-            return View();
+            TempData["AlertMessage"] = "Equipo \"" + servicio.ObtenerEquipoPorID(id).identificador + "\" eliminado correctamente.";
+            return RedirectToAction("Index");
         }
 
         public ActionResult Edit(int id = 0)
@@ -96,7 +98,8 @@ namespace Web.Controllers
             Equipo equipo = Mapper.Map<EquipoFormViewModel, Equipo>(equipoModel);
             if (ModelState.IsValid)
             {
-                servicio.Modificar(equipo,id);
+                servicio.Modificar(equipo, id);
+                TempData["AlertMessage"] = "Equipo \"" + equipo.identificador + "\" editado correctamente.";
                 return RedirectToAction("Index");
             }
             ViewBag.idCuenta = new SelectList(servicio.ObtenerCuentas(), "idCuenta", "nombre", equipo.idCuenta);
@@ -104,5 +107,5 @@ namespace Web.Controllers
             return View();
         }
 
-	}
+    }
 }
