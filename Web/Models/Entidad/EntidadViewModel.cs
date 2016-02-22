@@ -26,6 +26,6 @@ namespace Web.Models.Entidad
         public Nullable<int> idCuenta { get; set; }
 
         public virtual Cuenta Cuenta { get; set; }
-        public virtual NivelServicio NivelServicio { get; set; }
+        public virtual Datos.DBContexto.NivelServicio NivelServicio { get; set; }
     }
 }

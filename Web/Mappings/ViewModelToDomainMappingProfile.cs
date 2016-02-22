@@ -6,6 +6,8 @@ using System.Linq;
 using System.Web;
 using Web.Models;
 using Web.Models.Entidad;
+using Web.Models.EquipoTipo;
+using Web.Models.NivelServicio;
 
 namespace Web.Mappings
 {
@@ -40,6 +42,13 @@ namespace Web.Mappings
                 .ForMember(e => e.telefono, map => map.MapFrom(vm => vm.telefono))
                 .ForMember(e => e.idCuenta, map => map.MapFrom(vm => vm.idCuenta))
                 .ForMember(e => e.idProcedimiento, map => map.MapFrom(vm => vm.idProcedimiento));
+
+            Mapper.CreateMap<EquipoTipoFormViewModel, EquipoTipo>()
+                .ForMember(e => e.descripcion, map => map.MapFrom(vm => vm.descripcion))
+                .ForMember(e => e.cantSensores, map => map.MapFrom(vm => vm.cantSensores));
+
+            Mapper.CreateMap<NivelServicioFormViewModel, NivelServicio>()
+                .ForMember(e => e.descripcion, map => map.MapFrom(vm => vm.descripcion));
         }
     }
 }

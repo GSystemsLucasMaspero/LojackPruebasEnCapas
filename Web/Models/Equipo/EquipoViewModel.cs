@@ -27,6 +27,6 @@ namespace Web.Models
         public bool portable { get; set; }
 
         public virtual Cuenta Cuenta { get; set; }
-        public virtual EquipoTipo EquipoTipo { get; set; }
+        public virtual Datos.DBContexto.EquipoTipo EquipoTipo { get; set; }
     }
 }

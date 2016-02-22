@@ -123,14 +123,16 @@
     <Content Include="Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Equipo\Index.cshtml" />
+    <Content Include="Views\EquipoTipo\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\EntidadController.cs" />
     <Compile Include="Controllers\EquipoController.cs" />
+    <Compile Include="Controllers\EquipoTipoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NivelServicioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -139,6 +141,10 @@
     <Compile Include="Mappings\ViewModelToDomainMappingProfile.cs" />
     <Compile Include="Models\Entidad\EntidadFormViewModel.cs" />
     <Compile Include="Models\Entidad\EntidadViewModel.cs" />
+    <Compile Include="Models\EquipoTipo\EquipoTipoFormViewModel.cs" />
+    <Compile Include="Models\EquipoTipo\EquipoTipoViewModel.cs" />
+    <Compile Include="Models\NivelServicio\NivelServicioFormViewModel.cs" />
+    <Compile Include="Models\NivelServicio\NivelServicioViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\Equipo\EquipoFormViewModel.cs" />
     <Compile Include="Models\Equipo\EquipoViewModel.cs" />
@@ -147,15 +153,25 @@
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
     <Content Include="Views\_Layout.cshtml" />
-    <Content Include="Views\Equipo\Create.cshtml" />
-    <Content Include="Views\Equipo\Delete.cshtml" />
-    <Content Include="Views\Equipo\Edit.cshtml" />
-    <Content Include="Views\Equipo\Details.cshtml" />
+    <Content Include="Views\EquipoTipo\Create.cshtml" />
+    <Content Include="Views\EquipoTipo\Delete.cshtml" />
+    <Content Include="Views\EquipoTipo\Edit.cshtml" />
+    <Content Include="Views\EquipoTipo\Details.cshtml" />
     <Content Include="Views\Entidad\Create.cshtml" />
     <Content Include="Views\Entidad\Delete.cshtml" />
     <Content Include="Views\Entidad\Details.cshtml" />
     <Content Include="Views\Entidad\Edit.cshtml" />
     <Content Include="Views\Entidad\Index.cshtml" />
+    <Content Include="Views\NivelServicio\Index.cshtml" />
+    <Content Include="Views\NivelServicio\Edit.cshtml" />
+    <Content Include="Views\NivelServicio\Details.cshtml" />
+    <Content Include="Views\NivelServicio\Delete.cshtml" />
+    <Content Include="Views\NivelServicio\Create.cshtml" />
+    <Content Include="Views\Equipo\Index.cshtml" />
+    <Content Include="Views\Equipo\Edit.cshtml" />
+    <Content Include="Views\Equipo\Details.cshtml" />
+    <Content Include="Views\Equipo\Delete.cshtml" />
+    <Content Include="Views\Equipo\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

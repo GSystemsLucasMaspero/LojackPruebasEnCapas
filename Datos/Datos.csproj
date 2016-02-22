@@ -92,6 +92,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositorios\RepositorioEntidad.cs" />
     <Compile Include="Repositorios\RepositorioEquipo.cs" />
+    <Compile Include="Repositorios\RepositorioEquipoTipo.cs" />
+    <Compile Include="Repositorios\RepositorioNivelServicio.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />

@@ -18,8 +18,26 @@
                 </div>
                 <ul class="nav navbar-nav">
                     <li><a href="/Home/Index"><font size="5">Inicio</font></a></li>
-                    <li><a href="/Equipo"><font size="5">Equipos</font></a></li>
-                    <li><a href="/Entidad"><font size="5">Entidades</font></a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown">
+                            <font size="5">Equipo</font>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/Equipo">Equipos</a></li>
+                            <li><a href="/EquipoTipo">Tipos de Equipo</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown">
+                            <font size="5">Entidad</font>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/Entidad">Entidades</a></li>
+                            <li><a href="/NivelServicio">Niveles de Servicio</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </nav>

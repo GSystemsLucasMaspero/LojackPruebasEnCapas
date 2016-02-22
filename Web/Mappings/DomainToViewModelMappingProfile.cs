@@ -6,6 +6,8 @@ using System.Linq;
 using System.Web;
 using Web.Models;
 using Web.Models.Entidad;
+using Web.Models.EquipoTipo;
+using Web.Models.NivelServicio;
 
 namespace Web.Mappings
 {
@@ -23,6 +25,12 @@ namespace Web.Mappings
 
             Mapper.CreateMap<Entidad, EntidadViewModel>();
             Mapper.CreateMap<Entidad, EntidadFormViewModel>();
+
+            Mapper.CreateMap<EquipoTipo, EquipoTipoViewModel>();
+            Mapper.CreateMap<EquipoTipo, EquipoTipoFormViewModel>();
+
+            Mapper.CreateMap<NivelServicio, NivelServicioViewModel>();
+            Mapper.CreateMap<NivelServicio, NivelServicioFormViewModel>();
         }
     }
 }
