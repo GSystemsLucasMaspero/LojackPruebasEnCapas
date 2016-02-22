@@ -17,8 +17,6 @@ namespace Web.Controllers
 
         public ActionResult Index(string search, int page = 1)
         {
-            // Falta solucionar el tema de la carga 
-            // (Tarda Mucho porque siempre que se llama a este metodo, mapea todos los equipos)
             var pageSize = 20;
             IEnumerable<Equipo> equipos = servicio.ObtenerTodos();
 

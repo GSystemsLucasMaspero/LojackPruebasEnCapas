@@ -33,10 +33,14 @@
                     <th>
                         @using (Html.BeginForm("Index", "Equipo", FormMethod.Get))
                         {
-                            <p>
-                                Buscar por identificador: @Html.TextBox("Search", "ASFA")
-                                <input type="submit" value="Buscar" />
-                            </p>
+                            <div class="input-group">
+                                <input name="search" type="text" class="form-control" placeholder="Buscar por identificador">
+                                    <span class="input-group-btn">
+                                        <button type="submit" class="btn btn-default">
+                                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                        </button>
+                                    </span>
+                            </div>
                         }
                     </th>
                 <tr>

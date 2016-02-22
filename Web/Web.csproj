@@ -128,6 +128,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\EntidadController.cs" />
     <Compile Include="Controllers\EquipoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -136,6 +137,8 @@
     <Compile Include="Mappings\AutoMapperConfiguration.cs" />
     <Compile Include="Mappings\DomainToViewModelMappingProfile.cs" />
     <Compile Include="Mappings\ViewModelToDomainMappingProfile.cs" />
+    <Compile Include="Models\Entidad\EntidadFormViewModel.cs" />
+    <Compile Include="Models\Entidad\EntidadViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\Equipo\EquipoFormViewModel.cs" />
     <Compile Include="Models\Equipo\EquipoViewModel.cs" />
@@ -148,6 +151,11 @@
     <Content Include="Views\Equipo\Delete.cshtml" />
     <Content Include="Views\Equipo\Edit.cshtml" />
     <Content Include="Views\Equipo\Details.cshtml" />
+    <Content Include="Views\Entidad\Create.cshtml" />
+    <Content Include="Views\Entidad\Delete.cshtml" />
+    <Content Include="Views\Entidad\Details.cshtml" />
+    <Content Include="Views\Entidad\Edit.cshtml" />
+    <Content Include="Views\Entidad\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

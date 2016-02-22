@@ -1,0 +1,127 @@
+﻿@model IPagedList<Web.Models.Entidad.EntidadViewModel>
+
+@{
+    ViewBag.Title = "Entidades";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using PagedList.Mvc;
+@using PagedList;
+
+
+<div class="panel panel-primary">
+    <div class="panel-heading"><font size="5">Entidades</font></div>
+    <div class="panel-body">
+        @{
+            var message = TempData["AlertMessage"] ?? null;
+            if (message != null)
+            {
+                <div class="alert alert-success fade in">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Éxito!</strong> @message
+                </div>
+            }
+        }
+        <div class="table">
+            <table class="table">
+                <tr>
+                    <th>
+                        <a href="@Url.Action("Create")" class="btn btn-success">
+                            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                            Agregar nueva Entidad
+                        </a>
+                    </th>
+                    <th>
+                        @using (Html.BeginForm("Index", "Entidad", FormMethod.Get))
+                        {
+                            <div class="input-group">
+                                <input name="search" type="text" class="form-control" placeholder="Buscar por nombre">
+                                    <span class="input-group-btn">
+                                        <button type="submit" class="btn btn-default">
+                                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                        </button>
+                                    </span>
+                            </div>
+                        }
+                    </th>
+                <tr>
+            </table>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover table-condensed">
+                <tr>
+                    <th class="text-center">@Html.DisplayName("ID")</th>
+                    <th class="text-center">@Html.DisplayName("Nombre")</th>
+                    <th class="text-center">@Html.DisplayName("Estado")</th>
+                    <th class="text-center">@Html.DisplayName("Nivel Servicio")</th>
+                    <th class="text-center">@Html.DisplayName("Plantilla Suceso")</th>
+                    <th class="text-center">@Html.DisplayName("Cadencia Reporte")</th>
+                    <th class="text-center">@Html.DisplayName("Teléfono")</th>
+                    <th class="text-center">@Html.DisplayName("ID Procedimiento")</th>
+                    <th class="text-center">@Html.DisplayName("Cuenta")</th>
+                    <th class="text-center">@Html.DisplayName("Operaciones")</th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    if (item.fechaBaja == null)
+                    {
+                        <tr>
+                            <td class="text-center">@Html.DisplayFor(modelItem => item.idEntidad)</td>
+                            <td class="text-center">@Html.DisplayFor(modelItem => item.nombre)</td>
+                            <td class="text-center">@Html.DisplayFor(modelItem => item.estado)</td>
+                            <td class="text-center">@Html.DisplayFor(modelItem => item.NivelServicio.descripcion)</td>
+                            <td class="text-center">@Html.DisplayFor(modelItem => item.plantillaSuceso)</td>
+                            <td class="text-center">@Html.DisplayFor(modelItem => item.cadenciaReporte)</td>
+                            <td class="text-center">@Html.DisplayFor(modelItem => item.telefono)</td>
+                            <td class="text-center">@Html.DisplayFor(modelItem => item.idProcedimiento)</td>
+                            <td class="text-center">@Html.DisplayFor(modelItem => item.Cuenta.nombre)</td>
+                            <td class="text-center">
+                                <a href="@Url.Action("Details", new { id = item.idEntidad })" class="btn btn-info">
+                                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                </a>
+                                <a href="@Url.Action("Edit", new { id = item.idEntidad })" class="btn btn-warning">
+                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                </a>
+                                <a href="@Url.Action("Delete", new { id = item.idEntidad })" class="btn btn-danger">
+                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr class="danger">
+                            <td class="text-center">@Html.DisplayFor(modelItem => item.idEntidad)</td>
+                            <td class="text-center">@Html.DisplayFor(modelItem => item.nombre)</td>
+                            <td class="text-center">@Html.DisplayFor(modelItem => item.estado)</td>
+                            <td class="text-center">@Html.DisplayFor(modelItem => item.NivelServicio.descripcion)</td>
+                            <td class="text-center">@Html.DisplayFor(modelItem => item.plantillaSuceso)</td>
+                            <td class="text-center">@Html.DisplayFor(modelItem => item.cadenciaReporte)</td>
+                            <td class="text-center">@Html.DisplayFor(modelItem => item.telefono)</td>
+                            <td class="text-center">@Html.DisplayFor(modelItem => item.idProcedimiento)</td>
+                            <td class="text-center">@Html.DisplayFor(modelItem => item.Cuenta.nombre)</td>
+                            <td class="text-center">
+                                <a href="@Url.Action("Details", new { id = item.idEntidad })" class="btn btn-info disabled">
+                                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                </a>
+                                <a href="@Url.Action("Edit", new { id = item.idEntidad })" class="btn btn-warning disabled">
+                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                </a>
+                                <a href="@Url.Action("Delete", new { id = item.idEntidad })" class="btn btn-danger disabled">
+                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </table>
+            <div class="col-sm-10">
+                <div class="text-center">
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                    Mostrando Entidad @Model.FirstItemOnPage a @Model.LastItemOnPage de @Model.TotalItemCount Entidades.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

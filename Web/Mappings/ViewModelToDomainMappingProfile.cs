@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Web.Models;
+using Web.Models.Entidad;
 
 namespace Web.Mappings
 {
@@ -28,6 +29,17 @@ namespace Web.Mappings
                 .ForMember(e => e.estadoSd, map => map.MapFrom(vm => vm.estadoSd))
                 .ForMember(e => e.idCuenta, map => map.MapFrom(vm => vm.idCuenta))
                 .ForMember(e => e.portable, map => map.MapFrom(vm => vm.portable));
+
+            Mapper.CreateMap<EntidadFormViewModel, Entidad>()
+                .ForMember(e => e.nombre, map => map.MapFrom(vm => vm.nombre))
+                .ForMember(e => e.estado, map => map.MapFrom(vm => vm.estado))
+                .ForMember(e => e.idNivelServicio, map => map.MapFrom(vm => vm.idNivelServicio))
+                .ForMember(e => e.plantillaSuceso, map => map.MapFrom(vm => vm.plantillaSuceso))
+                .ForMember(e => e.cadenciaReporte, map => map.MapFrom(vm => vm.cadenciaReporte))
+                .ForMember(e => e.comentario, map => map.MapFrom(vm => vm.comentario))
+                .ForMember(e => e.telefono, map => map.MapFrom(vm => vm.telefono))
+                .ForMember(e => e.idCuenta, map => map.MapFrom(vm => vm.idCuenta))
+                .ForMember(e => e.idProcedimiento, map => map.MapFrom(vm => vm.idProcedimiento));
         }
     }
 }

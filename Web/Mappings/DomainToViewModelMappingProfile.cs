@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Web.Models;
+using Web.Models.Entidad;
 
 namespace Web.Mappings
 {
@@ -19,6 +20,9 @@ namespace Web.Mappings
         {
             Mapper.CreateMap<Equipo, EquipoViewModel>();
             Mapper.CreateMap<Equipo, EquipoFormViewModel>();
+
+            Mapper.CreateMap<Entidad, EntidadViewModel>();
+            Mapper.CreateMap<Entidad, EntidadFormViewModel>();
         }
     }
 }

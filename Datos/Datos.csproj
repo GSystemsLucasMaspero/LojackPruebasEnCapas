@@ -90,6 +90,7 @@
     <Compile Include="Modelos\IRepositorio.cs" />
     <Compile Include="Modelos\Repositorio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositorios\RepositorioEntidad.cs" />
     <Compile Include="Repositorios\RepositorioEquipo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,100 @@
+﻿@model Web.Models.Entidad.EntidadFormViewModel
+
+@{
+    ViewBag.Title = "Entidades";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    <div class="panel panel-primary">
+        <div class="panel-heading"><font size="5">Entidades</font></div>
+        <div class="panel-body">
+            <div class="panel panel-warning">
+                <div class="panel-heading"><font size="4">Editar Entidad</font></div>
+                <div class="panel-body">
+                        <div class="editor-label">@Html.Label(" Nombre")</div>
+                        <div class="form-group">
+                            @Html.TextBoxFor(model => model.nombre, new { style = "width: 493px;" })
+                            <font color="red"><b>&nbsp;@Html.ValidationMessageFor(model => model.nombre)</b></font>
+                        </div>
+
+                        <p></p>
+
+                        <div class="editor-label">
+                            @Html.Label("Cuenta")
+                            &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+                            &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+                            &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+                            @Html.Label("Nivel Servicio")
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownList("idCuenta", String.Empty)
+                            &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+                            &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+                            @Html.DropDownList("idNivelServicio", String.Empty)
+                            <font color="red"><b>&nbsp;@Html.ValidationMessageFor(model => model.idNivelServicio)</b></font>
+                        </div>
+
+                        <p></p>
+
+                        <div class="editor-label">@Html.Label("Plantilla Suceso")</div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.plantillaSuceso, new { style = "width: 493px;" })
+                            <font color="red"><b>&nbsp;@Html.ValidationMessageFor(model => model.plantillaSuceso)</b></font>
+                        </div>
+
+                        <p></p>
+
+                        <div class="editor-label">@Html.Label(" Comentario")</div>
+                        <div class="editor-field">
+                            @Html.TextAreaFor(model => model.comentario, new { style = "width: 493px;" })
+                            <font color="red"><b>&nbsp;@Html.ValidationMessageFor(model => model.comentario)</b></font>
+                        </div>
+
+                        <p></p>
+
+                        <div class="editor-label">@Html.Label(" Telefono")</div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.telefono, new { style = "width: 493px;" })
+                            <font color="red"><b>&nbsp;@Html.ValidationMessageFor(model => model.telefono)</b></font>
+                        </div>
+
+                        <p></p>
+
+                        <div class="editor-label">@Html.Label(" Estado")</div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.estado)
+                            <font color="red"><b>&nbsp;@Html.ValidationMessageFor(model => model.estado)</b></font>
+                        </div>
+
+                        <p></p>
+
+                        <div class="editor-label">@Html.Label("Cadencia Reporte")</div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.cadenciaReporte)
+                            <font color="red"><b>&nbsp;@Html.ValidationMessageFor(model => model.cadenciaReporte)</b></font>
+                        </div>
+
+                        <p></p>
+
+                        <div class="editor-label">@Html.Label("ID Procedimiento")</div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.idProcedimiento)
+                            <font color="red"><b>&nbsp;@Html.ValidationMessageFor(model => model.idProcedimiento)</b></font>
+                        </div>
+                    </div>
+                <div class="panel-footer">
+                    <a href="@Url.Action("./")" class="btn btn-default">
+                        <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+                        Volver a la lista
+                    </a>
+                    <button type="submit" class="btn btn-warning">
+                        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                        Editar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+}

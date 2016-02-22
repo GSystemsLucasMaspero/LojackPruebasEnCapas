@@ -1,0 +1,134 @@
+﻿@model Web.Models.Entidad.EntidadViewModel  
+
+@{
+    ViewBag.Title = "Entidades";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+<div class="panel panel-primary">
+    <div class="panel-heading"><font size="5">Entidades</font></div>
+    <div class="panel-body">
+        <div class="panel panel-danger">
+            <div class="panel-heading"><font size="4">Eliminar</font></div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover table-condensed">
+                        <tr>
+                            <th>@Html.DisplayName("ID")</th>
+                            <th>@Html.DisplayFor(model => model.idEntidad)</th>
+                        </tr>
+                        <tr>
+                            <th>@Html.DisplayName(" Nombre")</th>
+                            <th>@Html.DisplayFor(model => model.nombre)</th>
+                        </tr>
+                        <tr>
+                            <th>@Html.DisplayName(" Estado")</th>
+                            <th>@Html.DisplayFor(model => model.estado)</th>
+                        </tr>
+                        <tr>
+                            <th>@Html.DisplayName(" Nivel Servicio")</th>
+                            <th>@Html.DisplayFor(model => model.NivelServicio.descripcion)</th>
+                        </tr>
+                        <tr>
+                            <th>@Html.DisplayName("Plantilla Suceso")</th>
+                            <th>
+                                @if (Model.plantillaSuceso != null)
+                                {
+                                    @Html.DisplayFor(model => model.plantillaSuceso)
+                                }
+                                else
+                                {
+                                    @Html.DisplayName("-")
+                                }
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>@Html.DisplayName(" Cadencia Reporte")</th>
+                            <th>@Html.DisplayFor(model => model.cadenciaReporte)</th>
+                        </tr>
+                        <tr>
+                            <th>@Html.DisplayName("Alta")</th>
+                            <th>Usuario @Html.DisplayFor(model => model.usuarioAlta) el @Html.DisplayFor(model => model.fechaAlta)</th>
+                        </tr>
+                        <tr>
+                            <th>@Html.DisplayName("Modificación")</th>
+                            <th>Usuario @Html.DisplayFor(model => model.usuarioModificacion) el @Html.DisplayFor(model => model.fechaModificacion)</th>
+                        </tr>
+                        <tr>
+                            <th>@Html.DisplayName("Baja")</th>
+                            <th>
+                                @if (Model.usuarioBaja != null)
+                                {
+                                    @Html.DisplayName("Usuario ")
+                                    @Html.DisplayFor(model => model.usuarioBaja)
+                                    @Html.DisplayName(" el ")
+                                    @Html.DisplayFor(model => model.fechaBaja)
+                                }
+                                else
+                                {
+                                    @Html.DisplayName("-")
+                                }
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>@Html.DisplayName(" Comentario")</th>
+                            <th>
+                                @if (Model.comentario != null)
+                                {
+                                    @Html.DisplayFor(model => model.comentario)
+                                }
+                                else
+                                {
+                                    @Html.DisplayName("-")
+                                }
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>@Html.DisplayName("Teléfono")</th>
+                            <th>
+                                @if (Model.telefono != null)
+                                {
+                                    @Html.DisplayFor(model => model.telefono)
+                                }
+                                else
+                                {
+                                    @Html.DisplayName("-")
+                                }
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>@Html.DisplayName(" ID Procedimiento")</th>
+                            <th>@Html.DisplayFor(model => model.idProcedimiento)</th>
+                        </tr>
+                        <tr>
+                            <th>@Html.DisplayName("Cuenta")</th>
+                            <th>
+                                @if (Model.Cuenta != null)
+                                {
+                                    @Html.DisplayFor(model => model.Cuenta.nombre)
+                                }
+                                else
+                                {
+                                    @Html.DisplayName("-")
+                                }
+                            </th>
+                        </tr>
+                    </table>
+                </div>
+                <div class="panel-footer">
+                    <a href="@Url.Action("./")" class="btn btn-default">
+                        <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+                        Volver a la lista
+                    </a>
+                    <button type="submit" class="btn btn-danger">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        Eliminar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+}
