@@ -35,6 +35,7 @@ namespace Web.Controllers
             return View(model); 
         }
 
+        [HttpGet]
         public ActionResult Create()
         {
             ViewBag.idCuenta = new SelectList(servicio.ObtenerCuentas(), "idCuenta", "nombre");
@@ -63,6 +64,8 @@ namespace Web.Controllers
             Equipo equipo;
 
             equipo = servicio.ObtenerEquipoPorID(id);
+            if (equipo == null)
+                throw new HttpException(404, "Item Not Found");
 
             var usuarioAltaName = servicioGeneral.ObtenerUsuarios().Where(a => a.idUsuario == equipo.usuarioAlta).FirstOrDefault();
             var usuarioModificacionName = servicioGeneral.ObtenerUsuarios().Where(a => a.idUsuario == equipo.usuarioModificacion).FirstOrDefault();
@@ -82,6 +85,8 @@ namespace Web.Controllers
             Equipo equipo;
 
             equipo = servicio.ObtenerEquipoPorID(id);
+            if (equipo == null || equipo.usuarioBaja != null)
+                throw new HttpException(404, "Item Not Found");
 
             var usuarioAltaName = servicioGeneral.ObtenerUsuarios().Where(a => a.idUsuario == equipo.usuarioAlta).FirstOrDefault();
             var usuarioModificacionName = servicioGeneral.ObtenerUsuarios().Where(a => a.idUsuario == equipo.usuarioModificacion).FirstOrDefault();
@@ -109,6 +114,8 @@ namespace Web.Controllers
             Equipo equipo;
 
             equipo = servicio.ObtenerEquipoPorID(id);
+            if(equipo == null || equipo.usuarioBaja != null)
+                throw new HttpException(404, "Item Not Found");
 
             viewModel = Mapper.Map<Equipo, EquipoFormViewModel>(equipo);
 

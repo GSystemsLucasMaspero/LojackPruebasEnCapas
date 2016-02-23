@@ -64,6 +64,8 @@ namespace Web.Controllers
             Entidad entidad;
 
             entidad = servicio.ObtenerEntidadPorID(id);
+            if (entidad == null)
+                throw new HttpException(404, "Item Not Found");
 
             var usuarioAltaName = servicioGeneral.ObtenerUsuarios().Where(a => a.idUsuario == entidad.usuarioAlta).FirstOrDefault();
             var usuarioModificacionName = servicioGeneral.ObtenerUsuarios().Where(a => a.idUsuario == entidad.usuarioModificacion).FirstOrDefault();
@@ -83,6 +85,8 @@ namespace Web.Controllers
             Entidad entidad;
 
             entidad = servicio.ObtenerEntidadPorID(id);
+            if (entidad == null || entidad.usuarioBaja != null)
+                throw new HttpException(404, "Item Not Found");
 
             var usuarioAltaName = servicioGeneral.ObtenerUsuarios().Where(a => a.idUsuario == entidad.usuarioAlta).FirstOrDefault();
             var usuarioModificacionName = servicioGeneral.ObtenerUsuarios().Where(a => a.idUsuario == entidad.usuarioModificacion).FirstOrDefault();
@@ -110,6 +114,8 @@ namespace Web.Controllers
             Entidad entidad;
 
             entidad = servicio.ObtenerEntidadPorID(id);
+            if (entidad == null || entidad.usuarioBaja != null)
+                throw new HttpException(404, "Item Not Found");
 
             viewModel = Mapper.Map<Entidad, EntidadFormViewModel>(entidad);
 

@@ -60,6 +60,8 @@ namespace Web.Controllers
             NivelServicio service;
 
             service = servicio.ObtenerNivelServicioPorID(id);
+            if (service == null)
+                throw new HttpException(404, "Item Not Found");
 
             var usuarioAltaName = servicioGeneral.ObtenerUsuarios().Where(a => a.idUsuario == service.usuarioAlta).FirstOrDefault();
             var usuarioBajaName = servicioGeneral.ObtenerUsuarios().Where(a => a.idUsuario == service.usuarioBaja).FirstOrDefault();
@@ -77,6 +79,8 @@ namespace Web.Controllers
             NivelServicio service;
 
             service = servicio.ObtenerNivelServicioPorID(id);
+            if (service == null || service.usuarioBaja != null)
+                throw new HttpException(404, "Item Not Found");
 
             var usuarioAltaName = servicioGeneral.ObtenerUsuarios().Where(a => a.idUsuario == service.usuarioAlta).FirstOrDefault();
             var usuarioBajaName = servicioGeneral.ObtenerUsuarios().Where(a => a.idUsuario == service.usuarioBaja).FirstOrDefault();
@@ -102,6 +106,8 @@ namespace Web.Controllers
             NivelServicio service;
 
             service = servicio.ObtenerNivelServicioPorID(id);
+            if (service == null || service.usuarioBaja != null)
+                throw new HttpException(404, "Item Not Found");
 
             viewModel = Mapper.Map<NivelServicio, NivelServicioFormViewModel>(service);
 

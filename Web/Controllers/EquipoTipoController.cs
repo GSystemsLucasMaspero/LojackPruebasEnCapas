@@ -60,6 +60,8 @@ namespace Web.Controllers
             EquipoTipo equipo;
 
             equipo = servicio.ObtenerEquipoTipoPorID(id);
+            if (equipo == null)
+                throw new HttpException(404, "Item Not Found");
 
             var usuarioAltaName = servicioGeneral.ObtenerUsuarios().Where(a => a.idUsuario == equipo.usuarioAlta).FirstOrDefault();
             var usuarioBajaName = servicioGeneral.ObtenerUsuarios().Where(a => a.idUsuario == equipo.usuarioBaja).FirstOrDefault();
@@ -77,6 +79,8 @@ namespace Web.Controllers
             EquipoTipo equipo;
 
             equipo = servicio.ObtenerEquipoTipoPorID(id);
+            if (equipo == null || equipo.usuarioBaja != null)
+                throw new HttpException(404, "Item Not Found");
 
             var usuarioAltaName = servicioGeneral.ObtenerUsuarios().Where(a => a.idUsuario == equipo.usuarioAlta).FirstOrDefault();
             var usuarioBajaName = servicioGeneral.ObtenerUsuarios().Where(a => a.idUsuario == equipo.usuarioBaja).FirstOrDefault();
@@ -102,6 +106,8 @@ namespace Web.Controllers
             EquipoTipo equipo;
 
             equipo = servicio.ObtenerEquipoTipoPorID(id);
+            if (equipo == null || equipo.usuarioBaja != null)
+                throw new HttpException(404, "Item Not Found");
 
             viewModel = Mapper.Map<EquipoTipo, EquipoTipoFormViewModel>(equipo);
 
