@@ -33,5 +33,6 @@ namespace Datos.DBContexto
         public virtual DbSet<NivelServicio> NivelServicios { get; set; }
         public virtual DbSet<Sector> Sectors { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
+
     }
 }

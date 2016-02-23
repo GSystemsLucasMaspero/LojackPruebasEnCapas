@@ -11,10 +11,11 @@ namespace Datos.Repositorios
 {
     public class RepositorioEquipoTipo : Repositorio<EquipoTipo>
     {
+        private RepositorioGeneral repositorioGeneral = new RepositorioGeneral();
 
         public override void Agregar(EquipoTipo entidad)
         {
-            entidad.fechaAlta = DateTime.Now;
+            entidad.fechaAlta = repositorioGeneral.ObtenerDateTimeServer();
             entidad.usuarioAlta = 20;
 
             base.Agregar(entidad);
@@ -32,7 +33,7 @@ namespace Datos.Repositorios
 
         public void Eliminar(EquipoTipo entidad)
         {
-            entidad.fechaBaja = DateTime.Now;
+            entidad.fechaBaja = repositorioGeneral.ObtenerDateTimeServer();
             entidad.usuarioBaja = 20;
 
             base.Modificar(entidad, entidad.idEquipoTipo);

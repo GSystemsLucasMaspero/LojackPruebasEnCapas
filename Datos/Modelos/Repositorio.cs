@@ -39,6 +39,5 @@ namespace Datos.Modelos
         {
             return DB.Set<T>().ToList();
         }
-        
     }
 }

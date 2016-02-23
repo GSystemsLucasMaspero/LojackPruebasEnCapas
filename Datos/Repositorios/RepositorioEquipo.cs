@@ -11,12 +11,13 @@ namespace Datos.Repositorios
 {
     public class RepositorioEquipo : Repositorio<Equipo>
     {
+        private RepositorioGeneral repositorioGeneral = new RepositorioGeneral();
 
         public override void Agregar(Equipo entidad)
         {
-            entidad.fechaAlta = DateTime.Now;
+            entidad.fechaAlta = repositorioGeneral.ObtenerDateTimeServer();
             entidad.usuarioAlta = 20;
-            entidad.fechaModificacion = DateTime.Now;
+            entidad.fechaModificacion = repositorioGeneral.ObtenerDateTimeServer();
             entidad.usuarioModificacion = 20;
             base.Agregar(entidad);
         }
@@ -35,7 +36,7 @@ namespace Datos.Repositorios
             equipoToUpdate.estadoSd = entidad.estadoSd;
             equipoToUpdate.idCuenta = entidad.idCuenta;
             equipoToUpdate.portable = entidad.portable;
-            equipoToUpdate.fechaModificacion = DateTime.Now;
+            equipoToUpdate.fechaModificacion = repositorioGeneral.ObtenerDateTimeServer();
             equipoToUpdate.usuarioModificacion = 20;
 
             base.Modificar(entidad,id);
@@ -43,9 +44,9 @@ namespace Datos.Repositorios
 
         public void Eliminar(Equipo entidad)
         {
-            entidad.fechaBaja = DateTime.Now;
+            entidad.fechaBaja = repositorioGeneral.ObtenerDateTimeServer();
             entidad.usuarioBaja = 20;
-            entidad.fechaModificacion = DateTime.Now;
+            entidad.fechaModificacion = repositorioGeneral.ObtenerDateTimeServer();
             entidad.usuarioModificacion = 20;
 
             base.Modificar(entidad, entidad.idEquipo);

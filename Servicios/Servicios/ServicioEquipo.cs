@@ -51,6 +51,5 @@ namespace Servicios.Servicios
         {
             return repositorio.ObtenerTiposDeEquipo().ToList();
         }
-
     }
 }

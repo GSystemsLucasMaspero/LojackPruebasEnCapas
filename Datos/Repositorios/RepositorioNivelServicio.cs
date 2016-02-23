@@ -11,10 +11,11 @@ namespace Datos.Repositorios
 {
     public class RepositorioNivelServicio : Repositorio<NivelServicio>
     {
+        private RepositorioGeneral repositorioGeneral = new RepositorioGeneral();
 
         public override void Agregar(NivelServicio entidad)
         {
-            entidad.fechaAlta = DateTime.Now;
+            entidad.fechaAlta = repositorioGeneral.ObtenerDateTimeServer();
             entidad.usuarioAlta = 20;
 
             base.Agregar(entidad);
@@ -31,7 +32,7 @@ namespace Datos.Repositorios
 
         public void Eliminar(NivelServicio entidad)
         {
-            entidad.fechaBaja = DateTime.Now;
+            entidad.fechaBaja = repositorioGeneral.ObtenerDateTimeServer();
             entidad.usuarioBaja = 20;
 
             base.Modificar(entidad, entidad.idNivelServicio);
