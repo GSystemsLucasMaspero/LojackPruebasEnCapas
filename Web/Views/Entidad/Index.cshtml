@@ -101,7 +101,7 @@
                             <td class="text-center">@Html.DisplayFor(modelItem => item.idProcedimiento)</td>
                             <td class="text-center">@Html.DisplayFor(modelItem => item.Cuenta.nombre)</td>
                             <td class="text-center">
-                                <a href="@Url.Action("Details", new { id = item.idEntidad })" class="btn btn-info disabled">
+                                <a href="@Url.Action("Details", new { id = item.idEntidad })" class="btn btn-info">
                                     <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                                 </a>
                                 <a href="@Url.Action("Edit", new { id = item.idEntidad })" class="btn btn-warning disabled">

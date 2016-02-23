@@ -14,6 +14,7 @@ namespace Web.Controllers
     public class EquipoController : Controller
     {
         private ServicioEquipo servicio = new ServicioEquipo();
+        private GeneralService servicioGeneral = new GeneralService();
 
         public ActionResult Index(string search, int page = 1)
         {
@@ -63,6 +64,14 @@ namespace Web.Controllers
 
             equipo = servicio.ObtenerEquipoPorID(id);
 
+            var usuarioAltaName = servicioGeneral.ObtenerUsuarios().Where(a => a.idUsuario == equipo.usuarioAlta).FirstOrDefault();
+            var usuarioModificacionName = servicioGeneral.ObtenerUsuarios().Where(a => a.idUsuario == equipo.usuarioModificacion).FirstOrDefault();
+            var usuarioBajaName = servicioGeneral.ObtenerUsuarios().Where(a => a.idUsuario == equipo.usuarioBaja).FirstOrDefault();
+            
+            TempData["UsuarioAlta"] = usuarioAltaName == null ? null : usuarioAltaName.userLogin;
+            TempData["UsuarioModificacion"] = usuarioModificacionName == null ? null : usuarioModificacionName.userLogin;
+            TempData["UsuarioBaja"] = usuarioBajaName == null ? null : usuarioBajaName.userLogin;
+
             viewModel = Mapper.Map<Equipo, EquipoViewModel>(equipo);
             return View(viewModel);
         }
@@ -73,6 +82,14 @@ namespace Web.Controllers
             Equipo equipo;
 
             equipo = servicio.ObtenerEquipoPorID(id);
+
+            var usuarioAltaName = servicioGeneral.ObtenerUsuarios().Where(a => a.idUsuario == equipo.usuarioAlta).FirstOrDefault();
+            var usuarioModificacionName = servicioGeneral.ObtenerUsuarios().Where(a => a.idUsuario == equipo.usuarioModificacion).FirstOrDefault();
+            var usuarioBajaName = servicioGeneral.ObtenerUsuarios().Where(a => a.idUsuario == equipo.usuarioBaja).FirstOrDefault();
+
+            TempData["UsuarioAlta"] = usuarioAltaName == null ? null : usuarioAltaName.userLogin;
+            TempData["UsuarioModificacion"] = usuarioModificacionName == null ? null : usuarioModificacionName.userLogin;
+            TempData["UsuarioBaja"] = usuarioBajaName == null ? null : usuarioBajaName.userLogin;
 
             viewModel = Mapper.Map<Equipo, EquipoViewModel>(equipo);
             return View(viewModel);

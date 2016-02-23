@@ -25,15 +25,37 @@
                         </tr>
                         <tr>
                             <th>@Html.DisplayName("Alta")</th>
-                            <th>Usuario @Html.DisplayFor(model => model.usuarioAlta) el @Html.DisplayFor(model => model.fechaAlta)</th>
+                            <th>
+                                Usuario
+                                @{
+    var alta = TempData["UsuarioAlta"] ?? null;
+    if (alta != null)
+    {
+                    <font color="blue">@Html.DisplayName(alta.ToString())</font>
+    }
+    else
+    {
+                    <font color="red">@Html.DisplayName("INEXISTENTE")</font>
+    }
+                                }
+                                el @Html.DisplayFor(model => model.fechaAlta)
+                            </th>
                         </tr>
                         <tr>
                             <th>@Html.DisplayName("Baja")</th>
                             <th>
                                 @if (Model.usuarioBaja != null)
                                 {
-                                    @Html.DisplayName("Usuario ")
-                                    @Html.DisplayFor(model => model.usuarioBaja)
+                                    @Html.DisplayName("Usuario")
+                                    var baja = TempData["UsuarioBaja"] ?? null;
+                                    if (baja != null)
+                                    {
+                                        <font color="blue">@Html.DisplayName(baja.ToString())</font>
+                                    }
+                                    else
+                                    {
+                                        <font color="red">@Html.DisplayName("INEXISTENTE")</font>
+                                    }
                                     @Html.DisplayName(" el ")
                                     @Html.DisplayFor(model => model.fechaBaja)
                                 }

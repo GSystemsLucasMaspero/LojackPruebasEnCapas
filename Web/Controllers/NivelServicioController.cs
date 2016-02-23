@@ -15,6 +15,7 @@ namespace Web.Controllers
     public class NivelServicioController : Controller
     {
         private ServicioNivelServicio servicio = new ServicioNivelServicio();
+        private GeneralService servicioGeneral = new GeneralService();
 
         public ActionResult Index(string search, int page = 1)
         {
@@ -60,6 +61,12 @@ namespace Web.Controllers
 
             service = servicio.ObtenerNivelServicioPorID(id);
 
+            var usuarioAltaName = servicioGeneral.ObtenerUsuarios().Where(a => a.idUsuario == service.usuarioAlta).FirstOrDefault();
+            var usuarioBajaName = servicioGeneral.ObtenerUsuarios().Where(a => a.idUsuario == service.usuarioBaja).FirstOrDefault();
+
+            TempData["UsuarioAlta"] = usuarioAltaName == null ? null : usuarioAltaName.userLogin;
+            TempData["UsuarioBaja"] = usuarioBajaName == null ? null : usuarioBajaName.userLogin;
+
             viewModel = Mapper.Map<NivelServicio, NivelServicioViewModel>(service);
             return View(viewModel);
         }
@@ -70,6 +77,12 @@ namespace Web.Controllers
             NivelServicio service;
 
             service = servicio.ObtenerNivelServicioPorID(id);
+
+            var usuarioAltaName = servicioGeneral.ObtenerUsuarios().Where(a => a.idUsuario == service.usuarioAlta).FirstOrDefault();
+            var usuarioBajaName = servicioGeneral.ObtenerUsuarios().Where(a => a.idUsuario == service.usuarioBaja).FirstOrDefault();
+
+            TempData["UsuarioAlta"] = usuarioAltaName == null ? null : usuarioAltaName.userLogin;
+            TempData["UsuarioBaja"] = usuarioBajaName == null ? null : usuarioBajaName.userLogin;
 
             viewModel = Mapper.Map<NivelServicio, NivelServicioViewModel>(service);
             return View(viewModel);

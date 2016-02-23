@@ -15,6 +15,7 @@ namespace Web.Controllers
     public class EquipoTipoController : Controller
     {
         private ServicioEquipoTipo servicio = new ServicioEquipoTipo();
+        private GeneralService servicioGeneral = new GeneralService();
 
         public ActionResult Index(string search, int page = 1)
         {
@@ -60,6 +61,12 @@ namespace Web.Controllers
 
             equipo = servicio.ObtenerEquipoTipoPorID(id);
 
+            var usuarioAltaName = servicioGeneral.ObtenerUsuarios().Where(a => a.idUsuario == equipo.usuarioAlta).FirstOrDefault();
+            var usuarioBajaName = servicioGeneral.ObtenerUsuarios().Where(a => a.idUsuario == equipo.usuarioBaja).FirstOrDefault();
+
+            TempData["UsuarioAlta"] = usuarioAltaName == null ? null : usuarioAltaName.userLogin;
+            TempData["UsuarioBaja"] = usuarioBajaName == null ? null : usuarioBajaName.userLogin;
+
             viewModel = Mapper.Map<EquipoTipo, EquipoTipoViewModel>(equipo);
             return View(viewModel);
         }
@@ -70,6 +77,12 @@ namespace Web.Controllers
             EquipoTipo equipo;
 
             equipo = servicio.ObtenerEquipoTipoPorID(id);
+
+            var usuarioAltaName = servicioGeneral.ObtenerUsuarios().Where(a => a.idUsuario == equipo.usuarioAlta).FirstOrDefault();
+            var usuarioBajaName = servicioGeneral.ObtenerUsuarios().Where(a => a.idUsuario == equipo.usuarioBaja).FirstOrDefault();
+
+            TempData["UsuarioAlta"] = usuarioAltaName == null ? null : usuarioAltaName.userLogin;
+            TempData["UsuarioBaja"] = usuarioBajaName == null ? null : usuarioBajaName.userLogin;
 
             viewModel = Mapper.Map<EquipoTipo, EquipoTipoViewModel>(equipo);
             return View(viewModel);
