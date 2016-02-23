@@ -13,7 +13,7 @@
             <div class="panel panel-warning">
                 <div class="panel-heading"><font size="4">Editar Equipo</font></div>
                 <div class="panel-body">
-                    <div class="editor-label">@Html.Label("Identificador")</div>
+                    <div class="editor-label">@Html.Label(" Identificador")</div>
                     <div class="form-group">
                         @Html.TextBoxFor(model => model.identificador, new { style = "width: 499px;" })
                         <font color="red"><b>&nbsp;@Html.ValidationMessageFor(model => model.identificador)</b></font>
@@ -30,59 +30,74 @@
                     <p></p>
 
                     <div class="editor-label">
-                        @Html.Label("Cuenta")
-                        &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
-                        &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
-                        &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
-                        @Html.Label("Tipo de Equipo")
+                        @Html.Label("Cuenta ")
+                        @{
+                            if (Model != null && Model.Cuenta != null)
+                            {
+                                <font color="blue">@Html.Label("( Anterior: " + Model.Cuenta.nombre + " )")</font>
+                            }
+                        }
                     </div>
                     <div class="editor-field">
                         @Html.DropDownList("idCuenta", String.Empty)
-                        &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
-                        &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+                    </div>
+
+                    <p></p>
+
+                    <div class="editor-label">
+                        @Html.Label("Tipo de Equipo ")
+                        @{
+                            if (Model != null && Model.EquipoTipo != null)
+                            {
+                                <font color="blue">@Html.Label("( Anterior: " + Model.EquipoTipo.descripcion + " )")</font>
+                            }
+                        }
+                        
+                    </div>
+                    <div class="editor-field">
                         @Html.DropDownList("idEquipoTipo", String.Empty)
-                        <font color="red"><b>&nbsp;@Html.ValidationMessageFor(model => model.idEquipoTipo)</b></font>
+                        <font color="red"><b>@Html.ValidationMessageFor(model => model.idEquipoTipo)</b></font>
                     </div>
 
-                    <p></p>
+                        <p></p>
 
-                    <div class="editor-label">@Html.Label("Versión de Firmware")</div>
-                    <div class="editor-field">
-                        @Html.TextBoxFor(model => model.versionFirmware, new { style = "width: 499px;" })
-                        <font color="red"><b>&nbsp;@Html.ValidationMessageFor(model => model.versionFirmware)</b></font>
+                        <div class="editor-label">@Html.Label("Versión de Firmware")</div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.versionFirmware, new { style = "width: 499px;" })
+                            <font color="red"><b>&nbsp;@Html.ValidationMessageFor(model => model.versionFirmware)</b></font>
+                        </div>
+
+                        <p></p>
+
+                        <div class="editor-label">@Html.Label("Versión de Programación")</div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.versionProgramacion, new { style = "width: 499px;" })
+                            <font color="red"><b>&nbsp;@Html.ValidationMessageFor(model => model.versionProgramacion)</b></font>
+                        </div>
+
+                        <p></p>
+
+                        <div class="editor-label">@Html.Label("Estado SD")</div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.estadoSd, new { style = "width: 499px;" })
+                            <font color="red"><b>&nbsp;@Html.ValidationMessageFor(model => model.estadoSd)</b></font>
+                        </div>
+
+                        <p></p>
+
+                        <div>
+                            <table>
+                                <tr>
+                                    <td>@Html.Label("Portable") &ensp;</td>
+                                    <td>@Html.EditorFor(model => model.portable) &ensp;&ensp;&ensp;&ensp;&ensp; </td>
+                                    <td>@Html.Label("Primario") &ensp;</td>
+                                    <td>@Html.EditorFor(model => model.primario) &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;</td>
+                                    <td>@Html.Label("Cadencia") &nbsp</td>
+                                    <td>@Html.EditorFor(model => model.cadencia)<font color="red"><b>&nbsp;&ensp;@Html.ValidationMessageFor(model => model.cadencia)</b></font></td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
-
-                    <p></p>
-
-                    <div class="editor-label">@Html.Label("Versión de Programación")</div>
-                    <div class="editor-field">
-                        @Html.TextBoxFor(model => model.versionProgramacion, new { style = "width: 499px;" })
-                        <font color="red"><b>&nbsp;@Html.ValidationMessageFor(model => model.versionProgramacion)</b></font>
-                    </div>
-
-                    <p></p>
-
-                    <div class="editor-label">@Html.Label("Estado SD")</div>
-                    <div class="editor-field">
-                        @Html.TextBoxFor(model => model.estadoSd, new { style = "width: 499px;" })
-                        <font color="red"><b>&nbsp;@Html.ValidationMessageFor(model => model.estadoSd)</b></font>
-                    </div>
-
-                    <p></p>
-
-                    <div>
-                        <table>
-                            <tr>
-                                <td>@Html.Label("Portable") &ensp;</td>
-                                <td>@Html.EditorFor(model => model.portable) &ensp;&ensp;&ensp;&ensp;&ensp; </td>
-                                <td>@Html.Label("Primario") &ensp;</td>
-                                <td>@Html.EditorFor(model => model.primario) &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;</td>
-                                <td>@Html.Label("Cadencia") &nbsp</td>
-                                <td>@Html.EditorFor(model => model.cadencia)<font color="red"><b>&nbsp;&ensp;@Html.ValidationMessageFor(model => model.cadencia)</b></font></td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
                 <div class="panel-footer">
                     <a href="@Url.Action("./")" class="btn btn-default">
                         <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>

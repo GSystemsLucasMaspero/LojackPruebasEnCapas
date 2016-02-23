@@ -21,20 +21,35 @@
 
                         <p></p>
 
-                        <div class="editor-label">
-                            @Html.Label("Cuenta")
-                            &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
-                            &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
-                            &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
-                            @Html.Label("Nivel Servicio")
-                        </div>
-                        <div class="editor-field">
-                            @Html.DropDownList("idCuenta", String.Empty)
-                            &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
-                            &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
-                            @Html.DropDownList("idNivelServicio", String.Empty)
-                            <font color="red"><b>&nbsp;@Html.ValidationMessageFor(model => model.idNivelServicio)</b></font>
-                        </div>
+                    <div class="editor-label">
+                        @Html.Label("Cuenta ")
+                        @{
+                        if (Model != null && Model.Cuenta != null)
+                        {
+                            <font color="blue">@Html.Label("( Anterior: " + Model.Cuenta.nombre + " )")</font>
+                        }
+                        }
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownList("idCuenta", String.Empty)
+                    </div>
+
+                    <p></p>
+
+                    <div class="editor-label">
+                        @Html.Label("Nivel de Servicio ")
+                        @{
+                        if (Model != null && Model.NivelServicio != null)
+                        {
+                            <font color="blue">@Html.Label("( Anterior: " + Model.NivelServicio.descripcion + " )")</font>
+                        }
+                        }
+
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownList("idNivelServicio", String.Empty)
+                        <font color="red"><b>@Html.ValidationMessageFor(model => model.idNivelServicio)</b></font>
+                    </div>
 
                         <p></p>
 

@@ -130,7 +130,7 @@ namespace Web.Controllers
             }
             ViewBag.idCuenta = new SelectList(servicio.ObtenerCuentas(), "idCuenta", "nombre", equipo.idCuenta);
             ViewBag.idEquipoTipo = new SelectList(servicio.ObtenerTiposDeEquipo(), "idEquipoTipo", "descripcion", equipo.idEquipoTipo);
-            return View();
+            return View(Mapper.Map<Equipo, EquipoFormViewModel>(servicio.ObtenerEquipoPorID(id)));
         }
 
     }
