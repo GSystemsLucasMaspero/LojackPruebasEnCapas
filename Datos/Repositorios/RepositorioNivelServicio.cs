@@ -40,7 +40,7 @@ namespace Datos.Repositorios
 
         public IEnumerable<NivelServicio> ObtenerTodos()
         {
-            return base.DBContext.NivelServicios.ToList();
+            return base.DBContext.NivelServicios;
         }
 
     }

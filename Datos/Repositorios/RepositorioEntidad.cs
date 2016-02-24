@@ -54,7 +54,7 @@ namespace Datos.Repositorios
 
         public IEnumerable<Entidad> ObtenerTodos()
         {
-            return base.DBContext.Entidads.Include(e => e.Cuenta).Include(e => e.NivelServicio).ToList();
+            return base.DBContext.Entidads.Include(e => e.Cuenta).Include(e => e.NivelServicio);
         }
 
         public IEnumerable<Cuenta> ObtenerCuentas()

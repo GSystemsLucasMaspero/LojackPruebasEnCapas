@@ -41,7 +41,7 @@ namespace Datos.Repositorios
 
         public IEnumerable<EquipoTipo> ObtenerTodos()
         {
-            return base.DBContext.EquipoTipoes.ToList();
+            return base.DBContext.EquipoTipoes;
         }
 
     }
