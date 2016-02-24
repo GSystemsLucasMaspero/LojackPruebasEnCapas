@@ -7,168 +7,170 @@
 
 @using (Html.BeginForm())
 {
-<div class="panel panel-primary">
-    <div class="panel-heading"><font size="5">Equipos</font></div>
-    <div class="panel-body">
-        <div class="panel panel-danger">
-            <div class="panel-heading"><font size="4">Eliminar</font></div>
-            <div class="panel-body">
-                <div class="table-responsive">
-                    <table class="table table-striped table-bordered table-hover table-condensed">
-                        <tr>
-                            <th>@Html.DisplayName("ID")</th>
-                            <th>@Html.DisplayFor(model => model.idEquipo)</th>
-                        </tr>
-                        <tr>
-                            <th>@Html.DisplayName(" Identificador")</th>
-                            <th>@Html.DisplayFor(model => model.identificador)</th>
-                        </tr>
-                        <tr>
-                            <th>@Html.DisplayName("Número de Serie")</th>
-                            <th>@Html.DisplayFor(model => model.nroSerie)</th>
-                        </tr>
-                        <tr>
-                            <th>@Html.DisplayName(" Primario")</th>
-                            <th>@Html.DisplayFor(model => model.primario)</th>
-                        </tr>
-                        <tr>
-                            <th>@Html.DisplayName("Tipo de Equipo")</th>
-                            <th>@Html.DisplayFor(model => model.EquipoTipo.descripcion)</th>
-                        </tr>
-                        <tr>
-                            <th>@Html.DisplayName(" Cadencia")</th>
-                            <th>@Html.DisplayFor(model => model.cadencia)</th>
-                        </tr>
-                        <tr>
-                            <th>@Html.DisplayName("Alta")</th>
-                            <th>
-                                Usuario
-                                @{
-                                    var alta = TempData["UsuarioAlta"] ?? null;
-                                    if (alta != null)
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <div class="panel panel-primary">
+        <div class="panel-heading"><font size="5">Equipos</font></div>
+        <div class="panel-body">
+            <div class="panel panel-danger">
+                <div class="panel-heading"><font size="4">Eliminar</font></div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover table-condensed">
+                            <tr>
+                                <th>@Html.DisplayName("ID")</th>
+                                <th>@Html.DisplayFor(model => model.idEquipo)</th>
+                            </tr>
+                            <tr>
+                                <th>@Html.DisplayName(" Identificador")</th>
+                                <th>@Html.DisplayFor(model => model.identificador)</th>
+                            </tr>
+                            <tr>
+                                <th>@Html.DisplayName("Número de Serie")</th>
+                                <th>@Html.DisplayFor(model => model.nroSerie)</th>
+                            </tr>
+                            <tr>
+                                <th>@Html.DisplayName(" Primario")</th>
+                                <th>@Html.DisplayFor(model => model.primario)</th>
+                            </tr>
+                            <tr>
+                                <th>@Html.DisplayName("Tipo de Equipo")</th>
+                                <th>@Html.DisplayFor(model => model.EquipoTipo.descripcion)</th>
+                            </tr>
+                            <tr>
+                                <th>@Html.DisplayName(" Cadencia")</th>
+                                <th>@Html.DisplayFor(model => model.cadencia)</th>
+                            </tr>
+                            <tr>
+                                <th>@Html.DisplayName("Alta")</th>
+                                <th>
+                                    Usuario
+                                    @{
+                                        var alta = TempData["UsuarioAlta"] ?? null;
+                                        if (alta != null)
+                                        {
+                                                        <font color="blue">@Html.DisplayName(alta.ToString())</font>
+                                        }
+                                        else
+                                        {
+                                                        <font color="red">@Html.DisplayName("INEXISTENTE")</font>
+                                        }
+                                    }
+                                    el @Html.DisplayFor(model => model.fechaAlta)
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>@Html.DisplayName("Versión de Firmware")</th>
+                                <th>
+                                    @if (Model.versionFirmware != null)
                                     {
-                                                    <font color="blue">@Html.DisplayName(alta.ToString())</font>
+                                        @Html.DisplayFor(model => model.versionFirmware)
                                     }
                                     else
                                     {
-                                                    <font color="red">@Html.DisplayName("INEXISTENTE")</font>
+                                        @Html.DisplayName("-")
                                     }
-                                }
-                                el @Html.DisplayFor(model => model.fechaAlta)
-                            </th>
-                        </tr>
-                        <tr>
-                            <th>@Html.DisplayName("Versión de Firmware")</th>
-                            <th>
-                                @if (Model.versionFirmware != null)
-                                {
-                                    @Html.DisplayFor(model => model.versionFirmware)
-                                }
-                                else
-                                {
-                                    @Html.DisplayName("-")
-                                }
-                            </th>
-                        </tr>
-                        <tr>
-                            <th>@Html.DisplayName("Versión de Programación")</th>
-                            <th>
-                                @if (Model.versionProgramacion != null)
-                                {
-                                    @Html.DisplayFor(model => model.versionProgramacion)
-                                }
-                                else
-                                {
-                                    @Html.DisplayName("-")
-                                }
-                            </th>
-                        </tr>
-                        <tr>
-                            <th>@Html.DisplayName("Modificación")</th>
-                            <th>
-                                Usuario
-                                @{
-                                var mod = TempData["UsuarioModificacion"] ?? null;
-                                if (mod != null)
-                                {
-                                    <font color="blue">@Html.DisplayName(mod.ToString())</font>
-                                }
-                                else
-                                {
-                                    <font color="red">@Html.DisplayName("INEXISTENTE")</font>
-                                }
-                                }
-                                el @Html.DisplayFor(model => model.fechaModificacion)
-                            </th>
-                        </tr>
-                        <tr>
-                            <th>@Html.DisplayName("Baja")</th>
-                            <th>
-                                @if (Model.usuarioBaja != null)
-                                {
-                                    @Html.DisplayName("Usuario")
-                                    var baja = TempData["UsuarioBaja"] ?? null;
-                                    if (baja != null)
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>@Html.DisplayName("Versión de Programación")</th>
+                                <th>
+                                    @if (Model.versionProgramacion != null)
                                     {
-                                        <font color="blue">@Html.DisplayName(baja.ToString())</font>
+                                        @Html.DisplayFor(model => model.versionProgramacion)
+                                    }
+                                    else
+                                    {
+                                        @Html.DisplayName("-")
+                                    }
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>@Html.DisplayName("Modificación")</th>
+                                <th>
+                                    Usuario
+                                    @{
+                                    var mod = TempData["UsuarioModificacion"] ?? null;
+                                    if (mod != null)
+                                    {
+                                        <font color="blue">@Html.DisplayName(mod.ToString())</font>
                                     }
                                     else
                                     {
                                         <font color="red">@Html.DisplayName("INEXISTENTE")</font>
                                     }
-                                    @Html.DisplayName(" el ")
-                                    @Html.DisplayFor(model => model.fechaBaja)
-                                }
-                                else
-                                {
-                                    @Html.DisplayName("-")
-                                }
-                            </th>
-                        </tr>
-                        <tr>
-                            <th>@Html.DisplayName("Estado SD")</th>
-                            <th>
-                                @if (Model.estadoSd != null)
-                                {
-                                    @Html.DisplayFor(model => model.estadoSd)
-                                }
-                                else
-                                {
-                                    @Html.DisplayName("-")
-                                }
-                            </th>
-                        </tr>
-                        <tr>
-                            <th>@Html.DisplayName("Cuenta")</th>
-                            <th>
-                                @if (Model.Cuenta != null)
-                                {
-                                    @Html.DisplayFor(model => model.Cuenta.nombre)
-                                }
-                                else
-                                {
-                                    @Html.DisplayName("-")
-                                }
-                            </th>
-                        </tr>
-                        <tr>
-                            <th>@Html.DisplayName(" Portable")</th>
-                            <th>@Html.DisplayFor(model => model.portable)</th>
-                        </tr>
-                    </table>
-                </div>
-                <div class="panel-footer">
-                    <a href="@Url.Action("./")" class="btn btn-default">
-                        <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
-                        Volver a la lista
-                    </a>
-                    <button type="submit" class="btn btn-danger">
-                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                        Eliminar
-                    </button>
+                                    }
+                                    el @Html.DisplayFor(model => model.fechaModificacion)
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>@Html.DisplayName("Baja")</th>
+                                <th>
+                                    @if (Model.usuarioBaja != null)
+                                    {
+                                        @Html.DisplayName("Usuario")
+                                        var baja = TempData["UsuarioBaja"] ?? null;
+                                        if (baja != null)
+                                        {
+                                            <font color="blue">@Html.DisplayName(baja.ToString())</font>
+                                        }
+                                        else
+                                        {
+                                            <font color="red">@Html.DisplayName("INEXISTENTE")</font>
+                                        }
+                                        @Html.DisplayName(" el ")
+                                        @Html.DisplayFor(model => model.fechaBaja)
+                                    }
+                                    else
+                                    {
+                                        @Html.DisplayName("-")
+                                    }
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>@Html.DisplayName("Estado SD")</th>
+                                <th>
+                                    @if (Model.estadoSd != null)
+                                    {
+                                        @Html.DisplayFor(model => model.estadoSd)
+                                    }
+                                    else
+                                    {
+                                        @Html.DisplayName("-")
+                                    }
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>@Html.DisplayName("Cuenta")</th>
+                                <th>
+                                    @if (Model.Cuenta != null)
+                                    {
+                                        @Html.DisplayFor(model => model.Cuenta.nombre)
+                                    }
+                                    else
+                                    {
+                                        @Html.DisplayName("-")
+                                    }
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>@Html.DisplayName(" Portable")</th>
+                                <th>@Html.DisplayFor(model => model.portable)</th>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="panel-footer">
+                        <a href="@Url.Action("./")" class="btn btn-default">
+                            <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+                            Volver a la lista
+                        </a>
+                        <button type="submit" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                            Eliminar
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 }

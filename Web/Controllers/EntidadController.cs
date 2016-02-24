@@ -17,6 +17,7 @@ namespace Web.Controllers
         private ServicioEntidad servicio = new ServicioEntidad();
         private GeneralService servicioGeneral = new GeneralService();
 
+        [HttpGet]
         public ActionResult Index(string sortOrder, string currentFilter, string search, int page = 1)
         {
             ViewBag.CurrentSort = sortOrder;
@@ -70,6 +71,7 @@ namespace Web.Controllers
             return View(model); 
         }
 
+        [HttpGet]
         public ActionResult Create()
         {
             ViewBag.idCuenta = new SelectList(servicio.ObtenerCuentas(), "idCuenta", "nombre");
@@ -78,6 +80,7 @@ namespace Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(EntidadFormViewModel entidadModel)
         {
             Entidad entidad = Mapper.Map<EntidadFormViewModel, Entidad>(entidadModel);
@@ -92,6 +95,7 @@ namespace Web.Controllers
             return View();
         }
 
+        [HttpGet]
         public ActionResult Details(int id = 0)
         {
             EntidadViewModel viewModel;
@@ -113,6 +117,7 @@ namespace Web.Controllers
             return View(viewModel);
         }
 
+        [HttpGet]
         public ActionResult Delete(int id = 0)
         {
             EntidadViewModel viewModel;
@@ -135,6 +140,7 @@ namespace Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Delete(EntidadViewModel entidadModel, int id = 0)
         {
             servicio.EliminarPorID(id);
@@ -142,6 +148,7 @@ namespace Web.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
         public ActionResult Edit(int id = 0)
         {
             EntidadFormViewModel viewModel;
@@ -160,6 +167,7 @@ namespace Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(EntidadFormViewModel entidadModel, int id = 0)
         {
             Entidad entidad = Mapper.Map<EntidadFormViewModel, Entidad>(entidadModel);

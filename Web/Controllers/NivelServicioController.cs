@@ -17,6 +17,7 @@ namespace Web.Controllers
         private ServicioNivelServicio servicio = new ServicioNivelServicio();
         private GeneralService servicioGeneral = new GeneralService();
 
+        [HttpGet]
         public ActionResult Index(string sortOrder, string currentFilter, string search, int page = 1)
         {
             ViewBag.CurrentSort = sortOrder;
@@ -58,12 +59,14 @@ namespace Web.Controllers
             return View(model);
         }
 
+        [HttpGet]
         public ActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(NivelServicioFormViewModel servicioModel)
         {
             NivelServicio service = Mapper.Map<NivelServicioFormViewModel, NivelServicio>(servicioModel);
@@ -76,6 +79,7 @@ namespace Web.Controllers
             return View();
         }
 
+        [HttpGet]
         public ActionResult Details(int id = 0)
         {
             NivelServicioViewModel viewModel;
@@ -95,6 +99,7 @@ namespace Web.Controllers
             return View(viewModel);
         }
 
+        [HttpGet]
         public ActionResult Delete(int id = 0)
         {
             NivelServicioViewModel viewModel;
@@ -115,6 +120,7 @@ namespace Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Delete(NivelServicioViewModel serviceModel, int id = 0)
         {
             servicio.EliminarPorID(id);
@@ -122,6 +128,7 @@ namespace Web.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
         public ActionResult Edit(int id = 0)
         {
             NivelServicioFormViewModel viewModel;
@@ -137,6 +144,7 @@ namespace Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(NivelServicioFormViewModel serviceModel, int id = 0)
         {
             NivelServicio service = Mapper.Map<NivelServicioFormViewModel, NivelServicio>(serviceModel);

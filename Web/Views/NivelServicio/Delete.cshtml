@@ -7,78 +7,80 @@
 
 @using (Html.BeginForm())
 {
-<div class="panel panel-primary">
-    <div class="panel-heading"><font size="5">Niveles de Servicio</font></div>
-    <div class="panel-body">
-        <div class="panel panel-danger">
-            <div class="panel-heading"><font size="4">Eliminar</font></div>
-            <div class="panel-body">
-                <div class="table-responsive">
-                    <table class="table table-striped table-bordered table-hover table-condensed">
-                        <tr>
-                            <th>@Html.DisplayName("ID")</th>
-                            <th>@Html.DisplayFor(model => model.idNivelServicio)</th>
-                        </tr>
-                        <tr>
-                            <th>@Html.DisplayName(" Descripción")</th>
-                            <th>@Html.DisplayFor(model => model.descripcion)</th>
-                        </tr>
-                        <tr>
-                            <th>@Html.DisplayName("Alta")</th>
-                            <th>
-                                Usuario
-                                @{
-    var alta = TempData["UsuarioAlta"] ?? null;
-    if (alta != null)
-    {
-                    <font color="blue">@Html.DisplayName(alta.ToString())</font>
-    }
-    else
-    {
-                    <font color="red">@Html.DisplayName("INEXISTENTE")</font>
-    }
-                                }
-                                el @Html.DisplayFor(model => model.fechaAlta)
-                            </th>
-                        </tr>
-                        <tr>
-                            <th>@Html.DisplayName("Baja")</th>
-                            <th>
-                                @if (Model.usuarioBaja != null)
-                                {
-                                    @Html.DisplayName("Usuario")
-                                    var baja = TempData["UsuarioBaja"] ?? null;
-                                    if (baja != null)
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <div class="panel panel-primary">
+        <div class="panel-heading"><font size="5">Niveles de Servicio</font></div>
+        <div class="panel-body">
+            <div class="panel panel-danger">
+                <div class="panel-heading"><font size="4">Eliminar</font></div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover table-condensed">
+                            <tr>
+                                <th>@Html.DisplayName("ID")</th>
+                                <th>@Html.DisplayFor(model => model.idNivelServicio)</th>
+                            </tr>
+                            <tr>
+                                <th>@Html.DisplayName(" Descripción")</th>
+                                <th>@Html.DisplayFor(model => model.descripcion)</th>
+                            </tr>
+                            <tr>
+                                <th>@Html.DisplayName("Alta")</th>
+                                <th>
+                                    Usuario
+                                    @{
+        var alta = TempData["UsuarioAlta"] ?? null;
+        if (alta != null)
+        {
+                        <font color="blue">@Html.DisplayName(alta.ToString())</font>
+        }
+        else
+        {
+                        <font color="red">@Html.DisplayName("INEXISTENTE")</font>
+        }
+                                    }
+                                    el @Html.DisplayFor(model => model.fechaAlta)
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>@Html.DisplayName("Baja")</th>
+                                <th>
+                                    @if (Model.usuarioBaja != null)
                                     {
-                                        <font color="blue">@Html.DisplayName(baja.ToString())</font>
+                                        @Html.DisplayName("Usuario")
+                                        var baja = TempData["UsuarioBaja"] ?? null;
+                                        if (baja != null)
+                                        {
+                                            <font color="blue">@Html.DisplayName(baja.ToString())</font>
+                                        }
+                                        else
+                                        {
+                                            <font color="red">@Html.DisplayName("INEXISTENTE")</font>
+                                        }
+                                        @Html.DisplayName(" el ")
+                                        @Html.DisplayFor(model => model.fechaBaja)
                                     }
                                     else
                                     {
-                                        <font color="red">@Html.DisplayName("INEXISTENTE")</font>
+                                        @Html.DisplayName("-")
                                     }
-                                    @Html.DisplayName(" el ")
-                                    @Html.DisplayFor(model => model.fechaBaja)
-                                }
-                                else
-                                {
-                                    @Html.DisplayName("-")
-                                }
-                            </th>
-                        </tr>
-                    </table>
-                </div>
-                <div class="panel-footer">
-                    <a href="@Url.Action("./")" class="btn btn-default">
-                        <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
-                        Volver a la lista
-                    </a>
-                    <button type="submit" class="btn btn-danger">
-                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                        Eliminar
-                    </button>
+                                </th>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="panel-footer">
+                        <a href="@Url.Action("./")" class="btn btn-default">
+                            <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+                            Volver a la lista
+                        </a>
+                        <button type="submit" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                            Eliminar
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 }

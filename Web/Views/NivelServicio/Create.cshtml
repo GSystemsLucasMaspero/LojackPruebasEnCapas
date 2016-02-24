@@ -7,29 +7,31 @@
 
 @using (Html.BeginForm())
 {
- <div class="panel panel-primary">
-    <div class="panel-heading"><font size="5">Niveles de Servicio</font></div>
-    <div class="panel-body">
-        <div class="panel panel-success">
-            <div class="panel-heading"><font size="4">Nuevo Nivel de Servicio</font></div>
-            <div class="panel-body">
-                <div class="editor-label">@Html.Label("Descripción")</div>
-                <div class="form-group">
-                    @Html.TextBoxFor(model => model.descripcion)
-                    <font color="red"><b>&nbsp;@Html.ValidationMessageFor(model => model.descripcion)</b></font>
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <div class="panel panel-primary">
+        <div class="panel-heading"><font size="5">Niveles de Servicio</font></div>
+        <div class="panel-body">
+            <div class="panel panel-success">
+                <div class="panel-heading"><font size="4">Nuevo Nivel de Servicio</font></div>
+                <div class="panel-body">
+                    <div class="editor-label">@Html.Label("Descripción")</div>
+                    <div class="form-group">
+                        @Html.TextBoxFor(model => model.descripcion)
+                        <font color="red"><b>&nbsp;@Html.ValidationMessageFor(model => model.descripcion)</b></font>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <a href="@Url.Action("./")" class="btn btn-default">
+                        <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+                        Volver a la lista
+                    </a>
+                    <button type="submit" class="btn btn-success">
+                        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                        Crear
+                    </button>
                 </div>
             </div>
-            <div class="panel-footer">
-                <a href="@Url.Action("./")" class="btn btn-default">
-                    <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
-                    Volver a la lista
-                </a>
-                <button type="submit" class="btn btn-success">
-                    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-                    Crear
-                </button>
-            </div>
         </div>
-    </div>
-</div>   
+    </div>   
 }

@@ -7,6 +7,8 @@
 
 @using (Html.BeginForm())
 {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
     <div class="panel panel-primary">
         <div class="panel-heading"><font size="5">Entidades</font></div>
         <div class="panel-body">

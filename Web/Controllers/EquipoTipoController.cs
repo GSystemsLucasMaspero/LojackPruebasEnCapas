@@ -17,6 +17,7 @@ namespace Web.Controllers
         private ServicioEquipoTipo servicio = new ServicioEquipoTipo();
         private GeneralService servicioGeneral = new GeneralService();
 
+        [HttpGet]
         public ActionResult Index(string sortOrder, string currentFilter, string search, int page = 1)
         {
             ViewBag.CurrentSort = sortOrder;
@@ -62,12 +63,14 @@ namespace Web.Controllers
             return View(model); 
         }
 
+        [HttpGet]
         public ActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(EquipoTipoFormViewModel equipoModel)
         {
             EquipoTipo equipo = Mapper.Map<EquipoTipoFormViewModel, EquipoTipo>(equipoModel);
@@ -80,6 +83,7 @@ namespace Web.Controllers
             return View();
         }
 
+        [HttpGet]
         public ActionResult Details(int id = 0)
         {
             EquipoTipoViewModel viewModel;
@@ -99,6 +103,7 @@ namespace Web.Controllers
             return View(viewModel);
         }
 
+        [HttpGet]
         public ActionResult Delete(int id = 0)
         {
             EquipoTipoViewModel viewModel;
@@ -119,6 +124,7 @@ namespace Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Delete(EquipoTipoViewModel equipoModel, int id = 0)
         {
             servicio.EliminarPorID(id);
@@ -126,6 +132,7 @@ namespace Web.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
         public ActionResult Edit(int id = 0)
         {
             EquipoTipoFormViewModel viewModel;
@@ -141,6 +148,7 @@ namespace Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(EquipoTipoFormViewModel equipoModel, int id = 0)
         {
             EquipoTipo equipo = Mapper.Map<EquipoTipoFormViewModel, EquipoTipo>(equipoModel);

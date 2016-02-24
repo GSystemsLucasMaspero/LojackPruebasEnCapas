@@ -75,6 +75,7 @@ namespace Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(EquipoFormViewModel equipoModel)
         {
             Equipo equipo = Mapper.Map<EquipoFormViewModel, Equipo>(equipoModel);
@@ -134,6 +135,7 @@ namespace Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Delete(EquipoViewModel equipoModel, int id = 0)
         {
             servicio.EliminarPorID(id);
@@ -160,6 +162,7 @@ namespace Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(EquipoFormViewModel equipoModel, int id = 0)
         {
             Equipo equipo = Mapper.Map<EquipoFormViewModel, Equipo>(equipoModel);
