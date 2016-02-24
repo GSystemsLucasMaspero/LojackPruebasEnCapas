@@ -17,23 +17,57 @@ namespace Web.Controllers
         private ServicioEntidad servicio = new ServicioEntidad();
         private GeneralService servicioGeneral = new GeneralService();
 
-        public ActionResult Index(string search, int page = 1)
+        public ActionResult Index(string sortOrder, string currentFilter, string search, int page = 1)
         {
-            var pageSize = 20;
-            IEnumerable<Entidad> entidades = servicio.ObtenerTodos();
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.IDSortParm = "id_asc";
+            ViewBag.NombreSortParm = String.IsNullOrEmpty(sortOrder) ? "nombre_asc" : "";
+            ViewBag.EstadoSortParm = String.IsNullOrEmpty(sortOrder) ? "estado_asc" : "";
+            ViewBag.NivelServicioSortParm = String.IsNullOrEmpty(sortOrder) ? "nivelservicio_asc" : "";
+            ViewBag.CadenciaReporteSortParm = String.IsNullOrEmpty(sortOrder) ? "cadenciareporte_asc" : "";
 
             if (search != null)
                 page = 1;
+            else
+                search = currentFilter;
+
+            ViewBag.CurrentFilter = search;
+
+            IEnumerable<Entidad> entidades = servicio.ObtenerTodos();
+
 
             if (!String.IsNullOrEmpty(search))
             {
                 entidades = entidades.Where(s => s.nombre.Contains(search));
             }
 
+            switch (sortOrder)
+            {
+                case "id_asc":
+                    entidades = entidades.OrderBy(s => s.idEntidad);
+                    break;
+                case "nombre_asc":
+                    entidades = entidades.OrderBy(s => s.nombre);
+                    break;
+                case "estado_asc":
+                    entidades = entidades.OrderBy(s => s.estado);
+                    break;
+                case "nivelservicio_asc":
+                    entidades = entidades.OrderBy(s => s.NivelServicio.descripcion);
+                    break;
+                case "cadenciareporte_asc":
+                    entidades = entidades.OrderBy(s => s.cadenciaReporte);
+                    break;
+                default:
+                    entidades = entidades.OrderBy(s => s.idEntidad);
+                    break;
+            }
+
+            var pageSize = 20;
             IEnumerable<EntidadViewModel> viewModelEntidades = Mapper.Map<IEnumerable<Entidad>, IEnumerable<EntidadViewModel>>(entidades);
             IPagedList<EntidadViewModel> model = viewModelEntidades.ToPagedList(page, pageSize);
 
-            return View(model);
+            return View(model); 
         }
 
         public ActionResult Create()
@@ -65,7 +99,7 @@ namespace Web.Controllers
 
             entidad = servicio.ObtenerEntidadPorID(id);
             if (entidad == null)
-                throw new HttpException(404, "Item Not Found");
+                return new HttpStatusCodeResult(404, "No se ha encontrado la Entidad de ID " + id);
 
             var usuarioAltaName = servicioGeneral.ObtenerUsuarios().Where(a => a.idUsuario == entidad.usuarioAlta).FirstOrDefault();
             var usuarioModificacionName = servicioGeneral.ObtenerUsuarios().Where(a => a.idUsuario == entidad.usuarioModificacion).FirstOrDefault();
@@ -86,7 +120,7 @@ namespace Web.Controllers
 
             entidad = servicio.ObtenerEntidadPorID(id);
             if (entidad == null || entidad.usuarioBaja != null)
-                throw new HttpException(404, "Item Not Found");
+                return new HttpStatusCodeResult(404, "No se ha encontrado la Entidad de ID " + id + ". (¿Quizás fue eliminada?)");
 
             var usuarioAltaName = servicioGeneral.ObtenerUsuarios().Where(a => a.idUsuario == entidad.usuarioAlta).FirstOrDefault();
             var usuarioModificacionName = servicioGeneral.ObtenerUsuarios().Where(a => a.idUsuario == entidad.usuarioModificacion).FirstOrDefault();
@@ -115,7 +149,7 @@ namespace Web.Controllers
 
             entidad = servicio.ObtenerEntidadPorID(id);
             if (entidad == null || entidad.usuarioBaja != null)
-                throw new HttpException(404, "Item Not Found");
+                return new HttpStatusCodeResult(404, "No se ha encontrado la Entidad de ID " + id + ". (¿Quizás fue eliminada?)");
 
             viewModel = Mapper.Map<Entidad, EntidadFormViewModel>(entidad);
 

@@ -17,19 +17,41 @@ namespace Web.Controllers
         private ServicioNivelServicio servicio = new ServicioNivelServicio();
         private GeneralService servicioGeneral = new GeneralService();
 
-        public ActionResult Index(string search, int page = 1)
+        public ActionResult Index(string sortOrder, string currentFilter, string search, int page = 1)
         {
-            var pageSize = 20;
-            IEnumerable<NivelServicio> servicios = servicio.ObtenerTodos();
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.IDSortParm = "id_asc";
+            ViewBag.DescripcionSortParm = String.IsNullOrEmpty(sortOrder) ? "descripcion_asc" : "";
 
             if (search != null)
                 page = 1;
+            else
+                search = currentFilter;
+
+            ViewBag.CurrentFilter = search;
+
+            IEnumerable<NivelServicio> servicios = servicio.ObtenerTodos();
+
 
             if (!String.IsNullOrEmpty(search))
             {
                 servicios = servicios.Where(s => s.descripcion.Contains(search));
             }
 
+            switch (sortOrder)
+            {
+                case "id_asc":
+                    servicios = servicios.OrderBy(s => s.idNivelServicio);
+                    break;
+                case "descripcion_asc":
+                    servicios = servicios.OrderBy(s => s.descripcion);
+                    break;
+                default:
+                    servicios = servicios.OrderBy(s => s.idNivelServicio);
+                    break;
+            }
+
+            var pageSize = 20;
             IEnumerable<NivelServicioViewModel> viewModelNivelServicio = Mapper.Map<IEnumerable<NivelServicio>, IEnumerable<NivelServicioViewModel>>(servicios);
             IPagedList<NivelServicioViewModel> model = viewModelNivelServicio.ToPagedList(page, pageSize);
 
@@ -61,7 +83,7 @@ namespace Web.Controllers
 
             service = servicio.ObtenerNivelServicioPorID(id);
             if (service == null)
-                throw new HttpException(404, "Item Not Found");
+                return new HttpStatusCodeResult(404, "No se ha encontrado el Nivel de Servicio de ID " + id);
 
             var usuarioAltaName = servicioGeneral.ObtenerUsuarios().Where(a => a.idUsuario == service.usuarioAlta).FirstOrDefault();
             var usuarioBajaName = servicioGeneral.ObtenerUsuarios().Where(a => a.idUsuario == service.usuarioBaja).FirstOrDefault();
@@ -80,7 +102,7 @@ namespace Web.Controllers
 
             service = servicio.ObtenerNivelServicioPorID(id);
             if (service == null || service.usuarioBaja != null)
-                throw new HttpException(404, "Item Not Found");
+                return new HttpStatusCodeResult(404, "No se ha encontrado el Nivel de Servicio de ID " + id + ". (¿Quizás fue eliminado?)");
 
             var usuarioAltaName = servicioGeneral.ObtenerUsuarios().Where(a => a.idUsuario == service.usuarioAlta).FirstOrDefault();
             var usuarioBajaName = servicioGeneral.ObtenerUsuarios().Where(a => a.idUsuario == service.usuarioBaja).FirstOrDefault();
@@ -107,7 +129,7 @@ namespace Web.Controllers
 
             service = servicio.ObtenerNivelServicioPorID(id);
             if (service == null || service.usuarioBaja != null)
-                throw new HttpException(404, "Item Not Found");
+                return new HttpStatusCodeResult(404, "No se ha encontrado el Nivel de Servicio de ID " + id + ". (¿Quizás fue eliminado?)");
 
             viewModel = Mapper.Map<NivelServicio, NivelServicioFormViewModel>(service);
 

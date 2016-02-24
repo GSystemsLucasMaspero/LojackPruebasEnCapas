@@ -16,19 +16,50 @@ namespace Web.Controllers
         private ServicioEquipo servicio = new ServicioEquipo();
         private GeneralService servicioGeneral = new GeneralService();
 
-        public ActionResult Index(string search, int page = 1)
+        [HttpGet]
+        public ActionResult Index(string sortOrder, string currentFilter, string search, int page = 1)
         {
-            var pageSize = 20;
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.IDSortParm = "id_asc";
+            ViewBag.IdentificadorSortParm = String.IsNullOrEmpty(sortOrder) ? "identificador_asc" : "";
+            ViewBag.EquipoTipoSortParm = String.IsNullOrEmpty(sortOrder) ? "equipotipo_asc" : "";
+            ViewBag.CadenciaSortParm = String.IsNullOrEmpty(sortOrder) ? "cadencia_asc" : "";
+
+            if (search!= null)
+                page = 1;
+            else
+                search = currentFilter;
+
+            ViewBag.CurrentFilter = search;
+
             IEnumerable<Equipo> equipos = servicio.ObtenerTodos();
 
-            if (search != null)
-                page = 1;
 
             if (!String.IsNullOrEmpty(search))
             {
                 equipos = equipos.Where(s => s.identificador.Contains(search));
             }
 
+            switch (sortOrder)
+            {
+                case "id_asc":
+                    equipos = equipos.OrderBy(s => s.idEquipo);
+                    break;
+                case "equipotipo_asc":
+                    equipos = equipos.OrderBy(s => s.EquipoTipo.descripcion);
+                    break;
+                case "cadencia_asc":
+                    equipos = equipos.OrderBy(s => s.cadencia);
+                    break;
+                case "identificador_asc":
+                    equipos = equipos.OrderBy(s => s.identificador);
+                    break;
+                default:
+                    equipos = equipos.OrderBy(s => s.idEquipo);
+                    break;
+            }
+
+            var pageSize = 20;
             IEnumerable<EquipoViewModel> viewModelEquipos = Mapper.Map<IEnumerable<Equipo>, IEnumerable<EquipoViewModel>>(equipos);
             IPagedList<EquipoViewModel> model = viewModelEquipos.ToPagedList(page,pageSize);
 
@@ -58,6 +89,7 @@ namespace Web.Controllers
             return View();
         }
 
+        [HttpGet]
         public ActionResult Details(int id = 0)
         {
             EquipoViewModel viewModel;
@@ -65,7 +97,7 @@ namespace Web.Controllers
 
             equipo = servicio.ObtenerEquipoPorID(id);
             if (equipo == null)
-                throw new HttpException(404, "Item Not Found");
+                return new HttpStatusCodeResult(404, "No se ha encontrado el Equipo de ID " + id);
 
             var usuarioAltaName = servicioGeneral.ObtenerUsuarios().Where(a => a.idUsuario == equipo.usuarioAlta).FirstOrDefault();
             var usuarioModificacionName = servicioGeneral.ObtenerUsuarios().Where(a => a.idUsuario == equipo.usuarioModificacion).FirstOrDefault();
@@ -79,6 +111,7 @@ namespace Web.Controllers
             return View(viewModel);
         }
 
+        [HttpGet]
         public ActionResult Delete(int id = 0)
         {
             EquipoViewModel viewModel;
@@ -86,7 +119,7 @@ namespace Web.Controllers
 
             equipo = servicio.ObtenerEquipoPorID(id);
             if (equipo == null || equipo.usuarioBaja != null)
-                throw new HttpException(404, "Item Not Found");
+                return new HttpStatusCodeResult(404, "No se ha encontrado el Equipo de ID " + id + ". (¿Quizás fue eliminado?)");
 
             var usuarioAltaName = servicioGeneral.ObtenerUsuarios().Where(a => a.idUsuario == equipo.usuarioAlta).FirstOrDefault();
             var usuarioModificacionName = servicioGeneral.ObtenerUsuarios().Where(a => a.idUsuario == equipo.usuarioModificacion).FirstOrDefault();
@@ -108,6 +141,7 @@ namespace Web.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
         public ActionResult Edit(int id = 0)
         {
             EquipoFormViewModel viewModel;
@@ -115,7 +149,7 @@ namespace Web.Controllers
 
             equipo = servicio.ObtenerEquipoPorID(id);
             if(equipo == null || equipo.usuarioBaja != null)
-                throw new HttpException(404, "Item Not Found");
+                return new HttpStatusCodeResult(404, "No se ha encontrado el Equipo de ID " + id + ". (¿Quizás fue eliminado?)");
 
             viewModel = Mapper.Map<Equipo, EquipoFormViewModel>(equipo);
 

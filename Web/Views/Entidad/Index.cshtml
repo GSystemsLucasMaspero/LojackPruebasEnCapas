@@ -49,12 +49,52 @@
         <div class="table-responsive">
             <table class="table table-striped table-bordered table-hover table-condensed">
                 <tr>
-                    <th class="text-center">@Html.DisplayName("ID")</th>
-                    <th class="text-center">@Html.DisplayName("Nombre")</th>
-                    <th class="text-center">@Html.DisplayName("Estado")</th>
-                    <th class="text-center">@Html.DisplayName("Nivel Servicio")</th>
+                    <th class="text-center">
+                        @Html.ActionLink("ID", "Index", new { sortOrder = ViewBag.IDSortParm, currentFilter = ViewBag.CurrentFilter })
+                        @{
+                            if (ViewBag.CurrentSort == ViewBag.IdSortParm)
+                            {
+                                <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+                            }
+                        }
+                    </th>
+                    <th class="text-center">
+                        @Html.ActionLink(" Nombre", "Index", new { sortOrder = ViewBag.NombreSortParm, currentFilter = ViewBag.CurrentFilter })
+                        @{
+                            if (ViewBag.CurrentSort == "nombre_asc")
+                            {
+                                <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+                            }
+                        }
+                    </th>
+                    <th class="text-center">
+                        @Html.ActionLink(" Estado", "Index", new { sortOrder = ViewBag.EstadoSortParm, currentFilter = ViewBag.CurrentFilter })
+                        @{
+                            if (ViewBag.CurrentSort == "estado_asc")
+                            {
+                                <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+                            }
+                        }
+                    </th>
+                    <th class="text-center">
+                        @Html.ActionLink(" Nivel Servicio", "Index", new { sortOrder = ViewBag.NivelServicioSortParm, currentFilter = ViewBag.CurrentFilter })
+                        @{
+                            if (ViewBag.CurrentSort == "nivelservicio_asc")
+                            {
+                                <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+                            }
+                        }
+                    </th>
                     <th class="text-center">@Html.DisplayName("Plantilla Suceso")</th>
-                    <th class="text-center">@Html.DisplayName("Cadencia Reporte")</th>
+                    <th class="text-center">
+                        @Html.ActionLink("Cadencia Reporte", "Index", new { sortOrder = ViewBag.CadenciaReporteSortParm, currentFilter = ViewBag.CurrentFilter })
+                        @{
+                            if (ViewBag.CurrentSort == "cadenciareporte_asc")
+                            {
+                                <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+                            }
+                        }
+                    </th>
                     <th class="text-center">@Html.DisplayName("Teléfono")</th>
                     <th class="text-center">@Html.DisplayName("ID Procedimiento")</th>
                     <th class="text-center">@Html.DisplayName("Cuenta")</th>
@@ -117,7 +157,7 @@
             </table>
             <div class="col-sm-10">
                 <div class="text-center">
-                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
                     Mostrando Entidad @Model.FirstItemOnPage a @Model.LastItemOnPage de @Model.TotalItemCount Entidades.
                 </div>
             </div>
