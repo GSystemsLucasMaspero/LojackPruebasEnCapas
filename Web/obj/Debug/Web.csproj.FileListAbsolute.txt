@@ -74,3 +74,6 @@ C:\Users\lmaspero\Source\Repos\LojackPruebasEnCapas\Web\bin\EntityFramework.xml
 C:\Users\lmaspero\Source\Repos\LojackPruebasEnCapas\Web\obj\Debug\Web.csprojResolveAssemblyReference.cache
 C:\Users\lmaspero\Source\Repos\LojackPruebasEnCapas\Web\obj\Debug\Web.dll
 C:\Users\lmaspero\Source\Repos\LojackPruebasEnCapas\Web\obj\Debug\Web.pdb
+C:\Users\lmaspero\Source\Repos\LojackPruebasEnCapas\Web\bin\Eggado.dll
+C:\Users\lmaspero\Source\Repos\LojackPruebasEnCapas\Web\bin\Rabbit.Bootstrap.dll
+C:\Users\lmaspero\Source\Repos\LojackPruebasEnCapas\Web\bin\Rabbit.Bootstrap.xml

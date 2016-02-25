@@ -2,25 +2,22 @@
 
 <html>
 <head>
-    <title>ABM Lojack</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <title>ABM Lojack</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-2.2.0.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
 </head>
 <body>
     <div>
-        <nav class="navbar navbar">
+        <nav class="navbar navbar-default">
             <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="/Home/Index"><font size="6">ABM Lojack</font></a>
-                </div>
                 <ul class="nav navbar-nav">
-                    <li><a href="/Home/Index"><font size="5">Inicio</font></a></li>
+                    <li><a href="/Home/Index"><font color="red" size="5"><i class="glyphicon glyphicon-home"></i></font><font size="5"> Inicio</font></a></li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown">
-                            <font size="5">Equipo</font>
+                            <font color="red" size="5"><i class="glyphicon glyphicon-hdd"></i></font><font size="5"> Equipo</font>
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
@@ -30,7 +27,7 @@
                     </li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown">
-                            <font size="5">Entidad</font>
+                            <font size="5"><font color="red" size="5"><i class="glyphicon glyphicon-tag"></i></font> Entidad</font>
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
@@ -38,6 +35,10 @@
                             <li><a href="/NivelServicio">Niveles de Servicio</a></li>
                         </ul>
                     </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><font color="red" size="5"><i class="glyphicon glyphicon-user"></i></font><font size="5"> Sign Up</font></a></li>
+                    <li><a href="#"><font color="red" size="5"><i class="glyphicon glyphicon-log-in"></i></font><font size="5"> Login</font></a></li>
                 </ul>
             </div>
         </nav>
@@ -50,5 +51,8 @@
             </div>
         </footer>
     </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
 </body>
 </html>
