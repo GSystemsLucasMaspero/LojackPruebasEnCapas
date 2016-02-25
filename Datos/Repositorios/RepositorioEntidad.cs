@@ -52,7 +52,7 @@ namespace Datos.Repositorios
             base.Modificar(entidad, entidad.idEntidad);
         }
 
-        public IEnumerable<Entidad> ObtenerTodos()
+        public IQueryable<Entidad> ObtenerTodos()
         {
             return base.DBContext.Entidads.Include(e => e.Cuenta).Include(e => e.NivelServicio);
         }

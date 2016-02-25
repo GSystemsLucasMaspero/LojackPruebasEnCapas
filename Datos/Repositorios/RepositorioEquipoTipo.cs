@@ -39,7 +39,7 @@ namespace Datos.Repositorios
             base.Modificar(entidad, entidad.idEquipoTipo);
         }
 
-        public IEnumerable<EquipoTipo> ObtenerTodos()
+        public IQueryable<EquipoTipo> ObtenerTodos()
         {
             return base.DBContext.EquipoTipoes;
         }

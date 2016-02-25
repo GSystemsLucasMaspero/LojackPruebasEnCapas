@@ -11,6 +11,6 @@ namespace Datos.Modelos
         void Agregar(T entidad);
         void Modificar(T entidad, int id);
         T ObtenerPorID(int id);
-        IEnumerable<T> ObtenerTodos();
+        IQueryable<T> ObtenerTodos();
     }
 }

@@ -52,7 +52,7 @@ namespace Datos.Repositorios
             base.Modificar(entidad, entidad.idEquipo);
         }
 
-        public IEnumerable<Equipo> ObtenerTodos()
+        public IQueryable<Equipo> ObtenerTodos()
         {
             return base.DBContext.Equipoes.Include(e => e.Cuenta).Include(e => e.EquipoTipo);
         }

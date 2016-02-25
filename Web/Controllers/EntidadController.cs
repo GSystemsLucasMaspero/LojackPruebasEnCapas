@@ -34,8 +34,8 @@ namespace Web.Controllers
 
             ViewBag.CurrentFilter = search;
 
-            IEnumerable<Entidad> entidades = servicio.ObtenerTodos();
-
+            // Setup base query - not evaluated
+            IQueryable<Entidad> entidades = servicio.ObtenerTodos();
 
             if (!String.IsNullOrEmpty(search))
             {
@@ -65,8 +65,17 @@ namespace Web.Controllers
             }
 
             var pageSize = 20;
-            IEnumerable<EntidadViewModel> viewModelEntidades = Mapper.Map<IEnumerable<Entidad>, IEnumerable<EntidadViewModel>>(entidades);
-            IPagedList<EntidadViewModel> model = viewModelEntidades.ToPagedList(page, pageSize);
+
+            // Count of all matching records (hits database, but count is relatively quick)
+            var entidadesCount = entidades.Count();
+            // List of current page of 20 records (hits database again, pulls only 20 records, though)
+            var entidadesList = entidades.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+
+            // Map just the 20 records to view models
+            var viewModelEntidades = Mapper.Map<IEnumerable<Entidad>, IEnumerable<EntidadViewModel>>(entidadesList);
+
+            // Create StaticPagedList instance to page with
+            var model = new StaticPagedList<EntidadViewModel>(viewModelEntidades, page, pageSize, entidadesCount);
 
             return View(model); 
         }

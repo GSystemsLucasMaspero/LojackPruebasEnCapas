@@ -38,7 +38,7 @@ namespace Datos.Repositorios
             base.Modificar(entidad, entidad.idNivelServicio);
         }
 
-        public IEnumerable<NivelServicio> ObtenerTodos()
+        public IQueryable<NivelServicio> ObtenerTodos()
         {
             return base.DBContext.NivelServicios;
         }

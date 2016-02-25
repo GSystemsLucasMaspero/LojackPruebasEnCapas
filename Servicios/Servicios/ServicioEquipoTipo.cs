@@ -27,9 +27,9 @@ namespace Servicios.Servicios
             repositorio.Modificar(equipoTipo, id);
         }
 
-        public IEnumerable<EquipoTipo> ObtenerTodos()
+        public IQueryable<EquipoTipo> ObtenerTodos()
         {
-            return repositorio.ObtenerTodos().ToList();
+            return repositorio.ObtenerTodos();
         }
 
         public void Eliminar(EquipoTipo equipoTipo)

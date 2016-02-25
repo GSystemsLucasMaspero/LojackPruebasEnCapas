@@ -27,9 +27,9 @@ namespace Servicios.Servicios
             repositorio.Modificar(nivelServicio, id);
         }
 
-        public IEnumerable<NivelServicio> ObtenerTodos()
+        public IQueryable<NivelServicio> ObtenerTodos()
         {
-            return repositorio.ObtenerTodos().ToList();
+            return repositorio.ObtenerTodos();
         }
 
         public void Eliminar(NivelServicio nivelServicio)

@@ -27,9 +27,9 @@ namespace Servicios.Servicios
             repositorio.Modificar(entidad, id);
         }
 
-        public IEnumerable<Entidad> ObtenerTodos()
+        public IQueryable<Entidad> ObtenerTodos()
         {
-            return repositorio.ObtenerTodos().ToList();
+            return repositorio.ObtenerTodos();
         }
 
         public void Eliminar(Entidad entidad)

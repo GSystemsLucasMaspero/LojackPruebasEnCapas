@@ -35,9 +35,9 @@ namespace Datos.Modelos
             return DB.Set<T>().Find(id);
         }
 
-        public IEnumerable<T> ObtenerTodos()
+        public IQueryable<T> ObtenerTodos()
         {
-            return DB.Set<T>().ToList();
+            return DB.Set<T>();
         }
     }
 }

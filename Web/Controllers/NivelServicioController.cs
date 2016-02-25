@@ -30,9 +30,9 @@ namespace Web.Controllers
                 search = currentFilter;
 
             ViewBag.CurrentFilter = search;
-
-            IEnumerable<NivelServicio> servicios = servicio.ObtenerTodos();
-
+            
+            // Setup base query - not evaluated
+            IQueryable<NivelServicio> servicios = servicio.ObtenerTodos();
 
             if (!String.IsNullOrEmpty(search))
             {
@@ -53,10 +53,19 @@ namespace Web.Controllers
             }
 
             var pageSize = 20;
-            IEnumerable<NivelServicioViewModel> viewModelNivelServicio = Mapper.Map<IEnumerable<NivelServicio>, IEnumerable<NivelServicioViewModel>>(servicios);
-            IPagedList<NivelServicioViewModel> model = viewModelNivelServicio.ToPagedList(page, pageSize);
 
-            return View(model);
+            // Count of all matching records (hits database, but count is relatively quick)
+            var serviciosCount = servicios.Count();
+            // List of current page of 20 records (hits database again, pulls only 20 records, though)
+            var serviciosList = servicios.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+
+            // Map just the 20 records to view models
+            var viewModelServicios = Mapper.Map<IEnumerable<NivelServicio>, IEnumerable<NivelServicioViewModel>>(serviciosList);
+
+            // Create StaticPagedList instance to page with
+            var model = new StaticPagedList<NivelServicioViewModel>(viewModelServicios, page, pageSize, serviciosCount);
+
+            return View(model); 
         }
 
         [HttpGet]
