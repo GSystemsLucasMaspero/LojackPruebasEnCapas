@@ -20,6 +20,7 @@ namespace Web.Mappings
 
         protected override void Configure()
         {
+            #pragma warning disable 612, 618
             Mapper.CreateMap<Equipo, EquipoViewModel>();
             Mapper.CreateMap<Equipo, EquipoFormViewModel>();
 
@@ -31,6 +32,7 @@ namespace Web.Mappings
 
             Mapper.CreateMap<NivelServicio, NivelServicioViewModel>();
             Mapper.CreateMap<NivelServicio, NivelServicioFormViewModel>();
+            #pragma warning restore 612, 618
         }
     }
 }

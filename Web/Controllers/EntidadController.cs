@@ -14,6 +14,8 @@ namespace Web.Controllers
 {
     public class EntidadController : Controller
     {
+        #pragma warning disable 612, 618
+        
         private ServicioEntidad servicio = new ServicioEntidad();
         private GeneralService servicioGeneral = new GeneralService();
 
@@ -93,6 +95,7 @@ namespace Web.Controllers
         public ActionResult Create(EntidadFormViewModel entidadModel)
         {
             Entidad entidad = Mapper.Map<EntidadFormViewModel, Entidad>(entidadModel);
+
             if (ModelState.IsValid)
             {
                 servicio.CrearEntidad(entidad);
@@ -123,6 +126,7 @@ namespace Web.Controllers
             TempData["UsuarioBaja"] = usuarioBajaName == null ? null : usuarioBajaName.userLogin;
 
             viewModel = Mapper.Map<Entidad, EntidadViewModel>(entidad);
+
             return View(viewModel);
         }
 
@@ -145,6 +149,7 @@ namespace Web.Controllers
             TempData["UsuarioBaja"] = usuarioBajaName == null ? null : usuarioBajaName.userLogin;
 
             viewModel = Mapper.Map<Entidad, EntidadViewModel>(entidad);
+
             return View(viewModel);
         }
 
@@ -180,6 +185,7 @@ namespace Web.Controllers
         public ActionResult Edit(EntidadFormViewModel entidadModel, int id = 0)
         {
             Entidad entidad = Mapper.Map<EntidadFormViewModel, Entidad>(entidadModel);
+
             if (ModelState.IsValid)
             {
                 servicio.Modificar(entidad, id);
@@ -190,6 +196,6 @@ namespace Web.Controllers
             ViewBag.idNivelServicio = new SelectList(servicio.ObtenerNivelesDeServicio(), "idNivelServicio", "descripcion", entidad.idNivelServicio);
             return View();
         }
-
+    #pragma warning restore 612, 618
     }
 }

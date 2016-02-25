@@ -14,6 +14,8 @@ namespace Web.Controllers
 {
     public class NivelServicioController : Controller
     {
+        #pragma warning disable 612, 618
+
         private ServicioNivelServicio servicio = new ServicioNivelServicio();
         private GeneralService servicioGeneral = new GeneralService();
 
@@ -165,6 +167,6 @@ namespace Web.Controllers
             }
             return View();
         }
-
+        #pragma warning restore 612, 618
     }
 }

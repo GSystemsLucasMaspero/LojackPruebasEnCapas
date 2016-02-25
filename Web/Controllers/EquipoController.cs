@@ -13,6 +13,8 @@ namespace Web.Controllers
 {
     public class EquipoController : Controller
     {
+        #pragma warning disable 612, 618
+
         private ServicioEquipo servicio = new ServicioEquipo();
         private GeneralService servicioGeneral = new GeneralService();
 
@@ -185,6 +187,6 @@ namespace Web.Controllers
             ViewBag.idEquipoTipo = new SelectList(servicio.ObtenerTiposDeEquipo(), "idEquipoTipo", "descripcion", equipo.idEquipoTipo);
             return View(Mapper.Map<Equipo, EquipoFormViewModel>(servicio.ObtenerEquipoPorID(id)));
         }
-
+        #pragma warning restore 612, 618
     }
 }

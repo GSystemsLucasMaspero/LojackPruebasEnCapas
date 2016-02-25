@@ -20,6 +20,7 @@ namespace Web.Mappings
 
         protected override void Configure()
         {
+            #pragma warning disable 612, 618
             Mapper.CreateMap<EquipoFormViewModel, Equipo>()
                 .ForMember(e => e.identificador, map => map.MapFrom(vm => vm.identificador))
                 .ForMember(e => e.nroSerie, map => map.MapFrom(vm => vm.nroSerie))
@@ -49,6 +50,7 @@ namespace Web.Mappings
 
             Mapper.CreateMap<NivelServicioFormViewModel, NivelServicio>()
                 .ForMember(e => e.descripcion, map => map.MapFrom(vm => vm.descripcion));
+            #pragma warning restore 612, 618
         }
     }
 }
