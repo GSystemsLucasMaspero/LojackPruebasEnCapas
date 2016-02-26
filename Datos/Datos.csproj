@@ -83,6 +83,9 @@
     <Compile Include="DBContexto\NivelServicio.cs">
       <DependentUpon>ModeloDeDatos.tt</DependentUpon>
     </Compile>
+    <Compile Include="DBContexto\Posicion.cs">
+      <DependentUpon>ModeloDeDatos.tt</DependentUpon>
+    </Compile>
     <Compile Include="DBContexto\Sector.cs">
       <DependentUpon>ModeloDeDatos.tt</DependentUpon>
     </Compile>
@@ -97,6 +100,7 @@
     <Compile Include="Repositorios\RepositorioEquipoTipo.cs" />
     <Compile Include="Repositorios\RepositorioGeneral.cs" />
     <Compile Include="Repositorios\RepositorioNivelServicio.cs" />
+    <Compile Include="Repositorios\RepositorioPosicion.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />

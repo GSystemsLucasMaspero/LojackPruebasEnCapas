@@ -125,6 +125,11 @@
                                 <a href="@Url.Action("Delete", new { id = item.idEntidad })" class="btn btn-danger">
                                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                 </a>
+                                @if(item.TienePosicion) {
+                                    <a href="@Url.Action("Locate", new { id = item.idEntidad })" class="btn btn-default">
+                                        <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+                                    </a>
+                                }
                             </td>
                         </tr>
                     }

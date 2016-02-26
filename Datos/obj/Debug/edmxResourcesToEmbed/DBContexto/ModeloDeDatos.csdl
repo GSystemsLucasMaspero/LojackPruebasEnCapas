@@ -68,6 +68,7 @@
     <Property Name="idCuenta" Type="Int32" />
     <NavigationProperty Name="Cuenta" Relationship="Self.FK_Entidad_Cuenta" FromRole="Entidad" ToRole="Cuenta" />
     <NavigationProperty Name="NivelServicio" Relationship="Self.Entidad_FK01" FromRole="Entidad" ToRole="NivelServicio" />
+    <NavigationProperty Name="Posicions" Relationship="Self.Posicion_FK01" FromRole="Entidad" ToRole="Posicion" />
   </EntityType>
   <EntityType Name="Equipo">
     <Key>
@@ -92,6 +93,7 @@
     <Property Name="portable" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="Cuenta" Relationship="Self.FK_Equipo_Cuenta" FromRole="Equipo" ToRole="Cuenta" />
     <NavigationProperty Name="EquipoTipo" Relationship="Self.Equipo_FK01" FromRole="Equipo" ToRole="EquipoTipo" />
+    <NavigationProperty Name="Posicions" Relationship="Self.Posicion_FK02" FromRole="Equipo" ToRole="Posicion" />
   </EntityType>
   <EntityType Name="EquipoTipo">
     <Key>
@@ -117,6 +119,29 @@
     <Property Name="fechaBaja" Type="DateTime" Precision="3" />
     <Property Name="usuarioBaja" Type="Int32" />
     <NavigationProperty Name="Entidads" Relationship="Self.Entidad_FK01" FromRole="NivelServicio" ToRole="Entidad" />
+  </EntityType>
+  <EntityType Name="Posicion">
+    <Key>
+      <PropertyRef Name="idPosicion" />
+    </Key>
+    <Property Name="idPosicion" Type="Int64" Nullable="false" />
+    <Property Name="idEntidad" Type="Int32" Nullable="false" />
+    <Property Name="idEquipo" Type="Int32" Nullable="false" />
+    <Property Name="latitud" Type="Double" Nullable="false" />
+    <Property Name="longitud" Type="Double" Nullable="false" />
+    <Property Name="fechaPosicion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="status" Type="Int32" Nullable="false" />
+    <Property Name="evento" Type="Int32" Nullable="false" />
+    <Property Name="velocidad" Type="Double" Nullable="false" />
+    <Property Name="rumbo" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="rumboGrados" Type="Int32" />
+    <Property Name="posicionGPS" Type="Int32" />
+    <Property Name="edadDato" Type="Int32" />
+    <Property Name="difusionHorizontal" Type="Int32" />
+    <Property Name="fechaAlta" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="idPosicionOrigen" Type="Int32" />
+    <NavigationProperty Name="Entidad" Relationship="Self.Posicion_FK01" FromRole="Posicion" ToRole="Entidad" />
+    <NavigationProperty Name="Equipo" Relationship="Self.Posicion_FK02" FromRole="Posicion" ToRole="Equipo" />
   </EntityType>
   <EntityType Name="Sector">
     <Key>
@@ -261,6 +286,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="Posicion_FK01">
+    <End Role="Entidad" Type="Self.Entidad" Multiplicity="1" />
+    <End Role="Posicion" Type="Self.Posicion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Entidad">
+        <PropertyRef Name="idEntidad" />
+      </Principal>
+      <Dependent Role="Posicion">
+        <PropertyRef Name="idEntidad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="Equipo_FK01">
     <End Role="EquipoTipo" Type="Self.EquipoTipo" Multiplicity="1" />
     <End Role="Equipo" Type="Self.Equipo" Multiplicity="*" />
@@ -270,6 +307,18 @@
       </Principal>
       <Dependent Role="Equipo">
         <PropertyRef Name="idEquipoTipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Posicion_FK02">
+    <End Role="Equipo" Type="Self.Equipo" Multiplicity="1" />
+    <End Role="Posicion" Type="Self.Posicion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equipo">
+        <PropertyRef Name="idEquipo" />
+      </Principal>
+      <Dependent Role="Posicion">
+        <PropertyRef Name="idEquipo" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -285,13 +334,14 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="Lojack_Prueba" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="Lojack_PruebaEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Clientes" EntityType="Self.Cliente" />
     <EntitySet Name="Cuentas" EntityType="Self.Cuenta" />
     <EntitySet Name="Entidads" EntityType="Self.Entidad" />
     <EntitySet Name="Equipoes" EntityType="Self.Equipo" />
     <EntitySet Name="EquipoTipoes" EntityType="Self.EquipoTipo" />
     <EntitySet Name="NivelServicios" EntityType="Self.NivelServicio" />
+    <EntitySet Name="Posicions" EntityType="Self.Posicion" />
     <EntitySet Name="Sectors" EntityType="Self.Sector" />
     <EntitySet Name="Usuarios" EntityType="Self.Usuario" />
     <AssociationSet Name="FK_Cliente_Cuenta" Association="Self.FK_Cliente_Cuenta">
@@ -326,9 +376,17 @@
       <End Role="NivelServicio" EntitySet="NivelServicios" />
       <End Role="Entidad" EntitySet="Entidads" />
     </AssociationSet>
+    <AssociationSet Name="Posicion_FK01" Association="Self.Posicion_FK01">
+      <End Role="Entidad" EntitySet="Entidads" />
+      <End Role="Posicion" EntitySet="Posicions" />
+    </AssociationSet>
     <AssociationSet Name="Equipo_FK01" Association="Self.Equipo_FK01">
       <End Role="EquipoTipo" EntitySet="EquipoTipoes" />
       <End Role="Equipo" EntitySet="Equipoes" />
+    </AssociationSet>
+    <AssociationSet Name="Posicion_FK02" Association="Self.Posicion_FK02">
+      <End Role="Equipo" EntitySet="Equipoes" />
+      <End Role="Posicion" EntitySet="Posicions" />
     </AssociationSet>
     <AssociationSet Name="Usuario_FK01" Association="Self.Usuario_FK01">
       <End Role="Sector" EntitySet="Sectors" />

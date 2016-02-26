@@ -11,6 +11,7 @@ namespace Servicios.Servicios
     public class ServicioEntidad
     {
         private RepositorioEntidad repositorio = new RepositorioEntidad();
+        private RepositorioPosicion repositorioPos = new RepositorioPosicion();
 
         public void CrearEntidad(Entidad entidad)
         {
@@ -50,6 +51,16 @@ namespace Servicios.Servicios
         public IEnumerable<NivelServicio> ObtenerNivelesDeServicio()
         {
             return repositorio.ObtenerNivelesDeServicio().ToList();
+        }
+
+        public bool TienePosicion(int id)
+        {
+            return repositorioPos.TieneEntidadDeID(id);
+        }
+
+        public Posicion ObtenerPosicion(int id)
+        {
+            return repositorioPos.ObtenerPosicion(id);
         }
 
     }

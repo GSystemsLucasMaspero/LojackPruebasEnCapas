@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="Lojack_PruebaModelStoreContainer" CdmEntityContainer="Lojack_Prueba">
+  <EntityContainerMapping StorageEntityContainer="Lojack_PruebaModelStoreContainer" CdmEntityContainer="Lojack_PruebaEntities">
     <EntitySetMapping Name="Clientes">
       <EntityTypeMapping TypeName="Lojack_PruebaModel.Cliente">
         <MappingFragment StoreEntitySet="Cliente">
@@ -107,6 +107,28 @@
           <ScalarProperty Name="usuarioAlta" ColumnName="usuarioAlta" />
           <ScalarProperty Name="fechaBaja" ColumnName="fechaBaja" />
           <ScalarProperty Name="usuarioBaja" ColumnName="usuarioBaja" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Posicions">
+      <EntityTypeMapping TypeName="Lojack_PruebaModel.Posicion">
+        <MappingFragment StoreEntitySet="Posicion">
+          <ScalarProperty Name="idPosicion" ColumnName="idPosicion" />
+          <ScalarProperty Name="idEntidad" ColumnName="idEntidad" />
+          <ScalarProperty Name="idEquipo" ColumnName="idEquipo" />
+          <ScalarProperty Name="latitud" ColumnName="latitud" />
+          <ScalarProperty Name="longitud" ColumnName="longitud" />
+          <ScalarProperty Name="fechaPosicion" ColumnName="fechaPosicion" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="evento" ColumnName="evento" />
+          <ScalarProperty Name="velocidad" ColumnName="velocidad" />
+          <ScalarProperty Name="rumbo" ColumnName="rumbo" />
+          <ScalarProperty Name="rumboGrados" ColumnName="rumboGrados" />
+          <ScalarProperty Name="posicionGPS" ColumnName="posicionGPS" />
+          <ScalarProperty Name="edadDato" ColumnName="edadDato" />
+          <ScalarProperty Name="difusionHorizontal" ColumnName="difusionHorizontal" />
+          <ScalarProperty Name="fechaAlta" ColumnName="fechaAlta" />
+          <ScalarProperty Name="idPosicionOrigen" ColumnName="idPosicionOrigen" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -10,9 +10,9 @@ namespace Datos.Modelos
 {
     public class Repositorio<T> : IRepositorio<T> where T : class
     {
-        private Lojack_Prueba DB = new Lojack_Prueba();
+        private Lojack_PruebaEntities DB = new Lojack_PruebaEntities();
 
-        protected Lojack_Prueba DBContext
+        protected Lojack_PruebaEntities DBContext
         {
             get { return DB; }
         }

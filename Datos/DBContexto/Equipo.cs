@@ -14,11 +14,16 @@ namespace Datos.DBContexto
     
     public partial class Equipo
     {
+        public Equipo()
+        {
+            this.Posicions = new HashSet<Posicion>();
+        }
+    
         public int idEquipo { get; set; }
         public string identificador { get; set; }
         public string nroSerie { get; set; }
         public bool primario { get; set; }
-        public int? idEquipoTipo { get; set; }
+        public int idEquipoTipo { get; set; }
         public int cadencia { get; set; }
         public System.DateTime fechaAlta { get; set; }
         public int usuarioAlta { get; set; }
@@ -34,5 +39,6 @@ namespace Datos.DBContexto
     
         public virtual Cuenta Cuenta { get; set; }
         public virtual EquipoTipo EquipoTipo { get; set; }
+        public virtual ICollection<Posicion> Posicions { get; set; }
     }
 }

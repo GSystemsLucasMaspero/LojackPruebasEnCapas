@@ -9,7 +9,7 @@ namespace Datos.Repositorios
 {
     public class RepositorioGeneral
     {
-        private Lojack_Prueba DB = new Lojack_Prueba();
+        private Lojack_PruebaEntities DB = new Lojack_PruebaEntities();
 
         public DateTime ObtenerDateTimeServer()
         {

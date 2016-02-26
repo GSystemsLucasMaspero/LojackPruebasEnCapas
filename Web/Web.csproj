@@ -45,8 +45,17 @@
     <Reference Include="AutoMapper">
       <HintPath>..\packages\AutoMapper.4.2.0\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
+    <Reference Include="DocaLabs.Http.Client">
+      <HintPath>..\packages\DocaLabs.Http.Client.3.0.0.0\lib\DocaLabs.Http.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="DocaLabs.Http.Client.Extension.NewtonSoft">
+      <HintPath>..\packages\DocaLabs.Http.Client.with.NewtonSoft.Json.Serializer.3.0.0.0\lib\DocaLabs.Http.Client.Extension.NewtonSoft.dll</HintPath>
+    </Reference>
     <Reference Include="Eggado">
       <HintPath>..\packages\Eggado.1.0\lib\net40\Eggado.dll</HintPath>
+    </Reference>
+    <Reference Include="GMaps">
+      <HintPath>..\GMaps.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -193,6 +202,7 @@
     <Content Include="Views\Equipo\Details.cshtml" />
     <Content Include="Views\Equipo\Delete.cshtml" />
     <Content Include="Views\Equipo\Create.cshtml" />
+    <Content Include="Views\Entidad\Locate.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -210,9 +220,7 @@
       <Name>Servicios</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -77,3 +77,10 @@ C:\Users\lmaspero\Source\Repos\LojackPruebasEnCapas\Web\obj\Debug\Web.pdb
 C:\Users\lmaspero\Source\Repos\LojackPruebasEnCapas\Web\bin\Eggado.dll
 C:\Users\lmaspero\Source\Repos\LojackPruebasEnCapas\Web\bin\Rabbit.Bootstrap.dll
 C:\Users\lmaspero\Source\Repos\LojackPruebasEnCapas\Web\bin\Rabbit.Bootstrap.xml
+C:\Users\lmaspero\Source\Repos\LojackPruebasEnCapas\Web\bin\GMaps.dll
+C:\Users\lmaspero\Source\Repos\LojackPruebasEnCapas\Web\bin\DocaLabs.Http.Client.dll
+C:\Users\lmaspero\Source\Repos\LojackPruebasEnCapas\Web\bin\DocaLabs.Http.Client.Extension.NewtonSoft.dll
+C:\Users\lmaspero\Source\Repos\LojackPruebasEnCapas\Web\bin\DocaLabs.Http.Client.pdb
+C:\Users\lmaspero\Source\Repos\LojackPruebasEnCapas\Web\bin\DocaLabs.Http.Client.xml
+C:\Users\lmaspero\Source\Repos\LojackPruebasEnCapas\Web\bin\DocaLabs.Http.Client.Extension.NewtonSoft.pdb
+C:\Users\lmaspero\Source\Repos\LojackPruebasEnCapas\Web\bin\DocaLabs.Http.Client.Extension.NewtonSoft.xml

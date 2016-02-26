@@ -1,0 +1,47 @@
+﻿@model Web.Models.Entidad.EntidadViewModel
+
+@{
+    ViewBag.Title = "Entidades";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="http://maps.google.com/maps/api/js?sensor=true" type="text/javascript"></script>
+
+<style>
+    #map_canvas img {
+        max-width: none;
+    }
+</style>
+
+<div class="panel panel-primary">
+    <div class="panel-heading"><font size="5">Entidades</font></div>
+    <div class="panel-body">
+        <div class="panel panel-default">
+            <div class="panel-heading"><font size="4">Localización de Entidad "@Model.nombre"</font></div>
+            <div class="panel-body">
+                <div id="map_canvas" style="height: 600px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    google.maps.visualRefresh = true;
+    var Area = new google.maps.LatLng(53.40091, -2.994464);
+
+    var mapOptions = {
+        zoom: 14,
+        center: Area,
+        mapTypeId: google.maps.MapTypeId.G_NORMAL_MAP
+    };
+
+    var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+    var pin = new google.maps.LatLng(53.40091, -2.994464);
+    var marker = new google.maps.Marker({
+        position: pin,
+        map: map,
+        title: 'Entidad'
+    });
+
+    marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png')
+</script>

@@ -103,6 +103,27 @@
     <Property Name="fechaBaja" Type="datetime" />
     <Property Name="usuarioBaja" Type="int" />
   </EntityType>
+  <EntityType Name="Posicion">
+    <Key>
+      <PropertyRef Name="idPosicion" />
+    </Key>
+    <Property Name="idPosicion" Type="bigint" Nullable="false" />
+    <Property Name="idEntidad" Type="int" Nullable="false" />
+    <Property Name="idEquipo" Type="int" Nullable="false" />
+    <Property Name="latitud" Type="float" Nullable="false" />
+    <Property Name="longitud" Type="float" Nullable="false" />
+    <Property Name="fechaPosicion" Type="datetime" Nullable="false" />
+    <Property Name="status" Type="int" Nullable="false" />
+    <Property Name="evento" Type="int" Nullable="false" />
+    <Property Name="velocidad" Type="float" Nullable="false" />
+    <Property Name="rumbo" Type="varchar" MaxLength="2" Nullable="false" />
+    <Property Name="rumboGrados" Type="int" />
+    <Property Name="posicionGPS" Type="int" />
+    <Property Name="edadDato" Type="int" />
+    <Property Name="difusionHorizontal" Type="int" />
+    <Property Name="fechaAlta" Type="datetime" Nullable="false" />
+    <Property Name="idPosicionOrigen" Type="int" />
+  </EntityType>
   <EntityType Name="Sector">
     <Key>
       <PropertyRef Name="idSector" />
@@ -241,6 +262,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="Posicion_FK01">
+    <End Role="Entidad" Type="Self.Entidad" Multiplicity="1" />
+    <End Role="Posicion" Type="Self.Posicion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Entidad">
+        <PropertyRef Name="idEntidad" />
+      </Principal>
+      <Dependent Role="Posicion">
+        <PropertyRef Name="idEntidad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Posicion_FK02">
+    <End Role="Equipo" Type="Self.Equipo" Multiplicity="1" />
+    <End Role="Posicion" Type="Self.Posicion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equipo">
+        <PropertyRef Name="idEquipo" />
+      </Principal>
+      <Dependent Role="Posicion">
+        <PropertyRef Name="idEquipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="Usuario_FK01">
     <End Role="Sector" Type="Self.Sector" Multiplicity="1" />
     <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
@@ -272,6 +317,7 @@
     <EntitySet Name="Equipo" EntityType="Self.Equipo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="EquipoTipo" EntityType="Self.EquipoTipo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="NivelServicio" EntityType="Self.NivelServicio" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Posicion" EntityType="Self.Posicion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Sector" EntityType="Self.Sector" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="Entidad_FK01" Association="Self.Entidad_FK01">
@@ -305,6 +351,14 @@
     <AssociationSet Name="FK_Usuario_Cuenta" Association="Self.FK_Usuario_Cuenta">
       <End Role="Cuenta" EntitySet="Cuenta" />
       <End Role="Usuario" EntitySet="Usuario" />
+    </AssociationSet>
+    <AssociationSet Name="Posicion_FK01" Association="Self.Posicion_FK01">
+      <End Role="Entidad" EntitySet="Entidad" />
+      <End Role="Posicion" EntitySet="Posicion" />
+    </AssociationSet>
+    <AssociationSet Name="Posicion_FK02" Association="Self.Posicion_FK02">
+      <End Role="Equipo" EntitySet="Equipo" />
+      <End Role="Posicion" EntitySet="Posicion" />
     </AssociationSet>
     <AssociationSet Name="Usuario_FK01" Association="Self.Usuario_FK01">
       <End Role="Sector" EntitySet="Sector" />

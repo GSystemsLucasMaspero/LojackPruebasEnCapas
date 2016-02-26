@@ -76,6 +76,15 @@ namespace Web.Controllers
             // Map just the 20 records to view models
             var viewModelEntidades = Mapper.Map<IEnumerable<Entidad>, IEnumerable<EntidadViewModel>>(entidadesList);
 
+            // Ver el tema de las posiciones
+            foreach (EntidadViewModel entidad in viewModelEntidades)
+            {
+                if(servicio.TienePosicion(entidad.idEntidad))
+                    entidad.TienePosicion = true;
+                else
+                    entidad.TienePosicion = false;
+            }
+
             // Create StaticPagedList instance to page with
             var model = new StaticPagedList<EntidadViewModel>(viewModelEntidades, page, pageSize, entidadesCount);
 
@@ -197,5 +206,23 @@ namespace Web.Controllers
             return View();
         }
     #pragma warning restore 612, 618
+
+        [HttpGet]
+        public ActionResult Locate(int id = 0)
+        {
+            EntidadViewModel viewModel;
+            Entidad entidad;
+
+            entidad = servicio.ObtenerEntidadPorID(id);
+            if (entidad == null || !servicio.TienePosicion(entidad.idEntidad))
+                return new HttpStatusCodeResult(404, "No se ha encontrado la Entidad de ID " + id);
+
+            viewModel = Mapper.Map<Entidad, EntidadViewModel>(entidad);
+            viewModel.TienePosicion = true;
+            viewModel.Posicion = servicio.ObtenerPosicion(entidad.idEntidad);
+
+            return View(viewModel);
+        }
+
     }
 }

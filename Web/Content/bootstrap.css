@@ -86,7 +86,7 @@ hr {
 
 mark {
   color: #000;
-  background: #ff0;
+  background: #fff;
 }
 
 code,
@@ -4726,7 +4726,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
-  color: #333333;
+  color: #fff;
   background-color: transparent;
 }
 
@@ -4765,7 +4765,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .open > a:hover,
 .navbar-default .navbar-nav > .open > a:focus {
-  color: #555555;
+  color: #fff;
   background-color: #292927;
 }
 

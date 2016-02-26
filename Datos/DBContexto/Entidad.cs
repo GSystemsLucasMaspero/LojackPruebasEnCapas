@@ -14,6 +14,11 @@ namespace Datos.DBContexto
     
     public partial class Entidad
     {
+        public Entidad()
+        {
+            this.Posicions = new HashSet<Posicion>();
+        }
+    
         public int idEntidad { get; set; }
         public string nombre { get; set; }
         public int estado { get; set; }
@@ -33,5 +38,6 @@ namespace Datos.DBContexto
     
         public virtual Cuenta Cuenta { get; set; }
         public virtual NivelServicio NivelServicio { get; set; }
+        public virtual ICollection<Posicion> Posicions { get; set; }
     }
 }

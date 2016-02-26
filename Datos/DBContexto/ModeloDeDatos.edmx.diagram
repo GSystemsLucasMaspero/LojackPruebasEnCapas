@@ -4,15 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="66047955df724b049ab683861ae23655" Name="Diagram1">
-        <EntityTypeShape EntityType="Lojack_PruebaModel.Cliente" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Lojack_PruebaModel.Cuenta" Width="1.5" PointX="0.75" PointY="10.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Lojack_PruebaModel.Entidad" Width="1.5" PointX="6" PointY="8.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Lojack_PruebaModel.Equipo" Width="1.5" PointX="3" PointY="14.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Lojack_PruebaModel.EquipoTipo" Width="1.5" PointX="0.75" PointY="15.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Lojack_PruebaModel.NivelServicio" Width="1.5" PointX="3.75" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="Lojack_PruebaModel.Sector" Width="1.5" PointX="3" PointY="24.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Lojack_PruebaModel.Usuario" Width="1.5" PointX="5.25" PointY="14.25" IsExpanded="true" />
+      <Diagram DiagramId="fa30b3483db84aac8eae57fcd030c5ba" Name="Diagram1">
+        <EntityTypeShape EntityType="Lojack_PruebaModel.Cliente" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Lojack_PruebaModel.Cuenta" Width="1.5" PointX="0.75" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Lojack_PruebaModel.Entidad" Width="1.5" PointX="6" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="Lojack_PruebaModel.Equipo" Width="1.5" PointX="3" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Lojack_PruebaModel.EquipoTipo" Width="1.5" PointX="0.75" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Lojack_PruebaModel.NivelServicio" Width="1.5" PointX="3.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Lojack_PruebaModel.Posicion" Width="1.5" PointX="8.25" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Lojack_PruebaModel.Sector" Width="1.5" PointX="3" PointY="25.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Lojack_PruebaModel.Usuario" Width="1.5" PointX="5.25" PointY="14.625" IsExpanded="true" />
         <AssociationConnector Association="Lojack_PruebaModel.FK_Cliente_Cuenta" ManuallyRouted="false" />
         <AssociationConnector Association="Lojack_PruebaModel.FK_Cuenta_Cliente" ManuallyRouted="false" />
         <AssociationConnector Association="Lojack_PruebaModel.Usuario_FK02" ManuallyRouted="false" />
@@ -21,7 +22,9 @@
         <AssociationConnector Association="Lojack_PruebaModel.FK_Sector_Cuenta" ManuallyRouted="false" />
         <AssociationConnector Association="Lojack_PruebaModel.FK_Usuario_Cuenta" ManuallyRouted="false" />
         <AssociationConnector Association="Lojack_PruebaModel.Entidad_FK01" ManuallyRouted="false" />
+        <AssociationConnector Association="Lojack_PruebaModel.Posicion_FK01" ManuallyRouted="false" />
         <AssociationConnector Association="Lojack_PruebaModel.Equipo_FK01" ManuallyRouted="false" />
+        <AssociationConnector Association="Lojack_PruebaModel.Posicion_FK02" ManuallyRouted="false" />
         <AssociationConnector Association="Lojack_PruebaModel.Usuario_FK01" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
