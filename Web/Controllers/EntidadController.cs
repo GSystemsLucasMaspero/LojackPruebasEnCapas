@@ -219,9 +219,27 @@ namespace Web.Controllers
 
             viewModel = Mapper.Map<Entidad, EntidadViewModel>(entidad);
             viewModel.TienePosicion = true;
-            viewModel.Posicion = servicio.ObtenerPosicion(entidad.idEntidad);
+            viewModel.Posicion = servicio.ObtenerUltimaPosicion(entidad.idEntidad);
 
             return View(viewModel);
+        }
+
+        [HttpGet]
+        public ActionResult LocateAll()
+        {
+            List<EntidadViewModel> viewModelEntidades = new List<EntidadViewModel>();
+
+            for (int i = 415; i < 450; i++)
+            {
+                Entidad e = servicio.ObtenerEntidadPorID(i);
+                if (e != null && servicio.TienePosicion(i))
+                {
+                    EntidadViewModel viewModel = Mapper.Map<Entidad, EntidadViewModel>(e);
+                    viewModel.Posicion = servicio.ObtenerUltimaPosicion(i);
+                    viewModelEntidades.Add(viewModel);
+                }
+            }
+            return View(viewModelEntidades);
         }
 
     }

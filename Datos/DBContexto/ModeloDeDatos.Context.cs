@@ -18,6 +18,7 @@ namespace Datos.DBContexto
         public Lojack_PruebaEntities()
             : base("name=Lojack_PruebaEntities")
         {
+            this.Configuration.ProxyCreationEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

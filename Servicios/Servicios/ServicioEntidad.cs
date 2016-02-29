@@ -33,6 +33,11 @@ namespace Servicios.Servicios
             return repositorio.ObtenerTodos();
         }
 
+        public IEnumerable<Entidad> ObtenerTodosEnumerable()
+        {
+            return repositorio.ObtenerTodosEnumerable();
+        }
+
         public void Eliminar(Entidad entidad)
         {
             repositorio.Eliminar(entidad);
@@ -58,9 +63,21 @@ namespace Servicios.Servicios
             return repositorioPos.TieneEntidadDeID(id);
         }
 
+        // Devuelve la primera posición encontrada
         public Posicion ObtenerPosicion(int id)
         {
             return repositorioPos.ObtenerPosicion(id);
+        }
+
+        // Devuelve la última (más actual) posición
+        public Posicion ObtenerUltimaPosicion(int id)
+        {
+            return repositorioPos.ObtenerUltimaPosicion(id);
+        }
+
+        public int LastID()
+        {
+            return repositorio.LastID();
         }
 
     }

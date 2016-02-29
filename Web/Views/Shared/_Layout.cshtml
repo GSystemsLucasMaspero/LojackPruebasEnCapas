@@ -33,6 +33,7 @@
                         <ul class="dropdown-menu">
                             <li><a href="/Entidad"><i class="glyphicon glyphicon-tag"></i> Entidades</a></li>
                             <li><a href="/NivelServicio"><i class="glyphicon glyphicon-bookmark"></i> Niveles de Servicio</a></li>
+                            <li><a href="/Entidad/LocateAll"><i class="glyphicon glyphicon-globe"></i> Ver Entidades en Mapa</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -53,6 +54,6 @@
     </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    @RenderSection("scripts", required: true)
 </body>
 </html>

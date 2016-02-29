@@ -203,6 +203,7 @@
     <Content Include="Views\Equipo\Delete.cshtml" />
     <Content Include="Views\Equipo\Create.cshtml" />
     <Content Include="Views\Entidad\Locate.cshtml" />
+    <Content Include="Views\Entidad\LocateAll.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

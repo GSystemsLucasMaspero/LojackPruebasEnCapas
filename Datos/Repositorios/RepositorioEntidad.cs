@@ -57,6 +57,11 @@ namespace Datos.Repositorios
             return base.DBContext.Entidads.Include(e => e.Cuenta).Include(e => e.NivelServicio);
         }
 
+        public IEnumerable<Entidad> ObtenerTodosEnumerable()
+        {
+            return base.DBContext.Entidads.Include(e => e.Cuenta).Include(e => e.NivelServicio);
+        }
+
         public IEnumerable<Cuenta> ObtenerCuentas()
         {
             return base.DBContext.Cuentas.ToList();
@@ -65,6 +70,12 @@ namespace Datos.Repositorios
         public IEnumerable<NivelServicio> ObtenerNivelesDeServicio()
         {
             return base.DBContext.NivelServicios.ToList();
+        }
+
+        public int LastID()
+        {
+            var id = base.DBContext.Database.SqlQuery<Decimal>("SELECT IDENT_CURRENT('Entidad')").AsEnumerable().First();
+            return (int)id;
         }
 
     }

@@ -21,5 +21,16 @@ namespace Datos.Repositorios
         {
             return DB.Posicions.First(posicion => posicion.idEntidad == idEntidad);
         }
+
+        public Posicion ObtenerUltimaPosicion(int idEntidad)
+        {
+            Posicion ultima = null;
+            foreach(Posicion p in DB.Posicions.Where(posicion => posicion.idEntidad == idEntidad)) {
+                if (ultima == null || DateTime.Compare(ultima.fechaPosicion, p.fechaPosicion) < 0)
+                    ultima = p;
+            }
+            return ultima;
+        }
+
     }
 }
