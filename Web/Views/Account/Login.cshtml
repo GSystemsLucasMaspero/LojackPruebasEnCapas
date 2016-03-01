@@ -1,0 +1,40 @@
+﻿@model Web.Models.Usuario.UsuarioLogin
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="panel panel-default">
+        <div class="panel-heading"><font size="5">Usuarios</font></div>
+        <div class="panel-body">
+            <div class="panel panel-primary">
+                <div class="panel-heading"><font size="4">Iniciar Sesión</font></div>
+                <div class="panel-body">
+                    <div class="editor-label">@Html.Label("Usuario")</div>
+                    <div class="form-group">
+                        @Html.TextBoxFor(model => model.UserName)
+                        <font color="red"><b>@Html.ValidationMessageFor(model => model.UserName)</b></font>
+                    </div>
+                    <div class="editor-label">@Html.Label("Contraseña")</div>
+                    <div class="form-group">
+                        @Html.PasswordFor(model => model.Password)
+                        <font color="red"><b>@Html.ValidationMessageFor(model => model.Password)</b></font>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <button type="submit" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                        Iniciar Sesión
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

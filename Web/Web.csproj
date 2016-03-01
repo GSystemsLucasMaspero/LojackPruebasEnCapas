@@ -158,6 +158,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\EntidadController.cs" />
     <Compile Include="Controllers\EquipoController.cs" />
     <Compile Include="Controllers\EquipoTipoController.cs" />
@@ -175,6 +176,7 @@
     <Compile Include="Models\EquipoTipo\EquipoTipoViewModel.cs" />
     <Compile Include="Models\NivelServicio\NivelServicioFormViewModel.cs" />
     <Compile Include="Models\NivelServicio\NivelServicioViewModel.cs" />
+    <Compile Include="Models\Usuario\UsuarioLogin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\Equipo\EquipoFormViewModel.cs" />
     <Compile Include="Models\Equipo\EquipoViewModel.cs" />
@@ -204,6 +206,7 @@
     <Content Include="Views\Equipo\Create.cshtml" />
     <Content Include="Views\Entidad\Locate.cshtml" />
     <Content Include="Views\Entidad\LocateAll.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

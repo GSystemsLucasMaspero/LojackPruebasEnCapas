@@ -21,13 +21,25 @@
             <div class="panel-body">
                 @foreach (var item in Model)
                 {
-                    <div class="foo" data-latitude="@(item.Posicion.latitud)"
-                                     data-longitude="@(item.Posicion.longitud)">
+                    <div class="entidad" data-latitud="@(item.Posicion.latitud)"
+                         data-longitud="@(item.Posicion.longitud)"
+                         data-nombre="@(item.nombre)"
+                         data-estado="@(item.estado)"
+                         data-nivelservicio="@(item.NivelServicio.descripcion)"
+                         data-cuenta="@(item.Cuenta.nombre)"
+                         data-cadenciareporte="@(item.cadenciaReporte)"
+                         data-comentario="@(item.comentario)">
                     </div>
                 }
                 <div id="map_canvas" style="height: 600px;"></div>
             </div>
         </div>
+    </div>
+    <div class="panel-footer">
+        <a href="@Url.Action("/Index")" class="btn btn-default">
+            Ver lista de entidades
+            <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+        </a>
     </div>
 </div>
 
@@ -39,7 +51,7 @@
             });
 
             function initialize() {
-                var foos = $(".foo");
+                var entidades = $(".entidad");
                 var markers = new Array();
                 var Area = new google.maps.LatLng(-34.603722, -58.381592);  // Buenos Aires
                 var mapOptions = {
@@ -49,17 +61,37 @@
                 };
                 var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
                 
-                $.each(foos, function (key, value) {
+                $.each(entidades, function (key, value) {
                     markers[key] = new google.maps.Marker({
                     map: map,
                     draggable: false,
                     animation: google.maps.Animation.DROP,
+                    title: "Entidad " + $(value).attr("data-nombre"),
                     position: new google.maps.LatLng(
-                        Number($(value).attr("data-latitude")),
-                        Number($(value).attr("data-longitude"))
+                        parseFloat($(value).attr("data-latitud")),
+                        parseFloat($(value).attr("data-longitud"))
                         )
                     });
-                    // no llega dato
+                    markers[key].setIcon('http://maps.google.com/mapfiles/ms/micons/red-dot.png');
+                    var infowindow = new google.maps.InfoWindow({
+                        borderRadius: 20,
+                        content: "<div class='infoDiv'><h3>Entidad <u>" +
+                                  $(value).attr("data-nombre") +
+                                  "</u></h3> <h5><b>* Estado: </b>" +
+                                  $(value).attr("data-estado") +
+                                  "</h5> <h5><b>* Nivel de Servicio: </b>" +
+                                  $(value).attr("data-nivelservicio") +
+                                  "</h5> <h5><b>* Cadencia Reporte: </b>" +
+                                  $(value).attr("data-cadenciareporte") +
+                                  "</h5> <h5><b>* Cuenta: </b>" +
+                                  $(value).attr("data-cuenta") +
+                                  "</h5> <h5><b>* Comentario: </b>" +
+                                  $(value).attr("data-comentario") +
+                                  "</h5>"
+                    });
+                    google.maps.event.addListener(markers[key], 'click', function () {
+                        infowindow.open(map, markers[key]);
+                    });
                 });
             }
         </script>

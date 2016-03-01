@@ -52,6 +52,11 @@ namespace Datos.Repositorios
             base.Modificar(entidad, entidad.idEntidad);
         }
 
+        public Entidad ObtenerPorID(int id)
+        {
+            return base.DBContext.Set<Entidad>().Include(e => e.Cuenta).Include(e => e.NivelServicio).FirstOrDefault(e => e.idEntidad == id);
+        }
+
         public IQueryable<Entidad> ObtenerTodos()
         {
             return base.DBContext.Entidads.Include(e => e.Cuenta).Include(e => e.NivelServicio);

@@ -23,13 +23,19 @@
             </div>
         </div>
     </div>
+    <div class="panel-footer">
+        <a href="@Url.Action("./")" class="btn btn-default">
+            <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+            Volver a la lista
+        </a>
+    </div>
 </div>
-
 
 <script type="text/javascript">
     google.maps.visualRefresh = true;
     var latitud = '@Html.Raw(Json.Encode(Model.Posicion.latitud))';
     var longitud = '@Html.Raw(Json.Encode(Model.Posicion.longitud))';
+    var nombre = '@Html.Raw(Json.Encode(Model.nombre))';
     var Area = new google.maps.LatLng(latitud, longitud);
 
     var mapOptions = {
@@ -43,7 +49,8 @@
     var marker = new google.maps.Marker({
         position: pin,
         map: map,
-        title: 'Entidad'
+        animation: google.maps.Animation.DROP,
+        title: "Entidad " + nombre
     });
 
     marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-pushpin.png')
