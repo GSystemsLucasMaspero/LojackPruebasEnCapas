@@ -242,5 +242,48 @@ namespace Web.Controllers
             return View(viewModelEntidades);
         }
 
+        [HttpGet]
+        public ActionResult Route(int id = 0)
+        {
+            TempData["id"] = id;
+            return View();
+        }
+
+        public JsonResult GetTodoLists(string sidx, string sord, int page, int rows)
+        {
+            int pageIndex = Convert.ToInt32(page) - 1;
+            int pageSize = rows;
+            var todoListsResults = db.TodoLists.Select(
+                    a => new
+                    {
+                        a.Id,
+                        a.Severity,
+                        a.TargetDate,
+                        a.TaskDescription,
+                        a.TaskName,
+                        a.TaskStatus
+                    });
+            int totalRecords = todoListsResults.Count();
+            var totalPages = (int)Math.Ceiling((float)totalRecords / (float)rows);
+            if (sord.ToUpper() == "DESC")
+            {
+                todoListsResults = todoListsResults.OrderByDescending(s => s.TaskName);
+                todoListsResults = todoListsResults.Skip(pageIndex * pageSize).Take(pageSize);
+            }
+            else
+            {
+                todoListsResults = todoListsResults.OrderBy(s => s.TaskName);
+                todoListsResults = todoListsResults.Skip(pageIndex * pageSize).Take(pageSize);
+            }
+            var jsonData = new
+            {
+                total = totalPages,
+                page,
+                records = totalRecords,
+                rows = todoListsResults
+            };
+            return Json(jsonData, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

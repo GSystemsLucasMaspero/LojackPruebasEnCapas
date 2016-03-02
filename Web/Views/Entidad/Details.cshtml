@@ -107,7 +107,7 @@
                             </th>
                         </tr>
                         <tr>
-                            <th>@Html.DisplayName("Comentario")</th>
+                            <th>@Html.DisplayName(" Comentario")</th>
                             <th>
                                 @if (Model.comentario != null)
                                 {
@@ -133,8 +133,17 @@
                             </th>
                         </tr>
                         <tr>
-                            <th>@Html.DisplayName(" ID Procedimiento")</th>
-                            <th>@Html.DisplayFor(model => model.idProcedimiento)</th>
+                            <th>@Html.DisplayName("ID Procedimiento")</th>
+                            <th>
+                                @if (Model.idProcedimiento != null)
+                                {
+                                    @Html.DisplayFor(model => model.idProcedimiento)
+                                }
+                                else
+                                {
+                                    @Html.DisplayName("-")
+                                }
+                            </th>
                         </tr>
                         <tr>
                             <th>@Html.DisplayName("Cuenta")</th>

@@ -47,7 +47,7 @@
             </table>
         </div>
         <div class="table-responsive">
-            <table class="table table-striped table-bordered table-hover table-condensed">
+            <table class="table table-bordered table-hover table-condensed">
                 <tr>
                     <th class="text-center">
                         @Html.ActionLink("ID", "Index", new { sortOrder = ViewBag.IDSortParm, currentFilter = ViewBag.CurrentFilter })
@@ -116,18 +116,22 @@
                             <td class="text-center">@Html.DisplayFor(modelItem => item.idProcedimiento)</td>
                             <td class="text-center">@Html.DisplayFor(modelItem => item.Cuenta.nombre)</td>
                             <td class="text-center">
-                                <a href="@Url.Action("Details", new { id = item.idEntidad })" class="btn btn-info">
+                                <a href="@Url.Action("Details", new { id = item.idEntidad })" class="btn btn-info" title="Detalles">
                                     <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                                 </a>
-                                <a href="@Url.Action("Edit", new { id = item.idEntidad })" class="btn btn-warning">
+                                <a href="@Url.Action("Edit", new { id = item.idEntidad })" class="btn btn-warning" title="Editar">
                                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                 </a>
-                                <a href="@Url.Action("Delete", new { id = item.idEntidad })" class="btn btn-danger">
+                                <a href="@Url.Action("Delete", new { id = item.idEntidad })" class="btn btn-danger" title="Eliminar">
                                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                 </a>
-                                @if(item.TienePosicion) {
-                                    <a href="@Url.Action("Locate", new { id = item.idEntidad })" class="btn btn-default">
+                                @if (item.TienePosicion)
+                                {
+                                    <a href="@Url.Action("Locate", new { id = item.idEntidad })" class="btn btn-default" title="Ver última localización">
                                         <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+                                    </a>
+                                    <a href="@Url.Action("Route", new { id = item.idEntidad })" class="btn btn-default" title="Ver recorrido">
+                                        <span class="glyphicon glyphicon-road" aria-hidden="true"></span>
                                     </a>
                                 }
                             </td>
@@ -146,7 +150,7 @@
                             <td class="text-center">@Html.DisplayFor(modelItem => item.idProcedimiento)</td>
                             <td class="text-center">@Html.DisplayFor(modelItem => item.Cuenta.nombre)</td>
                             <td class="text-center">
-                                <a href="@Url.Action("Details", new { id = item.idEntidad })" class="btn btn-info">
+                                <a href="@Url.Action("Details", new { id = item.idEntidad })" class="btn btn-info" title="Detalles">
                                     <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                                 </a>
                                 <a href="@Url.Action("Edit", new { id = item.idEntidad })" class="btn btn-warning disabled">
