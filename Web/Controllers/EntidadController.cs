@@ -245,11 +245,10 @@ namespace Web.Controllers
         [HttpGet]
         public ActionResult Route(int id = 0)
         {
-            TempData["id"] = id;
             return View();
         }
 
-        public JsonResult GetTodoLists(string sidx, string sord, int page, int rows)
+        public JsonResult GetPositions(string sidx, string sord, int page, int rows)
         {
             int pageIndex = Convert.ToInt32(page) - 1;
             int pageSize = rows;

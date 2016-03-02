@@ -1,23 +1,23 @@
 ﻿$(function () {
     $("#grid").jqGrid({
-        url: "/TodoList/GetTodoLists",
+        url: "/Entidad/GetPositions",
         datatype: 'json',
         mtype: 'Get',
-        colNames: ['Id', 'Task Name', 'Task Description', 'Target Date', 'Severity', 'Task Status'],
+        colNames: ['ID','Fecha y Hora', 'Latitud', 'Longitud', 'Velocidad'],
         colModel: [
-            { key: true, hidden: true, name: 'Id', index: 'Id', editable: true },
-            { key: false, name: 'TaskName', index: 'TaskName', editable: true },
-            { key: false, name: 'TaskDescription', index: 'TaskDescription', editable: true },
-            { key: false, name: 'TargetDate', index: 'TargetDate', editable: true, formatter: 'date', formatoptions: { newformat: 'd/m/Y' } },
-            { key: false, name: 'Severity', index: 'Severity', editable: true, edittype: 'select', editoptions: { value: { 'L': 'Low', 'M': 'Medium', 'H': 'High' } } },
-            { key: false, name: 'TaskStatus', index: 'TaskStatus', editable: true, edittype: 'select', editoptions: { value: { 'A': 'Active', 'I': 'InActive' } } }],
+            { key: true, hidden: true, name: 'ID', index: 'ID', editable: true },
+            { key: false, name: 'Fecha y Hora', index: 'TaskName', editable: true, formatter: 'date', formatoptions: { newformat: 'd/m/Y' } },
+            { key: false, name: 'Latitud', index: 'TaskDescription', editable: true },
+            { key: false, name: 'Longitud', index: 'TargetDate', editable: true },
+            { key: false, name: 'Velocidad', index: 'Severity', editable: true }
+        ],
         pager: jQuery('#pager'),
         rowNum: 10,
         rowList: [10, 20, 30, 40],
         height: '100%',
         viewrecords: true,
-        caption: 'Todo List',
-        emptyrecords: 'No records to display',
+        caption: 'Recorrido',
+        emptyrecords: 'No hay registros que mostrar',
         jsonReader: {
             root: "rows",
             page: "page",
@@ -30,9 +30,9 @@
         multiselect: false
     }).navGrid('#pager', { edit: true, add: true, del: true, search: false, refresh: true },
         {
-            // edit options
+            // Edit options
             zIndex: 100,
-            url: '/TodoList/Edit',
+            url: '/Entidad/EditPosition',
             closeOnEscape: true,
             closeAfterEdit: true,
             recreateForm: true,
@@ -43,9 +43,9 @@
             }
         },
         {
-            // add options
+            // Add options
             zIndex: 100,
-            url: "/TodoList/Create",
+            url: "/Entidad/CreatePosition",
             closeOnEscape: true,
             closeAfterAdd: true,
             afterComplete: function (response) {
@@ -55,13 +55,13 @@
             }
         },
         {
-            // delete options
+            // Delete options
             zIndex: 100,
-            url: "/TodoList/Delete",
+            url: "/Entidad/DeletePosition",
             closeOnEscape: true,
             closeAfterDelete: true,
             recreateForm: true,
-            msg: "Are you sure you want to delete this task?",
+            msg: "Esta seguro que desea eliminar esta posición?",
             afterComplete: function (response) {
                 if (response.responseText) {
                     alert(response.responseText);

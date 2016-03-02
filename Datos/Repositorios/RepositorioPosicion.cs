@@ -32,5 +32,10 @@ namespace Datos.Repositorios
             return ultima;
         }
 
+        public IEnumerable<Posicion> ObtenerPosiciones(int idEntidad)
+        {
+            return DB.Posicions.Where(posicion => posicion.idEntidad == idEntidad);
+        }
+
     }
 }

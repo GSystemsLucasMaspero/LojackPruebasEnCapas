@@ -75,6 +75,12 @@ namespace Servicios.Servicios
             return repositorioPos.ObtenerUltimaPosicion(id);
         }
 
+        // Devuelve todas las posiciones
+        public IEnumerable<Posicion> ObtenerPosiciones(int id)
+        {
+            return repositorioPos.ObtenerPosiciones(id);
+        }
+
         public int LastID()
         {
             return repositorio.LastID();
