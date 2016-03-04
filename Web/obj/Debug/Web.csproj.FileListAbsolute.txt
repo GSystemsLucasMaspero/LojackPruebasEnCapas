@@ -84,3 +84,7 @@ C:\Users\lmaspero\Source\Repos\LojackPruebasEnCapas\Web\bin\DocaLabs.Http.Client
 C:\Users\lmaspero\Source\Repos\LojackPruebasEnCapas\Web\bin\DocaLabs.Http.Client.xml
 C:\Users\lmaspero\Source\Repos\LojackPruebasEnCapas\Web\bin\DocaLabs.Http.Client.Extension.NewtonSoft.pdb
 C:\Users\lmaspero\Source\Repos\LojackPruebasEnCapas\Web\bin\DocaLabs.Http.Client.Extension.NewtonSoft.xml
+C:\Users\lmaspero\Source\Repos\LojackPruebasEnCapas\Web\bin\Highcharts.dll
+C:\Users\lmaspero\Source\Repos\LojackPruebasEnCapas\Web\bin\Highcharts.MVC.dll
+C:\Users\lmaspero\Source\Repos\LojackPruebasEnCapas\Web\bin\Highcharts.pdb
+C:\Users\lmaspero\Source\Repos\LojackPruebasEnCapas\Web\bin\Highcharts.MVC.pdb

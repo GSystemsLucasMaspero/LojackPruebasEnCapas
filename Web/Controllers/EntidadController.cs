@@ -9,6 +9,7 @@ using Servicios.Servicios;
 using AutoMapper;
 using PagedList;
 using Web.Models.Entidad;
+using Web.Models.Posicion;
 
 namespace Web.Controllers
 {
@@ -18,6 +19,7 @@ namespace Web.Controllers
         
         private ServicioEntidad servicio = new ServicioEntidad();
         private GeneralService servicioGeneral = new GeneralService();
+        private static int lastRouteID = 0;
 
         [HttpGet]
         public ActionResult Index(string sortOrder, string currentFilter, string search, int page = 1)
@@ -68,15 +70,10 @@ namespace Web.Controllers
 
             var pageSize = 20;
 
-            // Count of all matching records (hits database, but count is relatively quick)
             var entidadesCount = entidades.Count();
-            // List of current page of 20 records (hits database again, pulls only 20 records, though)
             var entidadesList = entidades.Skip((page - 1) * pageSize).Take(pageSize).ToList();
-
-            // Map just the 20 records to view models
             var viewModelEntidades = Mapper.Map<IEnumerable<Entidad>, IEnumerable<EntidadViewModel>>(entidadesList);
 
-            // Ver el tema de las posiciones
             foreach (EntidadViewModel entidad in viewModelEntidades)
             {
                 if(servicio.TienePosicion(entidad.idEntidad))
@@ -85,7 +82,6 @@ namespace Web.Controllers
                     entidad.TienePosicion = false;
             }
 
-            // Create StaticPagedList instance to page with
             var model = new StaticPagedList<EntidadViewModel>(viewModelEntidades, page, pageSize, entidadesCount);
 
             return View(model); 
@@ -205,7 +201,6 @@ namespace Web.Controllers
             ViewBag.idNivelServicio = new SelectList(servicio.ObtenerNivelesDeServicio(), "idNivelServicio", "descripcion", entidad.idNivelServicio);
             return View();
         }
-    #pragma warning restore 612, 618
 
         [HttpGet]
         public ActionResult Locate(int id = 0)
@@ -227,59 +222,61 @@ namespace Web.Controllers
         [HttpGet]
         public ActionResult LocateAll()
         {
+            IEnumerable<Entidad> entidades = servicio.ObtenerEntidadesConPosicion();
             List<EntidadViewModel> viewModelEntidades = new List<EntidadViewModel>();
 
-            for (int i = 415; i < 450; i++)
+            foreach (Entidad e in entidades)
             {
-                Entidad e = servicio.ObtenerEntidadPorID(i);
-                if (e != null && servicio.TienePosicion(i))
-                {
-                    EntidadViewModel viewModel = Mapper.Map<Entidad, EntidadViewModel>(e);
-                    viewModel.Posicion = servicio.ObtenerUltimaPosicion(i);
-                    viewModelEntidades.Add(viewModel);
-                }
+                EntidadViewModel model = Mapper.Map<Entidad, EntidadViewModel>(e);
+                model.Posicion = servicio.ObtenerUltimaPosicion(e.idEntidad);
+                viewModelEntidades.Add(model);
             }
+            
             return View(viewModelEntidades);
         }
+#pragma warning restore 612, 618
 
         [HttpGet]
         public ActionResult Route(int id = 0)
         {
-            return View();
+            // Validar que id llega --> ERROR
+            lastRouteID = id;
+            IEnumerable<Posicion> results = servicio.ObtenerPosiciones(lastRouteID);
+            return View(Mapper.Map<IEnumerable<Posicion>, IEnumerable<PosicionViewModel>>(results));
         }
 
         public JsonResult GetPositions(string sidx, string sord, int page, int rows)
         {
             int pageIndex = Convert.ToInt32(page) - 1;
             int pageSize = rows;
-            var todoListsResults = db.TodoLists.Select(
+            var results = servicio.ObtenerPosiciones(lastRouteID).Select(
                     a => new
                     {
-                        a.Id,
-                        a.Severity,
-                        a.TargetDate,
-                        a.TaskDescription,
-                        a.TaskName,
-                        a.TaskStatus
+                        a.idPosicion,
+                        a.fechaPosicion,
+                        a.latitud,
+                        a.longitud,
+                        a.velocidad,
                     });
-            int totalRecords = todoListsResults.Count();
+            int totalRecords = results.Count();
+
             var totalPages = (int)Math.Ceiling((float)totalRecords / (float)rows);
             if (sord.ToUpper() == "DESC")
             {
-                todoListsResults = todoListsResults.OrderByDescending(s => s.TaskName);
-                todoListsResults = todoListsResults.Skip(pageIndex * pageSize).Take(pageSize);
+                results = results.OrderByDescending(s => s.fechaPosicion);
+                results = results.Skip(pageIndex * pageSize).Take(pageSize);
             }
             else
             {
-                todoListsResults = todoListsResults.OrderBy(s => s.TaskName);
-                todoListsResults = todoListsResults.Skip(pageIndex * pageSize).Take(pageSize);
+                results = results.OrderBy(s => s.fechaPosicion);
+                results = results.Skip(pageIndex * pageSize).Take(pageSize);
             }
             var jsonData = new
             {
                 total = totalPages,
                 page,
                 records = totalRecords,
-                rows = todoListsResults
+                rows = results
             };
             return Json(jsonData, JsonRequestBehavior.AllowGet);
         }

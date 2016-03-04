@@ -1,17 +1,94 @@
-﻿@{
+﻿@model IEnumerable<Web.Models.Posicion.PosicionViewModel>
+
+@{
     ViewBag.Title = "Route";
 }
 
-<h2>Recorrido de Entidad</h2>
-<div>
-    <table id="grid"></table>
-    <div id="pager"></div>
+<div class="panel panel-primary">
+    <div class="panel-heading"><font size="5">Entidades</font></div>
+    <div class="panel-body">
+        <div class="panel panel-default">
+            <div class="panel-heading"><font size="4">Recorrido de Entidad</font></div>
+            <div class="panel-body">
+                @foreach (var item in Model)
+                {
+                    <div class="posicion" data-latitud="@(item.latitud)"
+                         data-longitud="@(item.longitud)">
+                    </div>
+                }
+                <div id="map_canvas" style="height: 300px;"></div>
+                <div>
+                    <table id="grid"></table>
+                    <div id="pager"></div>
+                </div>
+                <div id="graph" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                <h3 id="caca"></h3>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <a href="@Url.Action("./")" class="btn btn-default">
+            <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+            Volver a la lista
+        </a>
+    </div>
 </div>
 
 <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
 <link href="~/Content/jquery.jqGrid/ui.jqgrid.css" rel="stylesheet" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="~/Scripts/jquery-1.9.1.min.js"></script>
 <script src="~/Scripts/jquery-ui-1.10.4.min.js"></script>
 <script src="~/Scripts/i18n/grid.locale-en.js"></script>
 <script src="~/Scripts/jquery.jqGrid.min.js"></script>
 <script src="~/Scripts/positions.js"></script>
+<script src="~/Scripts/graph.js"></script>
+
+<script src="http://maps.google.com/maps/api/js?sensor=true" type="text/javascript"></script>
+<script type="text/javascript">
+    function init() {
+        var posiciones = document.getElementsByClassName("posicion");
+
+        var Area = new google.maps.LatLng(
+                    parseFloat(posiciones[0].getAttribute("data-latitud").replace(',', '.')),
+                    parseFloat(posiciones[0].getAttribute("data-longitud").replace(',', '.'))
+                );
+
+        var mapOptions = {
+            zoom: 5,
+            center: Area,
+            mapTypeId: google.maps.MapTypeId.G_NORMAL_MAP
+        };
+
+        var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+
+        var data = [];
+
+        for (i = 0 ; i < posiciones.length ; i++) {
+            data.push(
+                new google.maps.LatLng(
+                    parseFloat(posiciones[i].getAttribute("data-latitud").replace(',', '.')),
+                    parseFloat(posiciones[i].getAttribute("data-longitud").replace(',', '.'))
+                ));
+        }
+
+        var polylineOptions = {
+            path: data,
+            strokeColor: "#F30B0B",
+            strokeOpacity: 1.0,
+            strokeWeight: 2};
+        var polyline = new google.maps.Polyline(polylineOptions);
+
+        polyline.setMap(map);
+
+    }
+    window.onload = init;
+</script>
+
+<style>
+    #map_canvas img {
+        max-width: none;
+    }
+</style>

@@ -26,7 +26,7 @@ namespace Web.Models.Entidad
         public Nullable<int> idCuenta { get; set; }
 
         public bool TienePosicion { get; set; }
-        public Posicion Posicion { get; set; }
+        public Datos.DBContexto.Posicion Posicion { get; set; }
 
         public virtual Cuenta Cuenta { get; set; }
         public virtual Datos.DBContexto.NivelServicio NivelServicio { get; set; }

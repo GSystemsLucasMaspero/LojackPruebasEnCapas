@@ -63,12 +63,6 @@ namespace Servicios.Servicios
             return repositorioPos.TieneEntidadDeID(id);
         }
 
-        // Devuelve la primera posición encontrada
-        public Posicion ObtenerPosicion(int id)
-        {
-            return repositorioPos.ObtenerPosicion(id);
-        }
-
         // Devuelve la última (más actual) posición
         public Posicion ObtenerUltimaPosicion(int id)
         {
@@ -81,9 +75,14 @@ namespace Servicios.Servicios
             return repositorioPos.ObtenerPosiciones(id);
         }
 
-        public int LastID()
+        public IEnumerable<Entidad> ObtenerEntidadesConPosicion()
         {
-            return repositorio.LastID();
+            List<Entidad> entidades = new List<Entidad>();
+            foreach (int id in repositorioPos.ObtenerIdEntidadConPosicion())
+            {
+                entidades.Add(ObtenerEntidadPorID(id));
+            }
+            return entidades;
         }
 
     }

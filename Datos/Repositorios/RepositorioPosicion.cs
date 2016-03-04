@@ -16,25 +16,20 @@ namespace Datos.Repositorios
             return DB.Posicions.Where(p => p.idEntidad == idEntidad).FirstOrDefault() != null;
         }
 
-        // Obtener primera posición encontrada.
-        public Posicion ObtenerPosicion(int idEntidad)
-        {
-            return DB.Posicions.First(posicion => posicion.idEntidad == idEntidad);
-        }
-
         public Posicion ObtenerUltimaPosicion(int idEntidad)
         {
-            Posicion ultima = null;
-            foreach(Posicion p in DB.Posicions.Where(posicion => posicion.idEntidad == idEntidad)) {
-                if (ultima == null || DateTime.Compare(ultima.fechaPosicion, p.fechaPosicion) < 0)
-                    ultima = p;
-            }
-            return ultima;
+            return DB.Posicions.Where(posicion => posicion.idEntidad == idEntidad).OrderBy(posicion => posicion.fechaPosicion).First();
         }
 
         public IEnumerable<Posicion> ObtenerPosiciones(int idEntidad)
         {
             return DB.Posicions.Where(posicion => posicion.idEntidad == idEntidad);
+        }
+
+        public IEnumerable<Int32> ObtenerIdEntidadConPosicion()
+        {
+            IEnumerable<Int32> data = DB.Posicions.Select(p => p.idEntidad).Distinct().ToList();
+            return data;
         }
 
     }

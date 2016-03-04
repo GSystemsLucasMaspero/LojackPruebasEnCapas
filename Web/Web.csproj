@@ -57,6 +57,12 @@
     <Reference Include="GMaps">
       <HintPath>..\GMaps.dll</HintPath>
     </Reference>
+    <Reference Include="Highcharts">
+      <HintPath>..\packages\Highcharts.Net.2.0.3\lib\net4.0\Highcharts.dll</HintPath>
+    </Reference>
+    <Reference Include="Highcharts.MVC">
+      <HintPath>..\packages\Highcharts.Net.2.0.3\lib\net4.0\Highcharts.MVC.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -204,6 +210,7 @@
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\graph.js" />
     <Content Include="Scripts\i18n\grid.locale-ar.js" />
     <Content Include="Scripts\i18n\grid.locale-bg.js" />
     <Content Include="Scripts\i18n\grid.locale-bg1251.js" />
@@ -288,6 +295,7 @@
     <Compile Include="Models\EquipoTipo\EquipoTipoViewModel.cs" />
     <Compile Include="Models\NivelServicio\NivelServicioFormViewModel.cs" />
     <Compile Include="Models\NivelServicio\NivelServicioViewModel.cs" />
+    <Compile Include="Models\Posicion\PosicionViewModel.cs" />
     <Compile Include="Models\Usuario\UsuarioLogin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\Equipo\EquipoFormViewModel.cs" />

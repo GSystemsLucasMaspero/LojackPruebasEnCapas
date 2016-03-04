@@ -31,7 +31,7 @@
                          data-comentario="@(item.comentario)">
                     </div>
                 }
-                <div id="map_canvas" style="height: 600px;"></div>
+                <div id="map_canvas" style="height: 520px;"></div>
             </div>
         </div>
     </div>
@@ -53,9 +53,9 @@
             function initialize() {
                 var entidades = $(".entidad");
                 var markers = new Array();
-                var Area = new google.maps.LatLng(-34.603722, -58.381592);  // Buenos Aires
+                var Area = new google.maps.LatLng(-41, -58.381592);  // Argentina
                 var mapOptions = {
-                    zoom: 6,
+                    zoom: 4,
                     center: Area,
                     mapTypeId: google.maps.MapTypeId.G_NORMAL_MAP
                 };

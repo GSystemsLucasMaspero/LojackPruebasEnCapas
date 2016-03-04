@@ -8,6 +8,7 @@ using Web.Models;
 using Web.Models.Entidad;
 using Web.Models.EquipoTipo;
 using Web.Models.NivelServicio;
+using Web.Models.Posicion;
 
 namespace Web.Mappings
 {
@@ -32,6 +33,8 @@ namespace Web.Mappings
 
             Mapper.CreateMap<NivelServicio, NivelServicioViewModel>();
             Mapper.CreateMap<NivelServicio, NivelServicioFormViewModel>();
+
+            Mapper.CreateMap<Posicion, PosicionViewModel>();
             #pragma warning restore 612, 618
         }
     }
