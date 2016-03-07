@@ -88,3 +88,4 @@ C:\Users\lmaspero\Source\Repos\LojackPruebasEnCapas\Web\bin\Highcharts.dll
 C:\Users\lmaspero\Source\Repos\LojackPruebasEnCapas\Web\bin\Highcharts.MVC.dll
 C:\Users\lmaspero\Source\Repos\LojackPruebasEnCapas\Web\bin\Highcharts.pdb
 C:\Users\lmaspero\Source\Repos\LojackPruebasEnCapas\Web\bin\Highcharts.MVC.pdb
+C:\Users\lmaspero\Source\Repos\LojackPruebasEnCapas\Web\bin\DotNet.Highcharts.dll

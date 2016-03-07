@@ -1,0 +1,26 @@
+﻿@model DotNet.Highcharts.Highcharts
+
+@{
+    ViewBag.Title = "Speed";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="http://code.highcharts.com/highcharts.js"></script>
+
+<div class="panel panel-primary">
+    <div class="panel-heading"><font size="5">Entidades</font></div>
+    <div class="panel-body">
+        <div class="panel panel-default">
+            <div class="panel-heading"><font size="4">Velocidad de Entidad</font></div>
+            <div class="panel-body">
+                @Model
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <a href="@Url.Action("./")" class="btn btn-default">
+            <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+            Volver al mapa
+        </a>
+    </div>
+</div>

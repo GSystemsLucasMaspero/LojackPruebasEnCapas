@@ -23,7 +23,7 @@ namespace Datos.Repositorios
 
         public IEnumerable<Posicion> ObtenerPosiciones(int idEntidad)
         {
-            return DB.Posicions.Where(posicion => posicion.idEntidad == idEntidad);
+            return DB.Posicions.Where(posicion => posicion.idEntidad == idEntidad).OrderBy(posicion => posicion.fechaPosicion);
         }
 
         public IEnumerable<Int32> ObtenerIdEntidadConPosicion()

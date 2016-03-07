@@ -15,8 +15,8 @@ namespace Web.Controllers
 {
     public class EntidadController : Controller
     {
-        #pragma warning disable 612, 618
-        
+#pragma warning disable 612, 618
+
         private ServicioEntidad servicio = new ServicioEntidad();
         private GeneralService servicioGeneral = new GeneralService();
         private static int lastRouteID = 0;
@@ -76,7 +76,7 @@ namespace Web.Controllers
 
             foreach (EntidadViewModel entidad in viewModelEntidades)
             {
-                if(servicio.TienePosicion(entidad.idEntidad))
+                if (servicio.TienePosicion(entidad.idEntidad))
                     entidad.TienePosicion = true;
                 else
                     entidad.TienePosicion = false;
@@ -84,7 +84,7 @@ namespace Web.Controllers
 
             var model = new StaticPagedList<EntidadViewModel>(viewModelEntidades, page, pageSize, entidadesCount);
 
-            return View(model); 
+            return View(model);
         }
 
         [HttpGet]
@@ -231,10 +231,9 @@ namespace Web.Controllers
                 model.Posicion = servicio.ObtenerUltimaPosicion(e.idEntidad);
                 viewModelEntidades.Add(model);
             }
-            
+
             return View(viewModelEntidades);
         }
-#pragma warning restore 612, 618
 
         [HttpGet]
         public ActionResult Route(int id = 0)
@@ -243,6 +242,14 @@ namespace Web.Controllers
             lastRouteID = id;
             IEnumerable<Posicion> results = servicio.ObtenerPosiciones(lastRouteID);
             return View(Mapper.Map<IEnumerable<Posicion>, IEnumerable<PosicionViewModel>>(results));
+        }
+
+#pragma warning restore 612, 618
+
+        [HttpGet]
+        public ActionResult Speed(int id = 0)
+        {
+            return View();
         }
 
         public JsonResult GetPositions(string sidx, string sord, int page, int rows)

@@ -21,8 +21,6 @@
                     <table id="grid"></table>
                     <div id="pager"></div>
                 </div>
-                <div id="graph" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-                <h3 id="caca"></h3>
             </div>
         </div>
     </div>
@@ -30,6 +28,10 @@
         <a href="@Url.Action("./")" class="btn btn-default">
             <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
             Volver a la lista
+        </a>
+        <a href="@Url.Action("/Speed")" class="btn btn-primary">
+            <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+            Ver gráfico de velocidad
         </a>
     </div>
 </div>
@@ -44,7 +46,6 @@
 <script src="~/Scripts/i18n/grid.locale-en.js"></script>
 <script src="~/Scripts/jquery.jqGrid.min.js"></script>
 <script src="~/Scripts/positions.js"></script>
-<script src="~/Scripts/graph.js"></script>
 
 <script src="http://maps.google.com/maps/api/js?sensor=true" type="text/javascript"></script>
 <script type="text/javascript">
@@ -80,6 +81,21 @@
             strokeOpacity: 1.0,
             strokeWeight: 2};
         var polyline = new google.maps.Polyline(polylineOptions);
+        var salida = new google.maps.Marker({
+            position: new google.maps.LatLng(
+                posiciones[0].getAttribute("data-latitud").replace(',', '.'),
+                posiciones[0].getAttribute("data-longitud").replace(',', '.')),
+            map: map
+        });
+        var llegada = new google.maps.Marker({
+            position: new google.maps.LatLng(
+                posiciones[posiciones.length-1].getAttribute("data-latitud").replace(',', '.'),
+                posiciones[posiciones.length-1].getAttribute("data-longitud").replace(',', '.')),
+            map: map
+        });
+
+        salida.setIcon('http://maps.google.com/mapfiles/kml/paddle/A-lv.png');
+        llegada.setIcon('http://maps.google.com/mapfiles/kml/paddle/B-lv.png');
 
         polyline.setMap(map);
 
