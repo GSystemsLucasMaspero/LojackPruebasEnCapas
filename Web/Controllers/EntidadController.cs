@@ -10,6 +10,9 @@ using AutoMapper;
 using PagedList;
 using Web.Models.Entidad;
 using Web.Models.Posicion;
+using DotNet.Highcharts.Options;
+using DotNet.Highcharts.Enums;
+using DotNet.Highcharts.Helpers;
 
 namespace Web.Controllers
 {
@@ -250,8 +253,33 @@ namespace Web.Controllers
         [HttpGet]
         public ActionResult Speed(int id = 0)
         {
+            var results = servicio.ObtenerPosiciones(lastRouteID).Select(
+                    a => new
+                    {
+                        a.fechaPosicion,
+                        a.velocidad,
+                    });
 
-            return View();
+            var xData = results.Select(i => i.fechaPosicion.ToString("HH:mm:ss")).ToArray();
+            var yData = results.Select(i => new object[] { i.velocidad }).ToArray();
+
+            var chart = new DotNet.Highcharts.Highcharts("chart")
+                        .InitChart(new Chart { DefaultSeriesType = ChartTypes.Line })
+                        .SetTitle(new Title { Text = "Velocidad de Entidad" })
+                        .SetXAxis(new XAxis { Categories = xData })
+                        .SetYAxis(new YAxis { Title = new YAxisTitle { Text = "Velocidad (Km/h)" } })
+                        .SetTooltip(new Tooltip
+                        {
+                            Enabled = true,
+                            Formatter = @"function() { return '<b>'+ this.series.name +'</b><br/>'+ this.x +': '+ this.y; }"
+                        })
+                        .SetSeries(new[]
+                        {
+                         new Series {Name = "Hour", Data = new Data(yData)},
+                        });
+
+
+            return View(chart);
         }
 
         public JsonResult GetPositions(string sidx, string sord, int page, int rows)
