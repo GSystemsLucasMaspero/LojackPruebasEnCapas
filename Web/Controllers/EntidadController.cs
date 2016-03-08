@@ -263,6 +263,16 @@ namespace Web.Controllers
             var xData = results.Select(i => i.fechaPosicion.ToString("HH:mm:ss")).ToArray();
             var yData = results.Select(i => new object[] { i.velocidad }).ToArray();
 
+            double average = Math.Round(servicio.ObtenerPosiciones(lastRouteID).Average(r => r.velocidad), 2);
+
+            object[] yDataAverage = new object[yData.Length];
+            Array.Copy(yData,0,yDataAverage,0,yData.Length);
+
+            for (int i = 0; i < yDataAverage.Length; i++)
+            {
+                yDataAverage[i] = average;
+            }
+
             var chart = new DotNet.Highcharts.Highcharts("chart")
                         .InitChart(new Chart { DefaultSeriesType = ChartTypes.Line })
                         .SetTitle(new Title { Text = "Velocidad de Entidad" })
@@ -271,11 +281,21 @@ namespace Web.Controllers
                         .SetTooltip(new Tooltip
                         {
                             Enabled = true,
-                            Formatter = @"function() { return '<b>'+ this.series.name +'</b><br/>'+ this.x +': '+ this.y; }"
+                            Formatter = @"function() { 
+                                var text = '';
+                                if(this.series.name == 'Velocidad') {
+                                    text = '<b>'+ 'Velocidad: ' + '</b>' + this.y + ' Km/h<br/>' +
+                                '<b>'+ 'Hora: ' +'</b> '+ this.x;
+                                } else {
+                                    text = '<b>'+ 'Velocidad: ' + '</b>' + this.y + ' Km/h<br/>';
+                                }
+                                return text;
+                            }"
                         })
                         .SetSeries(new[]
                         {
-                         new Series {Name = "Hour", Data = new Data(yData)},
+                         new Series {Name = "Velocidad", Data = new Data(yData)},
+                         new Series {Name = "Velocidad promedio", Data = new Data(yDataAverage)},
                         });
 
 
