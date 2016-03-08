@@ -238,9 +238,10 @@ namespace Web.Controllers
         [HttpGet]
         public ActionResult Route(int id = 0)
         {
-            // Validar que id llega --> ERROR
             lastRouteID = id;
             IEnumerable<Posicion> results = servicio.ObtenerPosiciones(lastRouteID);
+            if(id <= 0 || results == null)
+                return new HttpStatusCodeResult(404, "No se ha encontrado la Entidad de ID " + id + ". (¿Quizás fue eliminada?)");
             return View(Mapper.Map<IEnumerable<Posicion>, IEnumerable<PosicionViewModel>>(results));
         }
 
@@ -249,6 +250,7 @@ namespace Web.Controllers
         [HttpGet]
         public ActionResult Speed(int id = 0)
         {
+
             return View();
         }
 
