@@ -275,6 +275,8 @@ namespace Web.Controllers
                 yDataAverage[i] = average;
             }
 
+            TempData["idEntidad"] = id;
+
             var chart = new DotNet.Highcharts.Highcharts("chart")
                         .InitChart(new Chart { DefaultSeriesType = ChartTypes.Line })
                         .SetTitle(new Title { Text = "Velocidad de Entidad" })
