@@ -45,6 +45,7 @@
     <Compile Include="Servicios\ServicioEquipo.cs" />
     <Compile Include="Servicios\ServicioEquipoTipo.cs" />
     <Compile Include="Servicios\ServicioNivelServicio.cs" />
+    <Compile Include="Servicios\ServicioPassword.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Datos\Datos.csproj">
