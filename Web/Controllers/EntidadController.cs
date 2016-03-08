@@ -243,8 +243,8 @@ namespace Web.Controllers
         {
             lastRouteID = id;
             IEnumerable<Posicion> results = servicio.ObtenerPosiciones(lastRouteID);
-            if(id <= 0 || results == null)
-                return new HttpStatusCodeResult(404, "No se ha encontrado la Entidad de ID " + id + ". (¿Quizás fue eliminada?)");
+            if (id <= 0 || results.Count() == 0)
+                return new HttpStatusCodeResult(404, "No se ha encontrado la ruta de la Entidad de ID " + id + ". (¿Quizás fue eliminada?)");
             return View(Mapper.Map<IEnumerable<Posicion>, IEnumerable<PosicionViewModel>>(results));
         }
 
@@ -253,17 +253,19 @@ namespace Web.Controllers
         [HttpGet]
         public ActionResult Speed(int id = 0)
         {
-            var results = servicio.ObtenerPosiciones(lastRouteID).Select(
+            var results = servicio.ObtenerPosiciones(id).Select(
                     a => new
                     {
                         a.fechaPosicion,
                         a.velocidad,
                     });
+            if (id <= 0 || results.Count() == 0)
+                return new HttpStatusCodeResult(404, "No se ha encontrado la ruta de la Entidad de ID " + id + ". (¿Quizás fue eliminada?)");
 
             var xData = results.Select(i => i.fechaPosicion.ToString("HH:mm:ss")).ToArray();
             var yData = results.Select(i => new object[] { i.velocidad }).ToArray();
 
-            double average = Math.Round(servicio.ObtenerPosiciones(lastRouteID).Average(r => r.velocidad), 2);
+            double average = Math.Round(servicio.ObtenerPosiciones(id).Average(r => r.velocidad), 2);
 
             object[] yDataAverage = new object[yData.Length];
             Array.Copy(yData,0,yDataAverage,0,yData.Length);

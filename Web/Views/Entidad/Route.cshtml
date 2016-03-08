@@ -29,7 +29,7 @@
             <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
             Volver a la lista
         </a>
-        <a href="@Url.Action("/Speed")" class="btn btn-primary">
+        <a href="@Url.Action("Speed", new { id = @Model.First().idEntidad})" class="btn btn-primary">
             <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
             Ver gráfico de velocidad
         </a>
