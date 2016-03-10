@@ -365,6 +365,7 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Entidad\Route.cshtml" />
     <Content Include="Views\Entidad\Speed.cshtml" />
+    <Content Include="Views\Account\UserPanel.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -10,6 +10,8 @@ namespace Web.Controllers
     {
         public ActionResult Index()
         {
+            if (Session["user"] == null)
+                return RedirectToAction("Login", "Account");
             return View();
         }
 	}

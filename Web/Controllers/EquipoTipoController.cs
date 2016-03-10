@@ -27,6 +27,9 @@ namespace Web.Controllers
             ViewBag.DescripcionSortParm = String.IsNullOrEmpty(sortOrder) ? "descripcion_asc" : "";
             ViewBag.CantSensoresSortParm = String.IsNullOrEmpty(sortOrder) ? "cantsensores_asc" : "";
 
+            if (Session["user"] == null)
+                return RedirectToAction("Login", "Account");
+
             if (search != null)
                 page = 1;
             else
@@ -77,6 +80,8 @@ namespace Web.Controllers
         [HttpGet]
         public ActionResult Create()
         {
+            if (Session["user"] == null)
+                return RedirectToAction("Login", "Account");
             return View();
         }
 
@@ -100,6 +105,9 @@ namespace Web.Controllers
             EquipoTipoViewModel viewModel;
             EquipoTipo equipo;
 
+            if (Session["user"] == null)
+                return RedirectToAction("Login", "Account");
+
             equipo = servicio.ObtenerEquipoTipoPorID(id);
             if (equipo == null)
                 return new HttpStatusCodeResult(404, "No se ha encontrado el Tipo de Equipo de ID " + id);
@@ -119,6 +127,9 @@ namespace Web.Controllers
         {
             EquipoTipoViewModel viewModel;
             EquipoTipo equipo;
+
+            if (Session["user"] == null)
+                return RedirectToAction("Login", "Account");
 
             equipo = servicio.ObtenerEquipoTipoPorID(id);
             if (equipo == null || equipo.usuarioBaja != null)
@@ -148,6 +159,9 @@ namespace Web.Controllers
         {
             EquipoTipoFormViewModel viewModel;
             EquipoTipo equipo;
+
+            if (Session["user"] == null)
+                return RedirectToAction("Login", "Account");
 
             equipo = servicio.ObtenerEquipoTipoPorID(id);
             if (equipo == null || equipo.usuarioBaja != null)

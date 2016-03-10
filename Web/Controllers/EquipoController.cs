@@ -27,6 +27,9 @@ namespace Web.Controllers
             ViewBag.EquipoTipoSortParm = String.IsNullOrEmpty(sortOrder) ? "equipotipo_asc" : "";
             ViewBag.CadenciaSortParm = String.IsNullOrEmpty(sortOrder) ? "cadencia_asc" : "";
 
+            if (Session["user"] == null)
+                return RedirectToAction("Login", "Account");
+
             if (search!= null)
                 page = 1;
             else
@@ -82,6 +85,8 @@ namespace Web.Controllers
         {
             ViewBag.idCuenta = new SelectList(servicio.ObtenerCuentas(), "idCuenta", "nombre");
             ViewBag.idEquipoTipo = new SelectList(servicio.ObtenerTiposDeEquipo(), "idEquipoTipo", "descripcion");
+            if (Session["user"] == null)
+                return RedirectToAction("Login", "Account");
             return View();
         }
 
@@ -107,6 +112,9 @@ namespace Web.Controllers
             EquipoViewModel viewModel;
             Equipo equipo;
 
+            if (Session["user"] == null)
+                return RedirectToAction("Login", "Account");
+
             equipo = servicio.ObtenerEquipoPorID(id);
             if (equipo == null)
                 return new HttpStatusCodeResult(404, "No se ha encontrado el Equipo de ID " + id);
@@ -128,6 +136,9 @@ namespace Web.Controllers
         {
             EquipoViewModel viewModel;
             Equipo equipo;
+
+            if (Session["user"] == null)
+                return RedirectToAction("Login", "Account");
 
             equipo = servicio.ObtenerEquipoPorID(id);
             if (equipo == null || equipo.usuarioBaja != null)
@@ -159,6 +170,9 @@ namespace Web.Controllers
         {
             EquipoFormViewModel viewModel;
             Equipo equipo;
+
+            if (Session["user"] == null)
+                return RedirectToAction("Login", "Account");
 
             equipo = servicio.ObtenerEquipoPorID(id);
             if(equipo == null || equipo.usuarioBaja != null)

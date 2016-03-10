@@ -21,5 +21,11 @@ namespace Servicios.Servicios
         {
             return repositorio.ObtenerUsuarios();
         }
+
+        public Usuario ObtenerUsuarioPorNombre(String userLogin)
+        {
+            return repositorio.ObtenerUsuarioPorNombre(userLogin);
+        }
+
     }
 }

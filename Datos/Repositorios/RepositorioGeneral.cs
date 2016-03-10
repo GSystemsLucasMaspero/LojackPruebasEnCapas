@@ -20,5 +20,11 @@ namespace Datos.Repositorios
         {
             return DB.Usuarios.ToList();
         }
+
+        public Usuario ObtenerUsuarioPorNombre(String userLogin)
+        {
+            return DB.Usuarios.FirstOrDefault(u => u.userLogin == userLogin);
+        }
+
     }
 }

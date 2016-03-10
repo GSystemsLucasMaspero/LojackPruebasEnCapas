@@ -10,8 +10,10 @@ namespace Web.Models.Usuario
     {
         [Required(ErrorMessage = "El campo Usuario es obligatorio.")]
         public string UserName { get; set; }
-        [Required(ErrorMessage = "El campo Usuario es obligatorio.")]
+        [Required(ErrorMessage = "El campo Contraseña es obligatorio.")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+        public string nombre { get; set; }
+        public string apellido { get; set; }
     }
 }

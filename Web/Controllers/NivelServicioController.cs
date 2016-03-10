@@ -26,6 +26,9 @@ namespace Web.Controllers
             ViewBag.IDSortParm = "id_asc";
             ViewBag.DescripcionSortParm = String.IsNullOrEmpty(sortOrder) ? "descripcion_asc" : "";
 
+            if (Session["user"] == null)
+                return RedirectToAction("Login", "Account");
+
             if (search != null)
                 page = 1;
             else
@@ -73,6 +76,8 @@ namespace Web.Controllers
         [HttpGet]
         public ActionResult Create()
         {
+            if (Session["user"] == null)
+                return RedirectToAction("Login", "Account");
             return View();
         }
 
@@ -96,6 +101,9 @@ namespace Web.Controllers
             NivelServicioViewModel viewModel;
             NivelServicio service;
 
+            if (Session["user"] == null)
+                return RedirectToAction("Login", "Account");
+
             service = servicio.ObtenerNivelServicioPorID(id);
             if (service == null)
                 return new HttpStatusCodeResult(404, "No se ha encontrado el Nivel de Servicio de ID " + id);
@@ -115,6 +123,9 @@ namespace Web.Controllers
         {
             NivelServicioViewModel viewModel;
             NivelServicio service;
+
+            if (Session["user"] == null)
+                return RedirectToAction("Login", "Account");
 
             service = servicio.ObtenerNivelServicioPorID(id);
             if (service == null || service.usuarioBaja != null)
@@ -144,6 +155,9 @@ namespace Web.Controllers
         {
             NivelServicioFormViewModel viewModel;
             NivelServicio service;
+
+            if (Session["user"] == null)
+                return RedirectToAction("Login", "Account");
 
             service = servicio.ObtenerNivelServicioPorID(id);
             if (service == null || service.usuarioBaja != null)

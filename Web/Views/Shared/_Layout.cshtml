@@ -38,8 +38,13 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/Account/Login"><font color="red" size="5"><i class="glyphicon glyphicon-log-in"></i></font><font size="5"> Iniciar Sesión</font></a></li>
-                </ul>
+                    @if(@Session["user"] == null) {
+                        <li><a href="/Account/Login"><font color="red" size="5"><i class="glyphicon glyphicon-log-in"></i></font><font size="5"> Iniciar Sesión</font></a></li>        
+                    } else {
+                        var user = @Session["user"] as Web.Models.Usuario.UsuarioLogin;
+                        <li><a href="/Account/UserPanel"><font color="red" size="5"><i class="glyphicon glyphicon-user"></i></font><font size="5"> @user.nombre @user.apellido</font></a></li>        
+                    }
+              </ul>
             </div>
         </nav>
         @RenderBody()

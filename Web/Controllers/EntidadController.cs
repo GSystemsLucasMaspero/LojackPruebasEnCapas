@@ -34,6 +34,9 @@ namespace Web.Controllers
             ViewBag.NivelServicioSortParm = String.IsNullOrEmpty(sortOrder) ? "nivelservicio_asc" : "";
             ViewBag.CadenciaReporteSortParm = String.IsNullOrEmpty(sortOrder) ? "cadenciareporte_asc" : "";
 
+            if (Session["user"] == null)
+                return RedirectToAction("Login", "Account");
+
             if (search != null)
                 page = 1;
             else
@@ -95,6 +98,8 @@ namespace Web.Controllers
         {
             ViewBag.idCuenta = new SelectList(servicio.ObtenerCuentas(), "idCuenta", "nombre");
             ViewBag.idNivelServicio = new SelectList(servicio.ObtenerNivelesDeServicio(), "idNivelServicio", "descripcion");
+            if (Session["user"] == null)
+                return RedirectToAction("Login", "Account");
             return View();
         }
 
@@ -121,6 +126,9 @@ namespace Web.Controllers
             EntidadViewModel viewModel;
             Entidad entidad;
 
+            if (Session["user"] == null)
+                return RedirectToAction("Login", "Account");
+
             entidad = servicio.ObtenerEntidadPorID(id);
             if (entidad == null)
                 return new HttpStatusCodeResult(404, "No se ha encontrado la Entidad de ID " + id);
@@ -143,6 +151,9 @@ namespace Web.Controllers
         {
             EntidadViewModel viewModel;
             Entidad entidad;
+
+            if (Session["user"] == null)
+                return RedirectToAction("Login", "Account");
 
             entidad = servicio.ObtenerEntidadPorID(id);
             if (entidad == null || entidad.usuarioBaja != null)
@@ -175,6 +186,9 @@ namespace Web.Controllers
         {
             EntidadFormViewModel viewModel;
             Entidad entidad;
+
+            if (Session["user"] == null)
+                return RedirectToAction("Login", "Account");
 
             entidad = servicio.ObtenerEntidadPorID(id);
             if (entidad == null || entidad.usuarioBaja != null)
@@ -211,6 +225,9 @@ namespace Web.Controllers
             EntidadViewModel viewModel;
             Entidad entidad;
 
+            if (Session["user"] == null)
+                return RedirectToAction("Login", "Account");
+
             entidad = servicio.ObtenerEntidadPorID(id);
             if (entidad == null || !servicio.TienePosicion(entidad.idEntidad))
                 return new HttpStatusCodeResult(404, "No se ha encontrado la Entidad de ID " + id);
@@ -228,6 +245,9 @@ namespace Web.Controllers
             IEnumerable<Entidad> entidades = servicio.ObtenerEntidadesConPosicion();
             List<EntidadViewModel> viewModelEntidades = new List<EntidadViewModel>();
 
+            if (Session["user"] == null)
+                return RedirectToAction("Login", "Account");
+
             foreach (Entidad e in entidades)
             {
                 EntidadViewModel model = Mapper.Map<Entidad, EntidadViewModel>(e);
@@ -241,6 +261,8 @@ namespace Web.Controllers
         [HttpGet]
         public ActionResult Route(int id = 0)
         {
+            if (Session["user"] == null)
+                return RedirectToAction("Login", "Account");
             lastRouteID = id;
             IEnumerable<Posicion> results = servicio.ObtenerPosiciones(lastRouteID);
             if (id <= 0 || results.Count() == 0)
@@ -253,6 +275,8 @@ namespace Web.Controllers
         [HttpGet]
         public ActionResult Speed(int id = 0)
         {
+            if (Session["user"] == null)
+                return RedirectToAction("Login", "Account");
             var results = servicio.ObtenerPosiciones(id).Select(
                     a => new
                     {

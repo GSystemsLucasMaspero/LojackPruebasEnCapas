@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading"><font size="5">Usuarios</font></div>
+    <div class="panel-body">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><font size="4">Bienvenido</font></div>
+            <div class="panel-body">
+            @{
+                var user = @Session["user"] as Web.Models.Usuario.UsuarioLogin;    
+                <div style="background:rgb(255, 255, 255) !important" class="jumbotron">
+                    <h1>Bienvenido <mark><font color="#428bca">@user.nombre @user.apellido.</font></mark></h1>     
+                </div>
+            }
+            </div>
+            <div class="panel-footer">
+                <a href="@Url.Action("Logout", "Account")" class="btn btn-danger" title="Cerrar Sesión">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    Cerrar Sesión
+                </a>
+                <a href="@Url.Action("Index", "Home")" class="btn btn-primary" title="Inicio">
+                    <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                    Inicio
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
