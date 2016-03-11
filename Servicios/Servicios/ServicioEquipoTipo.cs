@@ -12,9 +12,9 @@ namespace Servicios.Servicios
     {
         private RepositorioEquipoTipo repositorio = new RepositorioEquipoTipo();
 
-        public void CrearEquipoTipo(EquipoTipo equipoTipo)
+        public void CrearEquipoTipo(EquipoTipo equipoTipo, int idUsuario)
         {
-            repositorio.Agregar(equipoTipo);
+            repositorio.Agregar(equipoTipo, idUsuario);
         }
 
         public EquipoTipo ObtenerEquipoTipoPorID(int id)
@@ -32,14 +32,14 @@ namespace Servicios.Servicios
             return repositorio.ObtenerTodos();
         }
 
-        public void Eliminar(EquipoTipo equipoTipo)
+        public void Eliminar(EquipoTipo equipoTipo, int idUsuario)
         {
-            repositorio.Eliminar(equipoTipo);
+            repositorio.Eliminar(equipoTipo, idUsuario);
         }
 
-        public void EliminarPorID(int id)
+        public void EliminarPorID(int id, int idUsuario)
         {
-            repositorio.Eliminar(ObtenerEquipoTipoPorID(id));
+            repositorio.Eliminar(ObtenerEquipoTipoPorID(id),idUsuario);
         }
 
     }

@@ -13,10 +13,10 @@ namespace Datos.Repositorios
     {
         private RepositorioGeneral repositorioGeneral = new RepositorioGeneral();
 
-        public override void Agregar(NivelServicio entidad)
+        public void Agregar(NivelServicio entidad, int idUsuario)
         {
             entidad.fechaAlta = repositorioGeneral.ObtenerDateTimeServer();
-            entidad.usuarioAlta = 20;
+            entidad.usuarioAlta = idUsuario;
 
             base.Agregar(entidad);
         }
@@ -30,15 +30,15 @@ namespace Datos.Repositorios
             base.Modificar(entidad, id);
         }
 
-        public void Eliminar(NivelServicio entidad)
+        public void Eliminar(NivelServicio entidad, int idUsuario)
         {
             entidad.fechaBaja = repositorioGeneral.ObtenerDateTimeServer();
-            entidad.usuarioBaja = 20;
+            entidad.usuarioBaja = idUsuario;
 
             base.Modificar(entidad, entidad.idNivelServicio);
         }
 
-        public IQueryable<NivelServicio> ObtenerTodos()
+        public new IQueryable<NivelServicio> ObtenerTodos()
         {
             return base.DBContext.NivelServicios;
         }

@@ -92,7 +92,7 @@ namespace Web.Controllers
             EquipoTipo equipo = Mapper.Map<EquipoTipoFormViewModel, EquipoTipo>(equipoModel);
             if (ModelState.IsValid)
             {
-                servicio.CrearEquipoTipo(equipo);
+                servicio.CrearEquipoTipo(equipo, servicioGeneral.ObtenerUsuarioPorNombre((@Session["user"] as Web.Models.Usuario.UsuarioLogin).UserName).idUsuario);
                 TempData["AlertMessage"] = "Tipo de Equipo \"" + equipo.descripcion + "\" creado correctamente.";
                 return RedirectToAction("Index");
             }
@@ -149,7 +149,7 @@ namespace Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(EquipoTipoViewModel equipoModel, int id = 0)
         {
-            servicio.EliminarPorID(id);
+            servicio.EliminarPorID(id, servicioGeneral.ObtenerUsuarioPorNombre((@Session["user"] as Web.Models.Usuario.UsuarioLogin).UserName).idUsuario);
             TempData["AlertMessage"] = "Tipo de Equipo \"" + servicio.ObtenerEquipoTipoPorID(id).descripcion + "\" eliminado correctamente.";
             return RedirectToAction("Index");
         }

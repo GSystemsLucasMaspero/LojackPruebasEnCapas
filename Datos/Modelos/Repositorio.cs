@@ -25,8 +25,6 @@ namespace Datos.Modelos
 
         public virtual void Modificar(T entidad, int id)
         {
-            //DB.Set<T>().Attach(entidad);
-            //DB.Entry(entidad).State = EntityState.Modified;
             DB.SaveChanges();
         }
 

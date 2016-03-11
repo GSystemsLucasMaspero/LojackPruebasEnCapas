@@ -13,14 +13,16 @@ namespace Datos.Repositorios
     {
         private RepositorioGeneral repositorioGeneral = new RepositorioGeneral();
 
-        public override void Agregar(Entidad entidad)
+        public void Agregar(Entidad entidad, int idUsuario)
         {
             entidad.fechaAlta = repositorioGeneral.ObtenerDateTimeServer();
             entidad.fechaModificacion = repositorioGeneral.ObtenerDateTimeServer();
+            entidad.usuarioAlta = idUsuario;
+            entidad.usuarioModificacion = idUsuario;
             base.Agregar(entidad);
         }
 
-        public override void Modificar(Entidad entidad, int id)
+        public void Modificar(Entidad entidad, int id, int idUsuario)
         {
             Entidad entidadToUpdate = this.ObtenerPorID(id);
 
@@ -35,24 +37,27 @@ namespace Datos.Repositorios
             entidadToUpdate.idProcedimiento = entidad.idProcedimiento;
 
             entidadToUpdate.fechaModificacion = repositorioGeneral.ObtenerDateTimeServer();
+            entidad.usuarioModificacion = idUsuario;
 
             base.Modificar(entidad, id);
         }
 
-        public void Eliminar(Entidad entidad, int id)
+        public void Eliminar(Entidad entidad, int id, int idUsuario)
         {
             entidad.fechaBaja = repositorioGeneral.ObtenerDateTimeServer();
             entidad.fechaModificacion = repositorioGeneral.ObtenerDateTimeServer();
+            entidad.usuarioBaja = idUsuario;
+            entidad.usuarioModificacion = idUsuario;
 
             base.Modificar(entidad, id);
         }
 
-        public Entidad ObtenerPorID(int id)
+        public new Entidad ObtenerPorID(int id)
         {
             return base.DBContext.Set<Entidad>().Include(e => e.Cuenta).Include(e => e.NivelServicio).FirstOrDefault(e => e.idEntidad == id);
         }
 
-        public IQueryable<Entidad> ObtenerTodos()
+        public new IQueryable<Entidad> ObtenerTodos()
         {
             return base.DBContext.Entidads.Include(e => e.Cuenta).Include(e => e.NivelServicio);
         }

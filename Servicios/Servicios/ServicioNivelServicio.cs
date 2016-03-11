@@ -12,9 +12,9 @@ namespace Servicios.Servicios
     {
         private RepositorioNivelServicio repositorio = new RepositorioNivelServicio();
 
-        public void CrearNivelServicio(NivelServicio nivelServicio)
+        public void CrearNivelServicio(NivelServicio nivelServicio, int idUsuario)
         {
-            repositorio.Agregar(nivelServicio);
+            repositorio.Agregar(nivelServicio, idUsuario);
         }
 
         public NivelServicio ObtenerNivelServicioPorID(int id)
@@ -32,14 +32,14 @@ namespace Servicios.Servicios
             return repositorio.ObtenerTodos();
         }
 
-        public void Eliminar(NivelServicio nivelServicio)
+        public void Eliminar(NivelServicio nivelServicio, int idUsuario)
         {
-            repositorio.Eliminar(nivelServicio);
+            repositorio.Eliminar(nivelServicio, idUsuario);
         }
 
-        public void EliminarPorID(int id)
+        public void EliminarPorID(int id, int idUsuario)
         {
-            repositorio.Eliminar(ObtenerNivelServicioPorID(id));
+            repositorio.Eliminar(ObtenerNivelServicioPorID(id), idUsuario);
         }
 
     }

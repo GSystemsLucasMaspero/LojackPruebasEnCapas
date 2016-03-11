@@ -13,9 +13,9 @@ namespace Servicios.Servicios
         private RepositorioEntidad repositorio = new RepositorioEntidad();
         private RepositorioPosicion repositorioPos = new RepositorioPosicion();
 
-        public void CrearEntidad(Entidad entidad)
+        public void CrearEntidad(Entidad entidad, int idUsuario)
         {
-            repositorio.Agregar(entidad);
+            repositorio.Agregar(entidad, idUsuario);
         }
 
         public Entidad ObtenerEntidadPorID(int id)
@@ -23,9 +23,9 @@ namespace Servicios.Servicios
             return repositorio.ObtenerPorID(id);
         }
 
-        public void Modificar(Entidad entidad, int id)
+        public void Modificar(Entidad entidad, int id, int idUsuario)
         {
-            repositorio.Modificar(entidad, id);
+            repositorio.Modificar(entidad, id, idUsuario);
         }
 
         public IQueryable<Entidad> ObtenerTodos()
@@ -38,9 +38,9 @@ namespace Servicios.Servicios
             return repositorio.ObtenerTodosEnumerable();
         }
 
-        public void Eliminar(Entidad entidad, int id)
+        public void Eliminar(int id, int idUsuario)
         {
-            repositorio.Eliminar(entidad ,id);
+            repositorio.Eliminar(this.ObtenerEntidadPorID(id) ,id, idUsuario);
         }
 
         public IEnumerable<Cuenta> ObtenerCuentas()

@@ -88,7 +88,7 @@ namespace Web.Controllers
             NivelServicio service = Mapper.Map<NivelServicioFormViewModel, NivelServicio>(servicioModel);
             if (ModelState.IsValid)
             {
-                servicio.CrearNivelServicio(service);
+                servicio.CrearNivelServicio(service, servicioGeneral.ObtenerUsuarioPorNombre((@Session["user"] as Web.Models.Usuario.UsuarioLogin).UserName).idUsuario);
                 TempData["AlertMessage"] = "Nivel de Servicio \"" + service.descripcion + "\" creado correctamente.";
                 return RedirectToAction("Index");
             }
@@ -145,7 +145,7 @@ namespace Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(NivelServicioViewModel serviceModel, int id = 0)
         {
-            servicio.EliminarPorID(id);
+            servicio.EliminarPorID(id, servicioGeneral.ObtenerUsuarioPorNombre((@Session["user"] as Web.Models.Usuario.UsuarioLogin).UserName).idUsuario);
             TempData["AlertMessage"] = "Nivel de Servicio \"" + servicio.ObtenerNivelServicioPorID(id).descripcion + "\" eliminado correctamente.";
             return RedirectToAction("Index");
         }

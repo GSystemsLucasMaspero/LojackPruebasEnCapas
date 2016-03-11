@@ -97,7 +97,7 @@ namespace Web.Controllers
             Equipo equipo = Mapper.Map<EquipoFormViewModel, Equipo>(equipoModel);
             if (ModelState.IsValid)
             {
-                servicio.CrearEquipo(equipo);
+                servicio.CrearEquipo(equipo, servicioGeneral.ObtenerUsuarioPorNombre((@Session["user"] as Web.Models.Usuario.UsuarioLogin).UserName).idUsuario);
                 TempData["AlertMessage"] = "Equipo \"" + equipo.identificador + "\" creado correctamente.";
                 return RedirectToAction("Index");
             }
@@ -160,7 +160,7 @@ namespace Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(EquipoViewModel equipoModel, int id = 0)
         {
-            servicio.EliminarPorID(id);
+            servicio.EliminarPorID(id, servicioGeneral.ObtenerUsuarioPorNombre((@Session["user"] as Web.Models.Usuario.UsuarioLogin).UserName).idUsuario);
             TempData["AlertMessage"] = "Equipo \"" + servicio.ObtenerEquipoPorID(id).identificador + "\" eliminado correctamente.";
             return RedirectToAction("Index");
         }
@@ -193,7 +193,7 @@ namespace Web.Controllers
             Equipo equipo = Mapper.Map<EquipoFormViewModel, Equipo>(equipoModel);
             if (ModelState.IsValid)
             {
-                servicio.Modificar(equipo, id);
+                servicio.Modificar(equipo, id, servicioGeneral.ObtenerUsuarioPorNombre((@Session["user"] as Web.Models.Usuario.UsuarioLogin).UserName).idUsuario);
                 TempData["AlertMessage"] = "Equipo \"" + equipo.identificador + "\" editado correctamente.";
                 return RedirectToAction("Index");
             }

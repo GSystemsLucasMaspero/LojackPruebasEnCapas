@@ -12,9 +12,9 @@ namespace Servicios.Servicios
     {
         private RepositorioEquipo repositorio = new RepositorioEquipo();
 
-        public void CrearEquipo(Equipo equipo)
+        public void CrearEquipo(Equipo equipo, int idUsuario)
         {
-            repositorio.Agregar(equipo);
+            repositorio.Agregar(equipo, idUsuario);
         }
 
         public Equipo ObtenerEquipoPorID(int id)
@@ -22,9 +22,9 @@ namespace Servicios.Servicios
             return repositorio.ObtenerPorID(id);
         }
 
-        public void Modificar(Equipo equipo, int id)
+        public void Modificar(Equipo equipo, int id, int idUsuario)
         {
-            repositorio.Modificar(equipo,id);
+            repositorio.Modificar(equipo,id, idUsuario);
         }
 
         public IQueryable<Equipo> ObtenerTodos()
@@ -32,14 +32,14 @@ namespace Servicios.Servicios
             return repositorio.ObtenerTodos();
         }
 
-        public void Eliminar(Equipo equipo)
+        public void Eliminar(Equipo equipo, int idUsuario)
         {
-            repositorio.Eliminar(equipo);
+            repositorio.Eliminar(equipo, idUsuario);
         }
 
-        public void EliminarPorID(int id)
+        public void EliminarPorID(int id, int idUsuario)
         {
-            repositorio.Eliminar(ObtenerEquipoPorID(id));
+            repositorio.Eliminar(ObtenerEquipoPorID(id), idUsuario);
         }
 
         public IEnumerable<Cuenta> ObtenerCuentas()

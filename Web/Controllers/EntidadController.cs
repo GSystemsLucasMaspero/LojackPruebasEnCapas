@@ -111,9 +111,7 @@ namespace Web.Controllers
 
             if (ModelState.IsValid)
             {
-                entidad.usuarioAlta = servicioGeneral.ObtenerUsuarioPorNombre((@Session["user"] as Web.Models.Usuario.UsuarioLogin).UserName).idUsuario;
-                entidad.usuarioModificacion = entidad.usuarioAlta;
-                servicio.CrearEntidad(entidad);
+                servicio.CrearEntidad(entidad, servicioGeneral.ObtenerUsuarioPorNombre((@Session["user"] as Web.Models.Usuario.UsuarioLogin).UserName).idUsuario);
                 TempData["AlertMessage"] = "Entidad \"" + entidad.nombre + "\" creada correctamente.";
                 return RedirectToAction("Index");
             }
@@ -176,12 +174,9 @@ namespace Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(EntidadViewModel entidadModel, int id = 0)
+        public ActionResult Delete(EntidadViewModel model, int id = 0)
         {
-            Entidad entidad = Mapper.Map<EntidadViewModel, Entidad>(entidadModel);
-            entidad.usuarioModificacion = servicioGeneral.ObtenerUsuarioPorNombre((@Session["user"] as Web.Models.Usuario.UsuarioLogin).UserName).idUsuario;
-            entidad.usuarioBaja = entidad.usuarioModificacion;
-            servicio.Eliminar(entidad,id);
+            servicio.Eliminar(id,servicioGeneral.ObtenerUsuarioPorNombre((@Session["user"] as Web.Models.Usuario.UsuarioLogin).UserName).idUsuario);
             TempData["AlertMessage"] = "Entidad \"" + servicio.ObtenerEntidadPorID(id).nombre + "\" eliminada correctamente.";
             return RedirectToAction("Index");
         }
@@ -215,8 +210,7 @@ namespace Web.Controllers
 
             if (ModelState.IsValid)
             {
-                entidad.usuarioModificacion = servicioGeneral.ObtenerUsuarioPorNombre((@Session["user"] as Web.Models.Usuario.UsuarioLogin).UserName).idUsuario;
-                servicio.Modificar(entidad, id);
+                servicio.Modificar(entidad, id, servicioGeneral.ObtenerUsuarioPorNombre((@Session["user"] as Web.Models.Usuario.UsuarioLogin).UserName).idUsuario);
                 TempData["AlertMessage"] = "Entidad \"" + entidad.nombre + "\" editada correctamente.";
                 return RedirectToAction("Index");
             }
