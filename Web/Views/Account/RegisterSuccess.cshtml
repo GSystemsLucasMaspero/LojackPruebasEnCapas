@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading"><font size="5">Usuarios</font></div>
+    <div class="panel-body">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><font size="4">Usuario registrado!</font></div>
+            <div class="panel-body">
+                <div style="background:rgb(255, 255, 255) !important" class="jumbotron">
+                @{
+                    var nombre = TempData["registerName"];
+                    var apellido = TempData["registerSurname"];
+                    <h1>Registrado nuevo usuario: <mark><font color="#428bca">@nombre @apellido</font></mark>.</h1>
+                }
+                </div>
+            </div>
+            <div class="panel-footer">
+                <a href="@Url.Action("Index", "Home")" class="btn btn-primary" title="Inicio">
+                <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                    Inicio
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

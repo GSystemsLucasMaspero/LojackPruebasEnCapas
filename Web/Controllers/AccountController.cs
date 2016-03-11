@@ -55,5 +55,30 @@ namespace Web.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        public ActionResult RegisterSuccess()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Register(UsuarioRegister model)
+        {
+            if (ModelState.IsValid)
+            {
+                servicioGeneral.AgregarUsuario(model.UserName, servicio.Encrypt(model.Password), model.nombre, model.apellido);
+                TempData["registerName"] = model.nombre;
+                TempData["registerSurname"] = model.apellido;
+                return RedirectToAction("RegisterSuccess", "Account");
+            }
+
+            return View();
+        }
+
 	}
 }

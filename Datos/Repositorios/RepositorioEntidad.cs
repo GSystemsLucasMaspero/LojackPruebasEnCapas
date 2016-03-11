@@ -16,9 +16,7 @@ namespace Datos.Repositorios
         public override void Agregar(Entidad entidad)
         {
             entidad.fechaAlta = repositorioGeneral.ObtenerDateTimeServer();
-            entidad.usuarioAlta = 20;
             entidad.fechaModificacion = repositorioGeneral.ObtenerDateTimeServer();
-            entidad.usuarioModificacion = 20;
             base.Agregar(entidad);
         }
 
@@ -37,19 +35,16 @@ namespace Datos.Repositorios
             entidadToUpdate.idProcedimiento = entidad.idProcedimiento;
 
             entidadToUpdate.fechaModificacion = repositorioGeneral.ObtenerDateTimeServer();
-            entidadToUpdate.usuarioModificacion = 20;
 
             base.Modificar(entidad, id);
         }
 
-        public void Eliminar(Entidad entidad)
+        public void Eliminar(Entidad entidad, int id)
         {
             entidad.fechaBaja = repositorioGeneral.ObtenerDateTimeServer();
-            entidad.usuarioBaja = 20;
             entidad.fechaModificacion = repositorioGeneral.ObtenerDateTimeServer();
-            entidad.usuarioModificacion = 20;
 
-            base.Modificar(entidad, entidad.idEntidad);
+            base.Modificar(entidad, id);
         }
 
         public Entidad ObtenerPorID(int id)

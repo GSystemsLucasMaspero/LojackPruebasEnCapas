@@ -38,14 +38,9 @@ namespace Servicios.Servicios
             return repositorio.ObtenerTodosEnumerable();
         }
 
-        public void Eliminar(Entidad entidad)
+        public void Eliminar(Entidad entidad, int id)
         {
-            repositorio.Eliminar(entidad);
-        }
-
-        public void EliminarPorID(int id)
-        {
-            repositorio.Eliminar(ObtenerEntidadPorID(id));
+            repositorio.Eliminar(entidad ,id);
         }
 
         public IEnumerable<Cuenta> ObtenerCuentas()

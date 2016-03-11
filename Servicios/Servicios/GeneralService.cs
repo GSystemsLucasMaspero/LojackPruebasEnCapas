@@ -27,5 +27,9 @@ namespace Servicios.Servicios
             return repositorio.ObtenerUsuarioPorNombre(userLogin);
         }
 
+        public void AgregarUsuario(String userName, String encryptedPassword, String name, String surname)
+        {
+            this.repositorio.AgregarUsuario(userName, encryptedPassword, name, surname);
+        }
     }
 }
