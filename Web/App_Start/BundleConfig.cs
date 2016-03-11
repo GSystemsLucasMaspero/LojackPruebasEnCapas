@@ -25,7 +25,7 @@ namespace Web.App_Start
                      "~/Scripts/Highcharts-4.0.1/js/highcharts.js"
                         ));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css"));
+            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/Site.css"));
         }
     }
 }
