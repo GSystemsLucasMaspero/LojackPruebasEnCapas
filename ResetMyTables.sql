@@ -1,0 +1,10 @@
+DELETE FROM NivelServicio WHERE idNivelServicio > 4
+DBCC CHECKIDENT ('NivelServicio', RESEED, 4)
+DELETE FROM EquipoTipo WHERE idEquipoTipo > 18
+DBCC CHECKIDENT ('EquipoTipo', RESEED, 18)
+DELETE FROM Entidad WHERE idEntidad > 22170
+DBCC CHECKIDENT ('Entidad', RESEED, 22170)
+DELETE FROM Equipo WHERE idEquipo > 20129
+DBCC CHECKIDENT ('Equipo', RESEED, 20129)
+DELETE FROM Usuario WHERE idUsuario > 256
+DBCC CHECKIDENT ('Usuario', RESEED, 256)
